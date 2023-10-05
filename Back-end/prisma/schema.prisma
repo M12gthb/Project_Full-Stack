@@ -1,0 +1,92 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id           String         @id
+    name         String
+    email        String         @unique
+    password     String
+    cpf          String         @unique
+    cell         String
+    birthdate    String
+    description  String
+    type         Types          @default(comprador)
+    address      Address[]
+    Anouncements Anouncements[]
+    Coments      Coments[]
+
+    @@map("users")
+}
+
+model Address {
+    id         String  @id
+    cep        String
+    state      String
+    city       String
+    street     String
+    number     Int
+    complement String?
+    user       User    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    userId     String  @unique
+
+    @@map("address")
+}
+
+model Anouncements {
+    id          String    @id
+    brand       String
+    model       String
+    year        Int
+    fuel        Fuel
+    mileage     String
+    color       String
+    priceTabel  String
+    price       String
+    description String
+    publish     Boolean   @default(false)
+    cover_img   String?
+    userId      String
+    user        User      @relation(fields: [userId], references: [id])
+    Images      Images[]
+    Coments     Coments[]
+
+    @@map("anouncements")
+}
+
+model Coments {
+    comment        String
+    commentDate    DateTime     @default(now())
+    userId         String
+    anouncementId  String
+    user           User         @relation(fields: [userId], references: [id])
+    anouncement    Anouncements @relation(fields: [anouncementsId], references: [id])
+    anouncementsId String
+
+    @@id([userId, anouncementId])
+    @@map("comments")
+}
+
+model Images {
+    id            String       @id
+    image_url     String
+    anouncement   Anouncements @relation(fields: [anouncementId], references: [id])
+    anouncementId String       @unique
+
+    @@map("image")
+}
+
+enum Types {
+    comprador
+    anunciante
+}
+
+enum Fuel {
+    gasolina
+    etanol
+}
