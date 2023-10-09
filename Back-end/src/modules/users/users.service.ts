@@ -27,10 +27,11 @@ export class UsersService {
       throw new ConflictException('Cpf already registrade');
     }
 
-    const { address, ...rest } = createUserDto;
+    const { address } = createUserDto;
 
     const user = await this.usersRepositoy.create(createUserDto);
-    const addressCreate = await this.addressService.create(address, user.id);
+
+    await this.addressService.create(address, user.id);
 
     const newUser = await this.usersRepositoy.findOne(user.id);
     return newUser;

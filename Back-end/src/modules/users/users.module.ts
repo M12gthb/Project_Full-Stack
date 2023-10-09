@@ -17,6 +17,6 @@ import { AddressModule } from '../Address/address.module';
       useClass: UserPrismaRepository,
     },
   ],
-  exports: [UsersService],
+  exports: [UsersService, UsersRepository],
 })
 export class UserModule {}

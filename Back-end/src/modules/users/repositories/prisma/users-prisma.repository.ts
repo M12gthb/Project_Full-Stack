@@ -51,7 +51,7 @@ export class UserPrismaRepository implements UsersRepository {
   }
 
   async findOne(id: string): Promise<User> {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.user.findFirst({
       where: { id },
       include: { address: true },
     });
