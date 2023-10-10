@@ -25,11 +25,8 @@ export class ImagesPrismaRepository implements ImagesRepository {
     return newImage;
   }
   async update(data: UpdateImageDto, anouncementId: string): Promise<Images> {
-    const image = await this.prisma.images.update({
-      where: {
-        id: anouncementId,
-      },
-      data: { ...data },
+    const image = await this.prisma.images.create({
+      data: { image_url: data.image_url, anouncementId },
     });
     return image;
   }
@@ -39,5 +36,11 @@ export class ImagesPrismaRepository implements ImagesRepository {
       where: { anouncementId: anouncementId },
     });
     return images;
+  }
+
+  async remove(id: string): Promise<void> {
+    await this.prisma.images.delete({
+      where: { id: id },
+    });
   }
 }

@@ -72,7 +72,7 @@ model Coments {
 }
 
 model Images {
-  id            String       @id
+  id            String       @id @default(uuid())
   image_url     String
   anouncement   Anouncements @relation(fields: [anouncementId], references: [id], onDelete: Cascade)
   anouncementId String

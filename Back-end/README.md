@@ -1,73 +1,260 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Documentação da API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Tabela de Conteúdos
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- [Visão Geral](#1-visão-geral)
+- [Diagrama ER](#2-diagrama-er)
+- [Início Rápido](#3-início-rápido)
+  - [Instalando Dependências](#31-instalando-dependências)
+  - [Variáveis de Ambiente](#32-variáveis-de-ambiente)
+  - [Migrations](#33-migrations)
+- [Autenticação](#4-autenticação)
+- [Endpoints](#5-endpoints)
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 1. Visão Geral
 
-## Installation
+Visão geral do projeto, um pouco das tecnologias usadas.
 
-```bash
-$ npm install
+- [NodeJS](https://nodejs.org/en/)
+- [Express](https://expressjs.com/pt-br/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Nest](https://docs.nestjs.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Prisma](https://www.prisma.io/)
+
+A URL base da aplicação:
+http://localhost:3000
+
+---
+
+## 2. Diagrama ER
+
+[ Voltar para o topo ](#tabela-de-conteúdos)
+
+Diagrama ER da API definindo bem as relações entre as tabelas do banco de dados.
+
+![DER](../Back-end/src/modules/database/DER.png)
+
+---
+
+## 3. Início Rápido
+
+[ Voltar para o topo ](#tabela-de-conteúdos)
+
+### 3.1. Instalando Dependências
+
+Clone o projeto em sua máquina e instale as dependências com o comando:
+
+```
+npm run dev
 ```
 
-## Running the app
+### 3.2. Variáveis de Ambiente
 
-```bash
-# development
-$ npm run start
+Em seguida, crie um arquivo **.env**, copiando o formato do arquivo **.env.example**:
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```
+cp .env.example .env
 ```
 
-## Test
+Configure suas variáveis de ambiente com suas credenciais do Postgres e uma nova database da sua escolha.
 
-```bash
-# unit tests
-$ npm run test
+### 3.3. Migrations
 
-# e2e tests
-$ npm run test:e2e
+Execute as migrations com o comando:
 
-# test coverage
-$ npm run test:cov
+```
+npx run migrate dev
 ```
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 4. Autenticação
 
-## Stay in touch
+[ Voltar para o topo ](#tabela-de-conteúdos)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Por enquanto, não foi implementada autenticação.
 
-## License
+---
 
-Nest is [MIT licensed](LICENSE).
+## 5. Endpoints
+
+[ Voltar para o topo ](#tabela-de-conteúdos)
+
+### Índice
+
+- [Users](#1-users)
+  - [POST - /users](#11-criação-de-usuário)
+  - [GET - /users](#12-listando-usuários)
+  - [GET - /users/:user_id](#13-listar-usuário-por-id)
+- [Products](#2-products)
+- [Cart](#3-cart)
+- [Users](#4-buys)
+
+---
+
+## 1. **Users**
+
+[ Voltar para os Endpoints ](#5-endpoints)
+
+O objeto User é definido como:
+
+| Campo    | Tipo    | Descrição                                    |
+| -------- | ------- | -------------------------------------------- |
+| id       | string  | Identificador único do usuário               |
+| name     | string  | O nome do usuário.                           |
+| email    | string  | O e-mail do usuário.                         |
+| password | string  | A senha de acesso do usuário                 |
+| isAdm    | boolean | Define se um usuário é Administrador ou não. |
+
+### Endpoints
+
+| Método | Rota            | Descrição                                     |
+| ------ | --------------- | --------------------------------------------- |
+| POST   | /users          | Criação de um usuário.                        |
+| GET    | /users          | Lista todos os usuários                       |
+| GET    | /users/:user_id | Lista um usuário usando seu ID como parâmetro |
+
+---
+
+### 1.1. **Criação de Usuário**
+
+[ Voltar para os Endpoints ](#5-endpoints)
+
+### `/users`
+
+### Exemplo de Request:
+
+```
+POST /users
+Host: http://localhost:3000
+Authorization: None
+Content-type: application/json
+```
+
+### Corpo da Requisição:
+
+```json
+{
+  "name": "eDuArDo",
+  "email": "edu@mail.com",
+  "password": "1234"
+}
+```
+
+### Exemplo de Response:
+
+```
+201 Created
+```
+
+```json
+{
+  "id": "9cda28c9-e540-4b2c-bf0c-c90006d37893",
+  "name": "Eduardo",
+  "email": "edu@mail.com",
+  "isAdm": true
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição                 |
+| -------------- | ------------------------- |
+| 409 Conflict   | Email already registered. |
+
+---
+
+### 1.2. **Listando Usuários**
+
+[ Voltar aos Endpoints ](#5-endpoints)
+
+### `/users`
+
+### Exemplo de Request:
+
+```
+GET /users
+Host: http://localhost:3000
+Authorization: None
+Content-type: application/json
+```
+
+### Corpo da Requisição:
+
+```json
+Vazio
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+[
+  {
+    "id": "9cda28c9-e540-4b2c-bf0c-c90006d37893",
+    "name": "Eduardo",
+    "email": "edu@mail.com",
+    "isAdm": true
+  }
+]
+```
+
+### Possíveis Erros:
+
+Nenhum, o máximo que pode acontecer é retornar uma lista vazia.
+
+---
+
+### 1.3. **Listar Usuário por ID**
+
+[ Voltar aos Endpoints ](#5-endpoints)
+
+### `/users/:user_id`
+
+### Exemplo de Request:
+
+```
+GET /users/9cda28c9-e540-4b2c-bf0c-c90006d37893
+Host: http://localhost:3000
+Authorization: None
+Content-type: application/json
+```
+
+### Parâmetros da Requisição:
+
+| Parâmetro | Tipo   | Descrição                             |
+| --------- | ------ | ------------------------------------- |
+| user_id   | string | Identificador único do usuário (User) |
+
+### Corpo da Requisição:
+
+```json
+Vazio
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+{
+  "id": "9cda28c9-e540-4b2c-bf0c-c90006d37893",
+  "name": "Eduardo",
+  "email": "edu@mail.com",
+  "isAdm": true
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição       |
+| -------------- | --------------- |
+| 404 Not Found  | User not found. |

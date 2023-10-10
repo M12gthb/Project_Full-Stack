@@ -47,11 +47,22 @@ export class AnouncementService {
     const anouncement =
       await this.anouncementsRepository.findOne(anouncementsId);
 
+    if (!anouncement) {
+      throw new NotFoundException('Anouncement not found!');
+    }
     if (anouncement.userId !== userId) {
       throw new ForbiddenException('You dont have permitions');
     }
-    if (!anouncement) {
-      throw new NotFoundException('Anouncement not found!');
+
+    const { images } = data;
+    const updateImages = [...data.images, ...images];
+
+    for await (const image of anouncement.imagens) {
+      await this.imageService.delete(image.id);
+    }
+
+    for await (const image of updateImages) {
+      await this.imageService.update(image, anouncementsId);
     }
 
     const newAnouncement = await this.anouncementsRepository.update(

@@ -9,4 +9,5 @@ export abstract class ImagesRepository {
   ): Promise<Images>;
   abstract update(data: UpdateImageDto, anouncementId: string): Promise<Images>;
   abstract findImages(anouncementId: string): Promise<Images[]>;
+  abstract remove(id: string): Promise<void>;
 }

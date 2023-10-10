@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ImagesRepository } from './repositories/images.repository';
 import { CreateImagenDto } from './Dto/create-images.dto';
 import { UpdateImageDto } from './Dto/update-images.dto';
@@ -16,9 +16,11 @@ export class ImagesService {
 
   async update(data: UpdateImageDto, anouncementId: string) {
     const anouncement = this.imagesRepository.update(data, anouncementId);
-    if (!anouncement) {
-      throw new NotFoundException('Anouncement not found');
-    }
+
     return anouncement;
+  }
+
+  async delete(id: string) {
+    this.imagesRepository.remove(id);
   }
 }
