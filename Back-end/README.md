@@ -568,6 +568,18 @@ O objeto Anouncements é definido como:
 | PATCH  | /anouncements/:anouncementId | Edita um anúncio usando seu ID como parâmetro                   |
 | DELETE | /anouncements/:anouncementId | Deleta um anúncio usando seu ID como parâmetro                  |
 
+### 3.1. **Criação de um anúncio**
+
+### 3.2. **Lista todos os anúncio**
+
+### 3.3. **Lista todos od anúncios do usuário usando seu ID como parâmetro**
+
+### 3.4. **Lista um anúncio usando seu ID como parâmetro**
+
+### 3.5. **Edita um anúncio usando seu ID como parâmetro**
+
+### 3.6. **Deleta um anúncio usando seu ID como parâmetro**
+
 ---
 
 ## 4. **Comments**
@@ -590,3 +602,11 @@ O objeto Comments é definido como:
 | GET    | /comments/anouncementId | Lista todos os comentários de um anúncio |
 | PATCH  | /comments/comentId      | Edita um comentário                      |
 | DELETE | /comments/comentId      | Deleta um comentário                     |
+
+### 4.1. **Criação de um comentário**
+
+### 4.2. **Lista todos os comentários de um anúncio**
+
+### 4.3. **Edita um comentário**
+
+### 4.4. **Deleta um comentário**
