@@ -6,7 +6,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
-    .setTitle('Kenzie Atumóveis')
+    .setTitle('Kenzie Automóveis')
     .setDescription('App destinado a gerenciar uma loja de automóveis.')
     .setVersion('1.0.0')
     .addBearerAuth()

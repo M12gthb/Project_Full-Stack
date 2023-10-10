@@ -15,7 +15,7 @@
 
 ## 1. Visão Geral
 
-Visão geral do projeto, um pouco das tecnologias usadas.
+Projeto de gerenciamento de anúncios e usuários de uma loja de catálogos de automóveis.
 
 - [NodeJS](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/)
@@ -48,7 +48,7 @@ Diagrama ER da API definindo bem as relações entre as tabelas do banco de dado
 Clone o projeto em sua máquina e instale as dependências com o comando:
 
 ```
-npm run dev
+npm install
 ```
 
 ### 3.2. Variáveis de Ambiente
@@ -75,7 +75,7 @@ npx run migrate dev
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
-Por enquanto, não foi implementada autenticação.
+Bearer Token
 
 ---
 
@@ -88,7 +88,9 @@ Por enquanto, não foi implementada autenticação.
 - [Users](#1-users)
   - [POST - /users](#11-criação-de-usuário)
   - [GET - /users](#12-listando-usuários)
-  - [GET - /users/:user_id](#13-listar-usuário-por-id)
+  - [GET - /users/:userId](#13-listar-usuário-por-id)
+  - [PATCH - /users/:userId](#14-edita-usuário-por-id)
+  - [DELETE - /users/:userId](#15-deleta-usuário-por-id)
 - [Products](#2-products)
 - [Cart](#3-cart)
 - [Users](#4-buys)
@@ -101,21 +103,30 @@ Por enquanto, não foi implementada autenticação.
 
 O objeto User é definido como:
 
-| Campo    | Tipo    | Descrição                                    |
-| -------- | ------- | -------------------------------------------- |
-| id       | string  | Identificador único do usuário               |
-| name     | string  | O nome do usuário.                           |
-| email    | string  | O e-mail do usuário.                         |
-| password | string  | A senha de acesso do usuário                 |
-| isAdm    | boolean | Define se um usuário é Administrador ou não. |
+| Campo       | Tipo                        | Descrição                      |
+| ----------- | --------------------------- | ------------------------------ |
+| id          | string                      | Identificador único do usuário |
+| name        | string                      | O nome do usuário.             |
+| email       | string                      | O e-mail do usuário.           |
+| password    | string                      | A senha de acesso do usuário   |
+| cpf         | string                      | Cpf único do usuário           |
+| cell        | string                      | Numero de telefone do usuáro   |
+| birthdate   | string                      | Data de aniversário do usuário |
+| birthdate   | string                      | Data de aniversário do usuário |
+| description | string                      | Descrição do usuário           |
+| description | string                      | Descrição do usuário           |
+| type        | ["comprador", "anunciante"] | Tipo de usuário                |
+| address     | array                       | Endereço do usuário            |
 
 ### Endpoints
 
-| Método | Rota            | Descrição                                     |
-| ------ | --------------- | --------------------------------------------- |
-| POST   | /users          | Criação de um usuário.                        |
-| GET    | /users          | Lista todos os usuários                       |
-| GET    | /users/:user_id | Lista um usuário usando seu ID como parâmetro |
+| Método | Rota            | Descrição                                      |
+| ------ | --------------- | ---------------------------------------------- |
+| POST   | /users          | Criação de um usuário.                         |
+| GET    | /users          | Lista todos os usuários                        |
+| GET    | /users/:user_id | Lista um usuário usando seu ID como parâmetro  |
+| PATCH  | /users/:user_id | Edita um usuário usando seu ID como parâmetro  |
+| DELETE | /users/:user_id | Deleta um usuário usando seu ID como parâmetro |
 
 ---
 
@@ -138,9 +149,22 @@ Content-type: application/json
 
 ```json
 {
-  "name": "eDuArDo",
-  "email": "edu@mail.com",
-  "password": "1234"
+  "name": "teste",
+  "email": "teste@mail.com",
+  "password": "12345678",
+  "cpf": "000.000.000-00",
+  "cell": "23456789",
+  "birthdate": "21/20/2015",
+  "description": "text",
+  "type": "comprador",
+  "address": {
+    "cep": "00000-000",
+    "state": "Ceará",
+    "city": "arranguera",
+    "street": "rua euclides pereira",
+    "number": 15,
+    "complement": "varchar"
+  }
 }
 ```
 
@@ -152,18 +176,50 @@ Content-type: application/json
 
 ```json
 {
-  "id": "9cda28c9-e540-4b2c-bf0c-c90006d37893",
-  "name": "Eduardo",
-  "email": "edu@mail.com",
-  "isAdm": true
+  "id": "bbf64df3-3c77-42bb-9490-60342a27afbd",
+  "name": "teste",
+  "email": "teste@mail.com",
+  "cpf": "000.000.000-00",
+  "cell": "23456789",
+  "birthdate": "21/20/2015",
+  "description": "text",
+  "type": "comprador",
+  "address": [
+    {
+      "id": "7c7f4459-3a70-45d7-a2c0-bed94b7e8963",
+      "cep": "00000-000",
+      "state": "Ceará",
+      "city": "arranguera",
+      "street": "Ceará",
+      "number": 15,
+      "complement": "varchar",
+      "userId": "bbf64df3-3c77-42bb-9490-60342a27afbd"
+    }
+  ]
 }
 ```
 
 ### Possíveis Erros:
 
-| Código do Erro | Descrição                 |
-| -------------- | ------------------------- |
-| 409 Conflict   | Email already registered. |
+| Código do Erro | Descrição           |
+| -------------- | ------------------- |
+| 409 Conflict   | User already exists |
+
+| Código do Erro  | Descrição              |
+| --------------- | ---------------------- |
+| 400 Bad Request | "error": "Bad Request" |
+
+| Código do Erro  | Descrição              |
+| --------------- | ---------------------- |
+| 400 Bad Request | email must be an email |
+
+| Código do Erro | Descrição          |
+| -------------- | ------------------ |
+| 409 Conflict   | Cpf alredy exist ! |
+
+| Código do Erro | Descrição            |
+| -------------- | -------------------- |
+| 409 Conflict   | Email alredy exist ! |
 
 ---
 
@@ -185,7 +241,7 @@ Content-type: application/json
 ### Corpo da Requisição:
 
 ```json
-Vazio
+
 ```
 
 ### Exemplo de Response:
@@ -197,10 +253,26 @@ Vazio
 ```json
 [
   {
-    "id": "9cda28c9-e540-4b2c-bf0c-c90006d37893",
-    "name": "Eduardo",
-    "email": "edu@mail.com",
-    "isAdm": true
+    "id": "bbf64df3-3c77-42bb-9490-60342a27afbd",
+    "name": "teste",
+    "email": "teste@mail.com",
+    "cpf": "000.000.000-00",
+    "cell": "23456789",
+    "birthdate": "21/20/2015",
+    "description": "text",
+    "type": "comprador",
+    "address": [
+      {
+        "id": "7c7f4459-3a70-45d7-a2c0-bed94b7e8963",
+        "cep": "00000-000",
+        "state": "Ceará",
+        "city": "arranguera",
+        "street": "Ceará",
+        "number": 15,
+        "complement": "varchar",
+        "userId": "bbf64df3-3c77-42bb-9490-60342a27afbd"
+      }
+    ]
   }
 ]
 ```
@@ -215,12 +287,12 @@ Nenhum, o máximo que pode acontecer é retornar uma lista vazia.
 
 [ Voltar aos Endpoints ](#5-endpoints)
 
-### `/users/:user_id`
+### `/users/:userId`
 
 ### Exemplo de Request:
 
 ```
-GET /users/9cda28c9-e540-4b2c-bf0c-c90006d37893
+GET /users/userId
 Host: http://localhost:3000
 Authorization: None
 Content-type: application/json
@@ -230,7 +302,7 @@ Content-type: application/json
 
 | Parâmetro | Tipo   | Descrição                             |
 | --------- | ------ | ------------------------------------- |
-| user_id   | string | Identificador único do usuário (User) |
+| userId    | string | Identificador único do usuário (User) |
 
 ### Corpo da Requisição:
 
@@ -241,20 +313,170 @@ Vazio
 ### Exemplo de Response:
 
 ```
+201 Created
+```
+
+```json
+{
+  "id": "bbf64df3-3c77-42bb-9490-60342a27afbd",
+  "name": "teste",
+  "email": "teste@mail.com",
+  "cpf": "000.000.000-00",
+  "cell": "23456789",
+  "birthdate": "21/20/2015",
+  "description": "text",
+  "type": "comprador",
+  "address": [
+    {
+      "id": "7c7f4459-3a70-45d7-a2c0-bed94b7e8963",
+      "cep": "00000-000",
+      "state": "Ceará",
+      "city": "arranguera",
+      "street": "Ceará",
+      "number": 15,
+      "complement": "varchar",
+      "userId": "bbf64df3-3c77-42bb-9490-60342a27afbd"
+    }
+  ]
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição        |
+| -------------- | ---------------- |
+| 404 Not Found  | User not found ! |
+
+### 1.4. **Edita Usuário por ID**
+
+[ Voltar aos Endpoints ](#5-endpoints)
+
+### `/users/:userId`
+
+### Exemplo de Request:
+
+```
+PATCH /users/userId
+Host: http://localhost:3000
+Authorization: Bearer Token do usuário a ser editado.
+Content-type: application/json
+```
+
+### Parâmetros da Requisição:
+
+| Parâmetro | Tipo   | Descrição                             |
+| --------- | ------ | ------------------------------------- |
+| userId    | string | Identificador único do usuário (User) |
+
+### Corpo da Requisição:
+
+```json
+{
+  "name": "teste2",
+  "email": "teste2@mail.com",
+  "address": [
+    {
+      "cep": "00000-002",
+      "state": "Rio de Janeiro"
+    }
+  ]
+}
+```
+
+### Exemplo de Response:
+
+```
 200 OK
 ```
 
 ```json
 {
-  "id": "9cda28c9-e540-4b2c-bf0c-c90006d37893",
-  "name": "Eduardo",
-  "email": "edu@mail.com",
-  "isAdm": true
+  "id": "bbf64df3-3c77-42bb-9490-60342a27afbd",
+  "name": "teste2",
+  "email": "teste2@mail.com",
+  "cpf": "000.000.000-00",
+  "cell": "23456789",
+  "birthdate": "21/20/2015",
+  "description": "text",
+  "type": "comprador",
+  "address": [
+    {
+      "cep": "00000-002",
+      "state": "Rio de Janeiro",
+      "city": "arranguera",
+      "street": "Ceará",
+      "number": 15,
+      "complement": "varchar",
+      "userId": "bbf64df3-3c77-42bb-9490-60342a27afbd"
+    }
+  ]
 }
 ```
 
 ### Possíveis Erros:
 
-| Código do Erro | Descrição       |
-| -------------- | --------------- |
-| 404 Not Found  | User not found. |
+| Código do Erro | Descrição        |
+| -------------- | ---------------- |
+| 404 Not Found  | User not found ! |
+
+| Código do Erro   | Descrição    |
+| ---------------- | ------------ |
+| 401 Unauthorized | Unauthorized |
+
+| Código do Erro  | Descrição              |
+| --------------- | ---------------------- |
+| 400 Bad Request | "error": "Bad Request" |
+
+| Código do Erro  | Descrição              |
+| --------------- | ---------------------- |
+| 400 Bad Request | email must be an email |
+
+| Código do Erro | Descrição          |
+| -------------- | ------------------ |
+| 409 Conflict   | Cpf alredy exist ! |
+
+| Código do Erro | Descrição            |
+| -------------- | -------------------- |
+| 409 Conflict   | Email alredy exist ! |
+
+### 1.5. **Deleta Usuário por ID**
+
+[ Voltar aos Endpoints ](#5-endpoints)
+
+### `/users/:userId`
+
+### Exemplo de Request:
+
+```
+DELETE /users/userId
+Host: http://localhost:3000
+Authorization: Bearer Token do usuário a ser deletado.
+Content-type: application/json
+```
+
+### Parâmetros da Requisição:
+
+| Parâmetro | Tipo   | Descrição                             |
+| --------- | ------ | ------------------------------------- |
+| userId    | string | Identificador único do usuário (User) |
+
+### Corpo da Requisição:
+
+```json
+No body
+```
+
+### Exemplo de Response:
+
+```
+204 No body
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição        |
+| -------------- | ---------------- |
+| 404 Not Found  | User not found ! |
+
+| Código do Erro   | Descrição    |
+| ---------------- | ------------ |
+| 401 Unauthorized | Unauthorized |

@@ -32,7 +32,9 @@ export class UserPrismaRepository implements UsersRepository {
   }
 
   async findAll(): Promise<User[]> {
-    const users = await this.prisma.user.findMany();
+    const users = await this.prisma.user.findMany({
+      include: { address: true },
+    });
     return users;
   }
 

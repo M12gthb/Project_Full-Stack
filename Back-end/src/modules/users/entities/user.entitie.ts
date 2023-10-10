@@ -12,6 +12,7 @@ export class User {
   birthdate: string;
   description: string;
   type: Types;
+  address?: Address[];
 
   @Exclude()
   password: string;
@@ -19,5 +20,4 @@ export class User {
   constructor() {
     this.id = randomUUID();
   }
-  address?: Address;
 }
