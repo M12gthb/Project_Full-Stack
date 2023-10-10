@@ -7,7 +7,7 @@ import { CreateAddressDto } from './Dto/create-address.dto';
 export class AddressService {
   constructor(private addressRepository: AddressRepository) {}
   async update(data: UpdateAddressDto, userId: string) {
-    const user = this.addressRepository.update(data, userId);
+    const user = await this.addressRepository.update(data, userId);
     if (!user) {
       throw new NotFoundException('user not found');
     }

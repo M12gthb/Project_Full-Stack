@@ -422,10 +422,16 @@ Content-type: application/json
   "address": [
     {
       "cep": "00000-002",
-      "state": "Rio de Janeiro"
+      "state": "Rio de Janeiro",
+      "city": "arranguera",
+      "street": "Ceará",
+      "number": 15,
+      "complement": "varchar",
     }
   ]
 }
+
+Obs: Campo de address deve está completo com todas as informações exceto o complement que é opicional caso contrário irá estourar um erro.
 ```
 
 ### Exemplo de Response:
