@@ -85,19 +85,65 @@ Bearer Token
 
 ### Índice
 
-- [Users](#1-users)
-  - [POST - /users](#11-criação-de-usuário)
-  - [GET - /users](#12-listando-usuários)
-  - [GET - /users/:userId](#13-listar-usuário-por-id)
-  - [PATCH - /users/:userId](#14-edita-usuário-por-id)
-  - [DELETE - /users/:userId](#15-deleta-usuário-por-id)
-- [Products](#2-products)
+- [Login](#1-login)
+- [Users](#2-users)
+  - [POST - /users](#21-criação-de-usuário)
+  - [GET - /users](#22-listando-usuários)
+  - [GET - /users/:userId](#23-listar-usuário-por-id)
+  - [PATCH - /users/:userId](#24-edita-usuário-por-id)
+  - [DELETE - /users/:userId](#25-deleta-usuário-por-id)
 - [Cart](#3-cart)
 - [Users](#4-buys)
 
 ---
 
-## 1. **Users**
+## 1. **Login**
+
+[ Voltar para os Endpoints ](#5-endpoints)
+
+### Endpoints
+
+| Método | Rota   | Descrição                      |
+| ------ | ------ | ------------------------------ |
+| POST   | /login | Registra o login de um usuário |
+
+### Exemplo de Request:
+
+```
+POST /users
+Host: http://localhost:3000
+Authorization: None
+Content-type: application/json
+```
+
+### Corpo da Requisição:
+
+```json
+{
+  "email": "teste@mail.com",
+  "password": "12345678"
+}
+```
+
+### Exemplo de Response:
+
+```
+201 Created
+```
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQG1haWwuY29tIiwiaWF0IjoxNjk2OTc2MDc0LCJleHAiOjE2OTY5ODY4NzQsInN1YiI6IjllMmRmZTc1LTRiNDYtNDgwMi04OGZjLTQxMzNjNjEwOGU5YSJ9.ucQGKjvDFyqplHL_hHujLB1imD4w-lxEttEvpUnjZ5s"
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro   | Descrição                 |
+| ---------------- | ------------------------- |
+| 401 Unauthorized | Invalid email or password |
+
+## 2. **Users**
 
 [ Voltar para os Endpoints ](#5-endpoints)
 
@@ -130,7 +176,7 @@ O objeto User é definido como:
 
 ---
 
-### 1.1. **Criação de Usuário**
+### 2.1. **Criação de Usuário**
 
 [ Voltar para os Endpoints ](#5-endpoints)
 
@@ -223,7 +269,7 @@ Content-type: application/json
 
 ---
 
-### 1.2. **Listando Usuários**
+### 2.2. **Listando Usuários**
 
 [ Voltar aos Endpoints ](#5-endpoints)
 
@@ -283,7 +329,7 @@ Nenhum, o máximo que pode acontecer é retornar uma lista vazia.
 
 ---
 
-### 1.3. **Listar Usuário por ID**
+### 2.3. **Listar Usuário por ID**
 
 [ Voltar aos Endpoints ](#5-endpoints)
 
@@ -346,7 +392,7 @@ Vazio
 | -------------- | ---------------- |
 | 404 Not Found  | User not found ! |
 
-### 1.4. **Edita Usuário por ID**
+### 2.4. **Edita Usuário por ID**
 
 [ Voltar aos Endpoints ](#5-endpoints)
 
@@ -438,7 +484,7 @@ Content-type: application/json
 | -------------- | -------------------- |
 | 409 Conflict   | Email alredy exist ! |
 
-### 1.5. **Deleta Usuário por ID**
+### 2.5. **Deleta Usuário por ID**
 
 [ Voltar aos Endpoints ](#5-endpoints)
 
