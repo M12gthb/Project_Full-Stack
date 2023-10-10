@@ -92,8 +92,8 @@ Bearer Token
   - [GET - /users/:userId](#23-listar-usuário-por-id)
   - [PATCH - /users/:userId](#24-edita-usuário-por-id)
   - [DELETE - /users/:userId](#25-deleta-usuário-por-id)
-- [Cart](#3-cart)
-- [Users](#4-buys)
+- [Anouncements](#3-anouncements)
+- [Comments](#4-comments)
 
 ---
 
@@ -526,3 +526,7 @@ vazio
 | Código do Erro   | Descrição    |
 | ---------------- | ------------ |
 | 401 Unauthorized | Unauthorized |
+
+## 3. **Anouncements**
+
+## 4. **Comments**
