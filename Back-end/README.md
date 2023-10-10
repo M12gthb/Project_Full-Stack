@@ -462,13 +462,13 @@ Content-type: application/json
 ### Corpo da Requisição:
 
 ```json
-No body
+vazio
 ```
 
 ### Exemplo de Response:
 
 ```
-204 No body
+204 No Content
 ```
 
 ### Possíveis Erros:
