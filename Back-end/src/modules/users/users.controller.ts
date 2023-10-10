@@ -30,16 +30,16 @@ export class UsersController {
     return this.userService.find();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(':userId')
+  findOne(@Param('userId') id: string) {
     return this.userService.findOne(id);
   }
 
-  @Patch(':id')
+  @Patch(':userId')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   update(
-    @Param('id') id: string,
+    @Param('userId') id: string,
     @Body() updateUserDto: UpdateUserDto,
     @Request() req,
   ) {
@@ -55,8 +55,8 @@ export class UsersController {
   @HttpCode(204)
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  @Delete(':id')
-  remove(@Param('id') id: string, @Request() req) {
+  @Delete(':userId')
+  remove(@Param('userId') id: string, @Request() req) {
     return this.userService.remove(id, req.user.id);
   }
 }

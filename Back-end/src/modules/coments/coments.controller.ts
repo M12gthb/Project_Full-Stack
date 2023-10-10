@@ -14,12 +14,15 @@ import { CommentsService } from './coments.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UpdateCommentsDto } from './Dto/update-coments.dto';
 import { CreateCommentsDto } from './Dto/create-coments.dto';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiTags('comments')
 @Controller('comments')
 export class CommentsController {
   constructor(private readonly commentServices: CommentsService) {}
   @Post(':anouncementId')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   create(
     @Body() createCommentsDto: CreateCommentsDto,
     @Request() req,
@@ -34,6 +37,7 @@ export class CommentsController {
 
   @Patch(':comentId')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   update(
     @Param('comentId') id: string,
     @Body() updateCommentsDto: UpdateCommentsDto,
@@ -44,6 +48,7 @@ export class CommentsController {
 
   @HttpCode(204)
   @Delete(':comentId/:anouncementId')
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   remove(
     @Param('comentId') id: string,
@@ -54,6 +59,7 @@ export class CommentsController {
   }
 
   @Get(':comentId')
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   findByAnouncement(@Param('comentId') id: string) {
     return this.commentServices.findAllbyAnouncement(id);

@@ -117,6 +117,16 @@ export class CreateAnouncementsDto {
   @MinLength(12)
   cover_img: string;
 
+  @ApiProperty({
+    description: 'Lista de imagens!',
+    type: Array,
+    default: [
+      {
+        image_url:
+          'https://s2-autoesporte.glbimg.com/yhAGA67nr25Iauc9mUeVxYmHzgw=/0x0:620x413/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/4/3/QnE8d3QDS4wyARlD13AQ/2015-05-16-2016-chevrolet-camaro-ss-002.png',
+      },
+    ],
+  })
   @IsArray()
   @ValidateNested()
   @Type(() => CreateImagenDto)

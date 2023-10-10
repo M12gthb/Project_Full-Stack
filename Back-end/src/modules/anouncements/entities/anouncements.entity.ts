@@ -17,9 +17,9 @@ export class Anouncements {
   publish: boolean;
   cover_img: string;
   userId?: string;
+  images?: Images[];
+  users?: User;
   constructor() {
     this.id = randomUUID();
   }
-  imagens?: Images[];
-  users?: User;
 }

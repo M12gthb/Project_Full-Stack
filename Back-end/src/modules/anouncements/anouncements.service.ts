@@ -55,13 +55,13 @@ export class AnouncementService {
     }
 
     const { images } = data;
-    const updateImages = [...data.images, ...images];
-
-    for await (const image of anouncement.imagens) {
+    const updateImages = [...anouncement.images, ...data.images];
+    console.log(updateImages);
+    for await (const image of anouncement.images) {
       await this.imageService.delete(image.id);
     }
 
-    for await (const image of updateImages) {
+    for await (const image of data.images) {
       await this.imageService.update(image, anouncementsId);
     }
 

@@ -18,8 +18,8 @@ model User {
   description  String
   type         Types          @default(comprador)
   address      Address[]
-  Anouncements Anouncements[]
-  Coments      Coments[]
+  anouncements Anouncements[]
+  coments      Coments[]
 
   @@map("users")
 }
@@ -53,8 +53,8 @@ model Anouncements {
   cover_img   String?
   userId      String
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Images      Images[]
-  Coments     Coments[]
+  images      Images[]
+  coments     Coments[]
 
   @@map("anouncements")
 }

@@ -49,7 +49,7 @@ export class AnouncementsPrismaRepository implements AnouncementsRepository {
     const { images, ...rest } = data;
     const updateAnouncement = await this.prisma.anouncements.update({
       where: { id },
-      include: { Images: true },
+      include: { images: true },
       data: { ...rest },
     });
 
@@ -61,7 +61,7 @@ export class AnouncementsPrismaRepository implements AnouncementsRepository {
 
   async findAll(): Promise<Anouncements[]> {
     const anouncements = await this.prisma.anouncements.findMany({
-      include: { Images: true },
+      include: { images: true },
     });
     return anouncements;
   }
@@ -69,15 +69,16 @@ export class AnouncementsPrismaRepository implements AnouncementsRepository {
   async findOne(id: string): Promise<Anouncements> {
     const anouncement = await this.prisma.anouncements.findFirst({
       where: { id },
-      include: { Images: true },
+      include: { images: true },
     });
-    return plainToInstance(Anouncements, anouncement);
+    // console.log(anouncement);
+    return anouncement;
   }
 
   async findByUser(id: string) {
     const anouncements = await this.prisma.anouncements.findMany({
       where: { id },
-      include: { Images: true },
+      include: { images: true },
     });
     return anouncements;
   }
@@ -85,7 +86,7 @@ export class AnouncementsPrismaRepository implements AnouncementsRepository {
   async remove(id: string): Promise<void> {
     await this.prisma.anouncements.delete({
       where: { id },
-      include: { Images: true },
+      include: { images: true },
     });
   }
 }
