@@ -535,4 +535,58 @@ vazio
 
 ## 3. **Anouncements**
 
+[ Voltar para os Endpoints ](#5-endpoints)
+
+O objeto Anouncements é definido como:
+
+| Campo       | Tipo                   | Descrição                              |
+| ----------- | ---------------------- | -------------------------------------- |
+| id          | string                 | Identificador único do anúncio         |
+| brand       | string                 | marca do anúncio                       |
+| model       | string                 | Modelo do anúncio                      |
+| year        | int                    | Ano do anúncio                         |
+| fuel        | ["gasolina", "etanol"] | Tipo de combustíves                    |
+| mileage     | int                    | Numero milhas rodadas                  |
+| color       | string                 | Cor do veículo                         |
+| priceTabel  | int                    | Preço por tabela                       |
+| price       | int                    | Preço do veículo                       |
+| description | string                 | Descrição do anúncio                   |
+| publish     | boolean                | Estado de publicação                   |
+| cover_img   | string                 | url da imagem                          |
+| userId      | string                 | ID do usuário vinculado aquele anúncio |
+| images      | array                  | imagens do anúncio                     |
+| coments     | array                  | comentários do anúncio                 |
+
+### Endpoints
+
+| Método | Rota                         | Descrição                                                       |
+| ------ | ---------------------------- | --------------------------------------------------------------- |
+| POST   | /anouncements                | Criação de um anúncio                                           |
+| GET    | /anouncements                | Lista todos os anúncio                                          |
+| GET    | /anouncements/user/:userId   | Lista todos od anúncios do usuário usando seu ID como parâmetro |
+| GET    | /anouncements/:anouncementId | Lista um anúncio usando seu ID como parâmetro                   |
+| PATCH  | /anouncements/:anouncementId | Edita um anúncio usando seu ID como parâmetro                   |
+| DELETE | /anouncements/:anouncementId | Deleta um anúncio usando seu ID como parâmetro                  |
+
+---
+
 ## 4. **Comments**
+
+O objeto Comments é definido como:
+
+| Campo         | Tipo   | Descrição                                        |
+| ------------- | ------ | ------------------------------------------------ |
+| id            | string | Identificador único do comentário                |
+| comment       | string | Conteúdo do comentário                           |
+| commentDate   | date   | Data em que o comentário foi publicado           |
+| userId        | string | Id do usuário do qual pretence aquele comentário |
+| anouncementId | string | Id do anúncio do qual pretence aquele comentário |
+
+### Endpoints
+
+| Método | Rota                    | Descrição                                |
+| ------ | ----------------------- | ---------------------------------------- |
+| POST   | /comments/anouncementId | Criação de um comentário                 |
+| GET    | /comments/anouncementId | Lista todos os comentários de um anúncio |
+| PATCH  | /comments/comentId      | Edita um comentário                      |
+| DELETE | /comments/comentId      | Deleta um comentário                     |
