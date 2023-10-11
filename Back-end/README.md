@@ -955,6 +955,12 @@ Vazio
 ### Exemplo de Response:
 
 ```
+
+```
+
+200 OK
+
+```
 [
  {
   "id": "0f87ca88-7698-4d16-977f-31569f7b8f97",
@@ -988,7 +994,7 @@ Vazio
 
 | Código do Erro | Descrição       |
 | -------------- | --------------- |
-| 404 Not Found  | user not found! |
+| 404 Not Found  | User not found! |
 
 ---
 
@@ -1015,16 +1021,192 @@ O objeto Comments é definido como:
 
 ### 4.1. **Criação de um comentário**
 
+### `/comments`
+
+POST /comments/anouncementId
+Host: http://localhost:3000
+Authorization: Bearer token
+Content-type: application/json
+
+### Corpo da Requisição:
+
+```json
+{
+  "comment": "Este é um comentário teste."
+}
+```
+
+### Exemplo de Response:
+
+```
+201 Created
+```
+
+```json
+{
+  "id": "51f606e6-c3df-42bb-836e-9a58bbe0d413",
+  "comment": "Este é um comentário teste.",
+  "commentDate": "2023-10-09T21:19:32.519Z",
+  "userId": "a61837bf-35a6-4cce-a03c-8f2b0309c210",
+  "anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição              |
+| -------------- | ---------------------- |
+| 404 Not Found  | Anouncement not found! |
+
+| Código do Erro   | Descrição    |
+| ---------------- | ------------ |
+| 401 Unauthorized | Unauthorized |
+
 ### 4.2. **Lista todos os comentários de um anúncio**
+
+### `/comments/:anouncementId`
+
+POST /comments/anouncementId
+Host: http://localhost:3000
+Authorization: Bearer token
+Content-type: application/json
+
+### Corpo da Requisição:
+
+```json
+Vazio
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+[
+  {
+    "id": "51f606e6-c3df-42bb-836e-9a58bbe0d413",
+    "comment": "Este é um comentário teste.",
+    "commentDate": "2023-10-09T21:19:32.519Z",
+    "userId": "a61837bf-35a6-4cce-a03c-8f2b0309c210",
+    "anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
+  }
+]
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição              |
+| -------------- | ---------------------- |
+| 404 Not Found  | Anouncement not found! |
+
+| Código do Erro   | Descrição    |
+| ---------------- | ------------ |
+| 401 Unauthorized | Unauthorized |
 
 ### 4.3. **Edita um comentário**
 
+### `/comments/:comentId`
+
+### Parâmetros da Requisição:
+
+| Parâmetro | Tipo   | Descrição                                   |
+| --------- | ------ | ------------------------------------------- |
+| comentId  | string | Identificador único do comentário (comment) |
+
+### Exemplo de Request:
+
+```
+PATCH /comments/comentId
+Host: http://localhost:3000
+Authorization: Bearer token do dono do comentário
+Content-type: application/json
+
+```
+
+### Corpo da Requisição:
+
+```json
+{
+  "comment": "Este é um comentário teste de update."
+}
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+{
+  "id": "16e0491f-3a56-4b30-b7d0-884178fdef6f",
+  "comment": "Este é um comentário teste de update.",
+  "commentDate": "2023-10-11T01:45:56.679Z",
+  "userId": "aaef0eb0-adec-47a9-be49-86c398e87573",
+  "anouncementId": "b0b272fd-388e-42d9-9bfa-214223e06100"
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição          |
+| -------------- | ------------------ |
+| 404 Not Found  | Comment not found! |
+
+| Código do Erro   | Descrição    |
+| ---------------- | ------------ |
+| 401 Unauthorized | Unauthorized |
+
+| Código do Erro | Descrição                |
+| -------------- | ------------------------ |
+| 403 Forbidden  | You dont have permitions |
+
+---
+
 ### 4.4. **Deleta um comentário**
 
+### `/comments/:comentId`
+
+### Parâmetros da Requisição:
+
+| Parâmetro | Tipo   | Descrição                                   |
+| --------- | ------ | ------------------------------------------- |
+| comentId  | string | Identificador único do comentário (comment) |
+
+### Exemplo de Request:
+
 ```
+DELETE /comments/comentId
+Host: http://localhost:3000
+Authorization: Bearer token do dono do comentário ou dono do anúncio
+Content-type: application/json
 
 ```
 
+### Corpo da Requisição:
+
+```json
+vazio
 ```
 
+### Exemplo de Response:
+
 ```
+204 No Content
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição          |
+| -------------- | ------------------ |
+| 404 Not Found  | Comment not found! |
+
+| Código do Erro   | Descrição    |
+| ---------------- | ------------ |
+| 401 Unauthorized | Unauthorized |
+
+| Código do Erro | Descrição                |
+| -------------- | ------------------------ |
+| 403 Forbidden  | You dont have permitions |

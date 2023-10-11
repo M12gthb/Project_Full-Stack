@@ -22,6 +22,13 @@ export class CommentsService {
     userId: string,
     anouncementId: string,
   ) {
+    const anouncement =
+      await this.anouncementsRepository.findOne(anouncementId);
+
+    if (!anouncement) {
+      throw new NotFoundException('Anouncement not found!');
+    }
+
     const comment = await this.commentsRepositoy.create(
       createCommenstDto,
       userId,
@@ -32,6 +39,12 @@ export class CommentsService {
   }
 
   async findAllbyAnouncement(anouncementId: string) {
+    const anouncement =
+      await this.anouncementsRepository.findOne(anouncementId);
+
+    if (!anouncement) {
+      throw new NotFoundException('Anouncement not found!');
+    }
     const allComments =
       await this.commentsRepositoy.findAllbyAnouncement(anouncementId);
 
@@ -55,13 +68,14 @@ export class CommentsService {
 
   async remove(id: string, userId: string, anouncementId: string) {
     const find = await this.commentsRepositoy.findOne(id);
-    const user = await this.usersRespository.findOne(userId);
-    const anouncement =
-      await this.anouncementsRepository.findOne(anouncementId);
 
     if (!find) {
       throw new NotFoundException('Comment not found!');
     }
+
+    const user = await this.usersRespository.findOne(userId);
+    const anouncement =
+      await this.anouncementsRepository.findOne(anouncementId);
 
     if (user.type == 'comprador') {
       if (find.userId !== userId) {
