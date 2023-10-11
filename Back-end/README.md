@@ -93,7 +93,17 @@ Bearer Token
   - [PATCH - /users/:userId](#24-edita-usuário-por-id)
   - [DELETE - /users/:userId](#25-deleta-usuário-por-id)
 - [Anouncements](#3-anouncements)
+  - [POST - /anouncements](#31-criação-de-um-anúncio)
+  - [GET - /anouncements](#32-lista-todos-os-anúncio)
+  - [GET - /anouncements/:anouncementId](#33-lista-um-anúncio-usando-seu-id-como-parâmetro)
+  - [PATCH - /anouncements/:anouncementId](#34-edita-um-anúncio-usando-seu-id-como-parâmetro)
+  - [DELETE - /anouncements/:anouncementId](#35-deleta-um-anúncio-usando-seu-id-como-parâmetro)
+  - [GET - /anouncements/user/:userId](#36-lista-todos-od-anúncios-do-usuário-usando-seu-id-como-parâmetro)
 - [Comments](#4-comments)
+  - [POST - /comments/:/anouncementId](#41-criação-de-um-comentário)
+  - [GET - /comments/:anouncementId](#42-lista-todos-os-comentários-de-um-anúncio)
+  - [PATCH - /comments/:comentId](#43-edita-um-comentário)
+  - [DELETE - /comments/:comentId](#44-deleta-um-comentário)
 
 ---
 
@@ -110,9 +120,14 @@ Bearer Token
 ### Exemplo de Request:
 
 ```
-POST /users
+POST /login
+
 Host: http://localhost:3000
+```
+
 Authorization: None
+
+```
 Content-type: application/json
 ```
 
@@ -186,10 +201,17 @@ O objeto User é definido como:
 
 ```
 POST /users
-Host: http://localhost:3000
-Authorization: None
-Content-type: application/json
 ```
+
+Host: http://localhost:3000
+
+```
+Authorization: None
+```
+
+Content-type: application/json
+
+````
 
 ### Corpo da Requisição:
 
@@ -212,7 +234,7 @@ Content-type: application/json
     "complement": "varchar"
   }
 }
-```
+````
 
 ### Exemplo de Response:
 
@@ -281,16 +303,23 @@ obs: É necessário que todos os campos sejam passados corretamente.
 
 ```
 GET /users
-Host: http://localhost:3000
-Authorization: None
-Content-type: application/json
 ```
+
+Host: http://localhost:3000
+
+```
+Authorization: None
+```
+
+Content-type: application/json
+
+````
 
 ### Corpo da Requisição:
 
 ```json
-
-```
+Vazio
+````
 
 ### Exemplo de Response:
 
@@ -341,10 +370,17 @@ Nenhum, o máximo que pode acontecer é retornar uma lista vazia.
 
 ```
 GET /users/userId
-Host: http://localhost:3000
-Authorization: None
-Content-type: application/json
 ```
+
+Host: http://localhost:3000
+
+```
+Authorization: None
+```
+
+Content-type: application/json
+
+````
 
 ### Parâmetros da Requisição:
 
@@ -356,7 +392,7 @@ Content-type: application/json
 
 ```json
 Vazio
-```
+````
 
 ### Exemplo de Response:
 
@@ -404,10 +440,17 @@ Vazio
 
 ```
 PATCH /users/userId
-Host: http://localhost:3000
-Authorization: Bearer Token do usuário a ser editado.
-Content-type: application/json
 ```
+
+Host: http://localhost:3000
+
+```
+Authorization: Bearer Token do usuário a ser editado.
+```
+
+Content-type: application/json
+
+````
 
 ### Parâmetros da Requisição:
 
@@ -434,7 +477,7 @@ Content-type: application/json
 }
 
 Obs: Campo de address deve está completo com todas as informações exceto o complement que é opicional caso contrário irá estourar um erro.
-```
+````
 
 ### Exemplo de Response:
 
@@ -502,10 +545,17 @@ Obs: Campo de address deve está completo com todas as informações exceto o co
 
 ```
 DELETE /users/userId
-Host: http://localhost:3000
-Authorization: Bearer Token do usuário a ser deletado.
-Content-type: application/json
 ```
+
+Host: http://localhost:3000
+
+```
+Authorization: Bearer Token do usuário a ser deletado.
+```
+
+Content-type: application/json
+
+````
 
 ### Parâmetros da Requisição:
 
@@ -517,7 +567,7 @@ Content-type: application/json
 
 ```json
 vazio
-```
+````
 
 ### Exemplo de Response:
 
@@ -574,11 +624,19 @@ O objeto Anouncements é definido como:
 
 ### `/anouncements`
 
+```
 POST /anouncements
+```
+
 Host: http://localhost:3000
+
+```
 Authorization: Bearer token do tipo anunciante
+```
+
 Content-type: application/json
 
+````
 ### Corpo da Requisição:
 
 ```json
@@ -603,7 +661,7 @@ Content-type: application/json
     }
   ]
 }
-```
+````
 
 ### Exemplo de Response:
 
