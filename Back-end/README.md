@@ -661,16 +661,23 @@ obs: É necessário que todos os campos sejam passados corretamente.
 
 ```
 GET /anouncements
-Host: http://localhost:3000
-Authorization: None
-Content-type: application/json
 ```
+
+Host: http://localhost:3000
+
+```
+Authorization: None
+```
+
+Content-type: application/json
+
+````
 
 ### Corpo da Requisição:
 
 ```json
 
-```
+````
 
 ### Exemplo de Response:
 
@@ -725,16 +732,23 @@ Nenhum, o máximo que pode acontecer é retornar uma lista vazia.
 
 ```
 GET /anouncements/:anouncementId
-Host: http://localhost:3000
-Authorization: None
-Content-type: application/json
 ```
+
+Host: http://localhost:3000
+
+```
+Authorization: None
+```
+
+Content-type: application/json
+
+````
 
 ### Corpo da Requisição:
 
 ```json
 Vazio
-```
+````
 
 ### Exemplo de Response:
 
@@ -791,11 +805,17 @@ Vazio
 
 ```
 PATCH /anouncements/:anouncementId
+```
+
 Host: http://localhost:3000
-Authorization: Bearer token do dono do anúncio
-Content-type: application/json
 
 ```
+Authorization: Bearer token do dono do anúncio
+```
+
+Content-type: application/json
+
+````
 
 ### Corpo da Requisição:
 
@@ -817,7 +837,7 @@ Content-type: application/json
 }
 
 obs: É necessário passar todas as imagens no corpo da requisição
-```
+````
 
 ### Exemplo de Response:
 
@@ -880,11 +900,18 @@ obs: É necessário passar todas as imagens no corpo da requisição
 ```
 
 DELETE /anouncements/:anouncementId
-Host: http://localhost:3000
-Authorization: Bearer token do dono do anúncio
-Content-type: application/json
 
 ```
+
+Host: http://localhost:3000
+
+```
+Authorization: Bearer token do dono do anúncio
+```
+
+Content-type: application/json
+
+````
 
 ### Parâmetros da Requisição:
 
@@ -896,7 +923,7 @@ Content-type: application/json
 
 ```json
 Vazio
-```
+````
 
 ### Exemplo de Response:
 
@@ -934,11 +961,17 @@ Vazio
 
 ```
 GET /anouncements/user/:userId
+```
+
 Host: http://localhost:3000
-Authorization: none
-Content-type: application/json
 
 ```
+Authorization: none
+```
+
+Content-type: application/json
+
+````
 
 ### Parâmetros da Requisição:
 
@@ -950,7 +983,7 @@ Content-type: application/json
 
 ```json
 Vazio
-```
+````
 
 ### Exemplo de Response:
 
@@ -1023,10 +1056,19 @@ O objeto Comments é definido como:
 
 ### `/comments`
 
+```
 POST /comments/anouncementId
+```
+
 Host: http://localhost:3000
+
+```
 Authorization: Bearer token
+```
+
 Content-type: application/json
+
+````
 
 ### Corpo da Requisição:
 
@@ -1034,7 +1076,7 @@ Content-type: application/json
 {
   "comment": "Este é um comentário teste."
 }
-```
+````
 
 ### Exemplo de Response:
 
@@ -1066,16 +1108,27 @@ Content-type: application/json
 
 ### `/comments/:anouncementId`
 
+```
 POST /comments/anouncementId
+
+```
+
 Host: http://localhost:3000
+
+```
 Authorization: Bearer token
+
+```
+
 Content-type: application/json
+
+````
 
 ### Corpo da Requisição:
 
 ```json
 Vazio
-```
+````
 
 ### Exemplo de Response:
 
@@ -1119,11 +1172,19 @@ Vazio
 
 ```
 PATCH /comments/comentId
-Host: http://localhost:3000
-Authorization: Bearer token do dono do comentário
-Content-type: application/json
 
 ```
+
+Host: http://localhost:3000
+
+```
+Authorization: Bearer token do dono do comentário
+
+```
+
+Content-type: application/json
+
+````
 
 ### Corpo da Requisição:
 
@@ -1131,7 +1192,7 @@ Content-type: application/json
 {
   "comment": "Este é um comentário teste de update."
 }
-```
+````
 
 ### Exemplo de Response:
 
@@ -1179,17 +1240,25 @@ Content-type: application/json
 
 ```
 DELETE /comments/comentId
-Host: http://localhost:3000
-Authorization: Bearer token do dono do comentário ou dono do anúncio
-Content-type: application/json
 
 ```
+
+Host: http://localhost:3000
+
+```
+Authorization: Bearer token do dono do comentário ou dono do anúncio
+
+```
+
+Content-type: application/json
+
+````
 
 ### Corpo da Requisição:
 
 ```json
 vazio
-```
+````
 
 ### Exemplo de Response:
 
