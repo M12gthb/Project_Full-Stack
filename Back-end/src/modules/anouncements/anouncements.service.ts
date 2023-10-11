@@ -55,8 +55,7 @@ export class AnouncementService {
     }
 
     const { images } = data;
-    const updateImages = [...anouncement.images, ...data.images];
-    console.log(updateImages);
+
     for await (const image of anouncement.images) {
       await this.imageService.delete(image.id);
     }
@@ -87,6 +86,10 @@ export class AnouncementService {
   }
 
   async findByUser(userId: string) {
+    const user = await this.userService.findOne(userId);
+    if (!user) {
+      throw new NotFoundException('User not found!');
+    }
     const anouncements = await this.anouncementsRepository.findByUser(userId);
 
     return anouncements;

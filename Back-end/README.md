@@ -267,6 +267,8 @@ Content-type: application/json
 | -------------- | -------------------- |
 | 409 Conflict   | Email alredy exist ! |
 
+obs: É necessário que todos os campos sejam passados corretamente.
+
 ---
 
 ### 2.2. **Listando Usuários**
@@ -570,15 +572,423 @@ O objeto Anouncements é definido como:
 
 ### 3.1. **Criação de um anúncio**
 
+### `/anouncements`
+
+POST /anouncements
+Host: http://localhost:3000
+Authorization: Bearer token do tipo anunciante
+Content-type: application/json
+
+### Corpo da Requisição:
+
+```json
+{
+  "brand": "data.brand",
+  "model": "data.model",
+  "year": 2000,
+  "fuel": "gasolina",
+  "mileage": 30000,
+  "color": "data.color",
+  "priceTabel": 40000,
+  "description": "data.description",
+  "publish": false,
+  "cover_img": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+  "price": 28000,
+  "images": [
+    {
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp"
+    },
+    {
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp"
+    }
+  ]
+}
+```
+
+### Exemplo de Response:
+
+```
+201 Created
+```
+
+```json
+{
+  "id": "353a23c1-d3cc-4802-9b6a-f62342aedde8",
+  "brand": "data.brand",
+  "model": "data.model",
+  "year": 2000,
+  "fuel": "gasolina",
+  "mileage": 30000,
+  "color": "data.color",
+  "priceTabel": 40000,
+  "price": 28000,
+  "description": "data.description",
+  "publish": false,
+  "cover_img": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+  "userId": "9e2dfe75-4b46-4802-88fc-4133c6108e9a",
+  "images": [
+    {
+      "id": "b87ac882-fc88-4fbd-9c13-cabb97762899",
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+      "anouncementId": "353a23c1-d3cc-4802-9b6a-f62342aedde8"
+    },
+    {
+      "id": "17753217-7e67-48ce-a840-2f0f33262942",
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+      "anouncementId": "353a23c1-d3cc-4802-9b6a-f62342aedde8"
+    }
+  ]
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro   | Descrição                 |
+| ---------------- | ------------------------- |
+| 401 Unauthorized | Invalid email or password |
+
+| Código do Erro  | Descrição             |
+| --------------- | --------------------- |
+| 400 Bad Request | "error":"Bad Request" |
+
+obs: É necessário que todos os campos sejam passados corretamente.
+
 ### 3.2. **Lista todos os anúncio**
 
-### 3.3. **Lista todos od anúncios do usuário usando seu ID como parâmetro**
+### `/anouncements`
 
-### 3.4. **Lista um anúncio usando seu ID como parâmetro**
+### Exemplo de Request:
 
-### 3.5. **Edita um anúncio usando seu ID como parâmetro**
+```
+GET /anouncements
+Host: http://localhost:3000
+Authorization: None
+Content-type: application/json
+```
 
-### 3.6. **Deleta um anúncio usando seu ID como parâmetro**
+### Corpo da Requisição:
+
+```json
+
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+[
+  {
+    "id": "1f4c8680-56af-4272-b5c1-c571315e5c50",
+    "brand": "data.brand",
+    "model": "data.model",
+    "year": 2000,
+    "fuel": "gasolina",
+    "mileage": 30000,
+    "color": "data.color",
+    "priceTabel": 40000,
+    "price": 28000,
+    "description": "data.description",
+    "publish": false,
+    "cover_img": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+    "userId": "9e2dfe75-4b46-4802-88fc-4133c6108e9a",
+    "images": [
+      {
+        "id": "384113fd-67b2-48f5-bb53-af41e176e817",
+        "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+        "anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
+      }
+    ]
+  }
+]
+```
+
+### Possíveis Erros:
+
+Nenhum, o máximo que pode acontecer é retornar uma lista vazia.
+
+---
+
+### 3.3. **Lista um anúncio usando seu ID como parâmetro**
+
+### `/anouncements/:anouncementId`
+
+### Parâmetros da Requisição:
+
+| Parâmetro     | Tipo   | Descrição                                    |
+| ------------- | ------ | -------------------------------------------- |
+| anouncementId | string | Identificador único do anúncio (anouncement) |
+
+### Exemplo de Request:
+
+```
+GET /anouncements/:anouncementId
+Host: http://localhost:3000
+Authorization: None
+Content-type: application/json
+```
+
+### Corpo da Requisição:
+
+```json
+Vazio
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+[
+  {
+    "id": "1f4c8680-56af-4272-b5c1-c571315e5c50",
+    "brand": "data.brand",
+    "model": "data.model",
+    "year": 2000,
+    "fuel": "gasolina",
+    "mileage": 30000,
+    "color": "data.color",
+    "priceTabel": 40000,
+    "price": 28000,
+    "description": "data.description",
+    "publish": false,
+    "cover_img": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+    "userId": "9e2dfe75-4b46-4802-88fc-4133c6108e9a",
+    "images": [
+      {
+        "id": "384113fd-67b2-48f5-bb53-af41e176e817",
+        "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+        "anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
+      }
+    ]
+  }
+]
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição              |
+| -------------- | ---------------------- |
+| 404 Not Found  | Anouncement not found! |
+
+---
+
+### 3.4. **Edita um anúncio usando seu ID como parâmetro**
+
+### `/anouncements/:anouncementId`
+
+### Parâmetros da Requisição:
+
+| Parâmetro     | Tipo   | Descrição                                    |
+| ------------- | ------ | -------------------------------------------- |
+| anouncementId | string | Identificador único do anúncio (anouncement) |
+
+### Exemplo de Request:
+
+```
+PATCH /anouncements/:anouncementId
+Host: http://localhost:3000
+Authorization: Bearer token do dono do anúncio
+Content-type: application/json
+
+```
+
+### Corpo da Requisição:
+
+```json
+{
+  "year": 2011,
+  "fuel": "gasolina",
+  "mileage": 30000,
+  "color": "data.color",
+  "priceTabel": 50000,
+  "images": [
+    {
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp"
+    },
+    {
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp"
+    }
+  ]
+}
+
+obs: É necessário passar todas as imagens no corpo da requisição
+```
+
+### Exemplo de Response:
+
+```
+200 OK
+```
+
+```json
+{
+  "id": "0f87ca88-7698-4d16-977f-31569f7b8f97",
+  "brand": "data.brand",
+  "model": "data.model",
+  "year": 2011,
+  "fuel": "gasolina",
+  "mileage": 30000,
+  "color": "data.color",
+  "priceTabel": 50000,
+  "price": 28000,
+  "description": "data.description",
+  "publish": false,
+  "cover_img": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+  "userId": "53c6b9f5-eba5-4317-aabf-b70d06452b9f",
+  "images": [
+    {
+      "id": "a80cc303-422f-44b8-b89d-eb36eeb7fc38",
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+      "anouncementId": "0f87ca88-7698-4d16-977f-31569f7b8f97"
+    },
+    {
+      "id": "0de77c04-328d-4adb-b6c5-2a19d18d1cad",
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+      "anouncementId": "0f87ca88-7698-4d16-977f-31569f7b8f97"
+    }
+  ]
+}
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição              |
+| -------------- | ---------------------- |
+| 404 Not Found  | Anouncement not found! |
+
+| Código do Erro   | Descrição    |
+| ---------------- | ------------ |
+| 401 Unauthorized | Unauthorized |
+
+| Código do Erro | Descrição                |
+| -------------- | ------------------------ |
+| 403 Forbidden  | You dont have permitions |
+
+---
+
+### 3.5. **Deleta um anúncio usando seu ID como parâmetro**
+
+### `/anouncements/:anouncementId`
+
+### Exemplo de Request:
+
+```
+
+DELETE /anouncements/:anouncementId
+Host: http://localhost:3000
+Authorization: Bearer token do dono do anúncio
+Content-type: application/json
+
+```
+
+### Parâmetros da Requisição:
+
+| Parâmetro     | Tipo   | Descrição                                    |
+| ------------- | ------ | -------------------------------------------- |
+| anouncementId | string | Identificador único do anúncio (anouncement) |
+
+### Corpo da Requisição:
+
+```json
+Vazio
+```
+
+### Exemplo de Response:
+
+```
+204 No Content
+```
+
+### Possíveis Erros:
+
+| Código do Erro | Descrição              |
+| -------------- | ---------------------- |
+| 404 Not Found  | Anouncement not found! |
+
+| Código do Erro   | Descrição    |
+| ---------------- | ------------ |
+| 401 Unauthorized | Unauthorized |
+
+| Código do Erro | Descrição                |
+| -------------- | ------------------------ |
+| 403 Forbidden  | You dont have permitions |
+
+---
+
+### 3.6. **Lista todos od anúncios do usuário usando seu ID como parâmetro**
+
+### `/anouncements/user/:userId`
+
+### Parâmetros da Requisição:
+
+| Parâmetro     | Tipo   | Descrição                                    |
+| ------------- | ------ | -------------------------------------------- |
+| anouncementId | string | Identificador único do anúncio (anouncement) |
+
+### Exemplo de Request:
+
+```
+GET /anouncements/user/:userId
+Host: http://localhost:3000
+Authorization: none
+Content-type: application/json
+
+```
+
+### Parâmetros da Requisição:
+
+| Parâmetro | Tipo   | Descrição                    |
+| --------- | ------ | ---------------------------- |
+| userId    | string | Identificador usuário (User) |
+
+### Corpo da Requisição:
+
+```json
+Vazio
+```
+
+### Exemplo de Response:
+
+```
+[
+ {
+  "id": "0f87ca88-7698-4d16-977f-31569f7b8f97",
+  "brand": "data.brand",
+  "model": "data.model",
+  "year": 2011,
+  "fuel": "gasolina",
+  "mileage": 30000,
+  "color": "data.color",
+  "priceTabel": 50000,
+  "price": 28000,
+  "description": "data.description",
+  "publish": false,
+  "cover_img": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+  "userId": "53c6b9f5-eba5-4317-aabf-b70d06452b9f",
+  "images": [
+    {
+      "id": "a80cc303-422f-44b8-b89d-eb36eeb7fc38",
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+      "anouncementId": "0f87ca88-7698-4d16-977f-31569f7b8f97"
+    },
+    {
+      "id": "0de77c04-328d-4adb-b6c5-2a19d18d1cad",
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+      "anouncementId": "0f87ca88-7698-4d16-977f-31569f7b8f97"
+    }
+  ]
+}
+]
+```
+
+| Código do Erro | Descrição       |
+| -------------- | --------------- |
+| 404 Not Found  | user not found! |
 
 ---
 
@@ -610,3 +1020,11 @@ O objeto Comments é definido como:
 ### 4.3. **Edita um comentário**
 
 ### 4.4. **Deleta um comentário**
+
+```
+
+```
+
+```
+
+```

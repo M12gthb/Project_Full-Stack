@@ -71,7 +71,7 @@ export class AnouncementsPrismaRepository implements AnouncementsRepository {
       where: { id },
       include: { images: true },
     });
-    // console.log(anouncement);
+
     return anouncement;
   }
 

@@ -39,7 +39,7 @@ export class AnouncementsController {
 
   @Get('user/:userId')
   findByUser(@Param('userId') id: string) {
-    return this.anouncementServices.findOne(id);
+    return this.anouncementServices.findByUser(id);
   }
 
   @Patch(':anouncementId')
