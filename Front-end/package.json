@@ -1,25 +1,10 @@
 {
-  "name": "project_full_stack",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
-    "next": "latest"
-  },
-  "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
-    "@types/node": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest"
+    "@hookform/resolvers": "^3.3.2",
+    "axios": "^1.5.1",
+    "react-hook-form": "^7.47.0",
+    "react-router-dom": "^6.16.0",
+    "styled-components": "^6.1.0",
+    "zod": "^3.22.4"
   }
 }
