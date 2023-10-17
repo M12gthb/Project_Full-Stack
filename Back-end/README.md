@@ -148,6 +148,9 @@ Content-type: application/json
 
 ```json
 {
+  {
+	"id": "aaef0eb0-adec-47a9-be49-86c398e87573",
+	"type": "anunciante",
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQG1haWwuY29tIiwiaWF0IjoxNjk2OTc2MDc0LCJleHAiOjE2OTY5ODY4NzQsInN1YiI6IjllMmRmZTc1LTRiNDYtNDgwMi04OGZjLTQxMzNjNjEwOGU5YSJ9.ucQGKjvDFyqplHL_hHujLB1imD4w-lxEttEvpUnjZ5s"
 }
 ```
