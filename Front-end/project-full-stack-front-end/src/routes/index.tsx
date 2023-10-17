@@ -6,10 +6,12 @@ import { Register } from "../pages/Register";
 import { Anouncement } from "../pages/Anouncement";
 import { Buyer } from "../pages/Buyer";
 import { Advertiser } from "../pages/Advertiser";
+import { NotFound } from "../pages/NotFound";
 
 export const RoutesMain = () => {
   return (
     <Routes>
+      <Route path="*" element={<NotFound />} />
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/Register" element={<Register />} />

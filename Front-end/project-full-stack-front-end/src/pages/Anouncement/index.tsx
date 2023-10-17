@@ -1,6 +1,7 @@
 export const Anouncement = () => {
-  return;
-  <>
-    <div>Anuncio</div>
-  </>;
+  return (
+    <>
+      <div>Anuncio</div>
+    </>
+  );
 };

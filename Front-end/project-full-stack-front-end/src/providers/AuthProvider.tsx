@@ -1,15 +1,14 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
+import { ReactNode, createContext } from "react";
 import { LoginData } from "../pages/Login/validator";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
-
+import jwt_decode from "jwt-decode";
 interface AuthProviderProps {
   children: ReactNode;
 }
 
 interface AuthContextValues {
   signIn: (data: LoginData) => void;
-  loading: boolean;
 }
 
 export const AuthContext = createContext<AuthContextValues>(
@@ -18,37 +17,27 @@ export const AuthContext = createContext<AuthContextValues>(
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const token = localStorage.getItem("motors:token");
-    if (!token) {
-      setLoading(false);
-      return;
-    }
-
-    api.defaults.headers.common.Authorization = `Bearer ${token}`;
-    setLoading(false);
-  }, []);
-
   const signIn = async (data: LoginData) => {
     try {
       const response = await api.post("/login", data);
 
-      const { token } = response.data;
+      const { token, id, type } = response.data;
 
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
       localStorage.setItem("motors:token", token);
+      localStorage.setItem("motors:UserId", id);
 
-      navigate("Buyer");
+      if (type == "anunciante") {
+        navigate("Advertiser");
+      } else {
+        navigate("Buyer");
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, loading }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ signIn }}>{children}</AuthContext.Provider>
   );
 };
