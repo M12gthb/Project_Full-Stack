@@ -85,7 +85,7 @@ export const Home = () => {
         <p>{currentPage} de {Math.ceil(cards.length / 12)}</p>
 
         {indexOfLastItem >= cards.length ? null : 
-        <button onClick={() => setCurrentPage(currentPage + 1)}> Seguinte ></button>}
+        <button onClick={() => setCurrentPage(currentPage + 1)}> Seguinte > </button>}
         
       </div>
 

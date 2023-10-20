@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const RegisterSchema = z
   .object({
-    name: z.string().nonempty("O nome é obrigatório!"),
+    name: z.string().max(160, "O nome é obrigatório!"),
     email: z.string().email("Deve ser um e-mail!"),
     password: z.string().min(8, "Senha é obrigatória!"),
     confirm: z.string({ required_error: "Campo obrigatório!" }),
@@ -23,21 +23,21 @@ export const RegisterSchema = z
       .regex(/(?=.*?[\W])/, "Deve ser uma data válida!"),
     description: z.string().min(1, "A descrição é obrigatória!"),
     type: z.string().min(1, "Selecione o tipo do usuário!"),
-    address: z.object({
-      cep: z
-        .string()
-        .min(9, "O cep deve está no formato correto!")
-        .max(9, "O cep deve está no formato correto!")
-        .regex(/(?=.*?[\W])/, "O cep deve está no formato correto!"),
-      state: z
-        .string()
-        .max(30, "O estádo é obrigatório!")
-        .min(2, "O estádo é obrigatório!"),
-      city: z.string().min(2, "A cidade é obrigatória!"),
-      street: z.string().min(2, "A rua é obrigatório!"),
-      number: z.number().min(1, "O número é obrigatório!"),
-      complement: z.string(),
-    }),
+    cep: z
+      .string()
+      .max(9, "O cep deve está no formato correto!")
+      .regex(/(?=.*?[\W])/, "O cep deve está no formato correto!"),
+    state: z
+      .string()
+      .max(30, "O estádo é obrigatório!")
+      .min(2, "O estádo é obrigatório!"),
+    city: z.string().min(2, "A cidade é obrigatória!"),
+    street: z.string().min(2, "A rua é obrigatório!"),
+    number: z
+      .string()
+      .min(1, "O número é obrigatório!")
+      .regex(/(?=.*?[0-9])/, "Deve ser um número válido!"),
+    complement: z.string(),
   })
   .refine(({ password, confirm }) => password === confirm, {
     message: "As senhas precisam ser iguais",

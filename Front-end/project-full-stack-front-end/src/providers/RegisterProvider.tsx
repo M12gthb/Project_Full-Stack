@@ -7,7 +7,9 @@ interface RegisterProviderProps {
   children: ReactNode;
 }
 
-interface RegisterContextValues {}
+interface RegisterContextValues {
+  singUp: (data: RegisterData) => void;
+}
 
 export const RegisterContext = createContext<RegisterContextValues>(
   {} as RegisterContextValues
@@ -16,8 +18,16 @@ export const RegisterContext = createContext<RegisterContextValues>(
 export const RegisterProvider = ({ children }: RegisterProviderProps) => {
   const navigate = useNavigate();
   const singUp = async (data: RegisterData) => {
+    const { cep, state, city, street, number, complement, ...rest } = data;
+
+    const convert = Number(number);
+
+    const addrees = { cep, state, city, street, number: convert, complement };
+
+    const newData = { rest, addrees: addrees };
     try {
-      await api.post("/users", data);
+      const response = await api.post("/users", newData);
+      console.log(response);
       setTimeout(() => {
         navigate("/login");
       }, 3000);
