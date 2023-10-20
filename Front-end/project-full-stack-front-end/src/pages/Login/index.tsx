@@ -1,33 +1,25 @@
-import { useForm } from "react-hook-form";
-import { LoginData, schema } from "./validator";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { LoginForm } from "../../components/Forms/LoginForm";
+import { Footer } from "../../components/Footer";
 
 export const Login = () => {
-  const { signIn } = useAuth();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginData>({
-    resolver: zodResolver(schema),
-  });
-  console.log(errors);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("motors:token");
+    if (token) {
+      navigate("/");
+    }
+  }, []);
+
   return (
-    <main>
-      <form onSubmit={handleSubmit(signIn)}>
-        <h1>Login</h1>
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" {...register("email")} />
-
-        <label htmlFor="password">Senha</label>
-        <input type="password" id="password" {...register("password")} />
-
-        <button type="submit">Entrar</button>
-      </form>
-      <p>Ainda não possui conta?</p>
-      <Link to={"/Register"}>Cadastrar</Link>
-    </main>
+    <>
+      <main>
+        <LoginForm />
+        <p>Ainda não possui conta?</p>
+        <Link to={"/Register"}>Cadastrar</Link>
+      </main>
+      <Footer />
+    </>
   );
 };

@@ -1,8 +1,8 @@
 import { ReactNode, createContext } from "react";
-import { LoginData } from "../pages/Login/validator";
+import { LoginData } from "../components/Forms/LoginForm/validator";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
+
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
       localStorage.setItem("motors:token", token);
       localStorage.setItem("motors:UserId", id);
+      localStorage.setItem("motors:Type", type);
 
       if (type == "anunciante") {
         navigate("Advertiser");
