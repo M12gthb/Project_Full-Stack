@@ -9,11 +9,20 @@ import {
   IAnouncementWithUser,
   IUsers,
 } from "../../interfaces/interfaces";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const [cards, setCards] = useState<IAnouncementWithUser[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+
+  const navigate = useNavigate()
+
+  const toProduct = (id:string) => {
+    localStorage.setItem("motors:IDProduct", id)
+
+    navigate("/Product")
+  }
 
   useEffect(() => {
     async function getAnouncements() {
@@ -56,6 +65,7 @@ export const Home = () => {
           const indexSpanColor = Math.floor(Math.random() * spanColor.length);
           return (
             <StyledLi key={card.id}>
+              <div onClick={() => toProduct(card.id)}>
               <img src={card.cover_img} />
               <h1>
                 {card.brand} - {card.model}
@@ -70,6 +80,7 @@ export const Home = () => {
               <div>{`${card.mileage} KM`}</div>
               <div>{`${card.year}`}</div>
               <p>{`R$ ${card.price.toFixed(3)},00`}</p>
+              </div>
             </StyledLi>
           );
         })}

@@ -19,6 +19,7 @@ export interface IAnouncement {
   cover_img: string;
   userId: string;
   images: Array<IImages>;
+  coments: Array<IComments>;
 }
 
 export interface IAnouncementWithUser {
@@ -63,4 +64,12 @@ export interface IAddress {
   number: number;
   complement: string;
   userId: string;
+}
+
+export interface IComments {
+  id: string;
+  comment: string;
+  commentDate: string;
+  userId: string;
+  anouncementId: string;
 }

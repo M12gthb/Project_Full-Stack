@@ -30,7 +30,7 @@ export const LoginForm = () => {
         id="password"
         label="Senha"
         placeholder="Digite aqui seu email"
-        error={errors.email?.message}
+        error={errors.password?.message}
         {...register("password")}
       />
 

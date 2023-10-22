@@ -662,16 +662,7 @@ Content-type: application/json
     {
       "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp"
     }
-  ],
-  	"coments": [
-			{
-				"id": "4a737c04-2aa5-4774-a597-b2cf1edff5b8",
-				"comment": "Este é um comentário teste.",
-				"commentDate": "2023-10-09T20:39:26.847Z",
-				"userId": "9e2dfe75-4b46-4802-88fc-4133c6108e9a",
-				"anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
-			}
-		]
+  ]
 }
 ````
 
@@ -683,7 +674,6 @@ Content-type: application/json
 
 ```json
 {
-  "id": "353a23c1-d3cc-4802-9b6a-f62342aedde8",
   "brand": "data.brand",
   "model": "data.model",
   "year": 2000,
@@ -691,23 +681,19 @@ Content-type: application/json
   "mileage": 30000,
   "color": "data.color",
   "priceTabel": 40000,
-  "price": 28000,
   "description": "data.description",
   "publish": false,
   "cover_img": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
-  "userId": "9e2dfe75-4b46-4802-88fc-4133c6108e9a",
+  "price": 28000,
   "images": [
     {
-      "id": "b87ac882-fc88-4fbd-9c13-cabb97762899",
-      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
-      "anouncementId": "353a23c1-d3cc-4802-9b6a-f62342aedde8"
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp"
     },
     {
-      "id": "17753217-7e67-48ce-a840-2f0f33262942",
-      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
-      "anouncementId": "353a23c1-d3cc-4802-9b6a-f62342aedde8"
+      "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp"
     }
-  ]
+  ],
+  "coments": []
 }
 ```
 
@@ -775,6 +761,15 @@ Content-type: application/json
       {
         "id": "384113fd-67b2-48f5-bb53-af41e176e817",
         "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+        "anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
+      }
+    ],
+    "coments": [
+      {
+        "id": "4a737c04-2aa5-4774-a597-b2cf1edff5b8",
+        "comment": "Este é um comentário teste.",
+        "commentDate": "2023-10-09T20:39:26.847Z",
+        "userId": "9e2dfe75-4b46-4802-88fc-4133c6108e9a",
         "anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
       }
     ]
@@ -846,6 +841,15 @@ Vazio
       {
         "id": "384113fd-67b2-48f5-bb53-af41e176e817",
         "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
+        "anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
+      }
+    ],
+    "coments": [
+      {
+        "id": "4a737c04-2aa5-4774-a597-b2cf1edff5b8",
+        "comment": "Este é um comentário teste.",
+        "commentDate": "2023-10-09T20:39:26.847Z",
+        "userId": "9e2dfe75-4b46-4802-88fc-4133c6108e9a",
         "anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
       }
     ]
@@ -940,6 +944,15 @@ obs: É necessário passar todas as imagens no corpo da requisição
       "id": "0de77c04-328d-4adb-b6c5-2a19d18d1cad",
       "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
       "anouncementId": "0f87ca88-7698-4d16-977f-31569f7b8f97"
+    }
+  ],
+  "coments": [
+    {
+      "id": "4a737c04-2aa5-4774-a597-b2cf1edff5b8",
+      "comment": "Este é um comentário teste.",
+      "commentDate": "2023-10-09T20:39:26.847Z",
+      "userId": "9e2dfe75-4b46-4802-88fc-4133c6108e9a",
+      "anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
     }
   ]
 }
@@ -1090,7 +1103,16 @@ Vazio
       "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp",
       "anouncementId": "0f87ca88-7698-4d16-977f-31569f7b8f97"
     }
-  ]
+  ],
+  "coments": [
+			{
+				"id": "4a737c04-2aa5-4774-a597-b2cf1edff5b8",
+				"comment": "Este é um comentário teste.",
+				"commentDate": "2023-10-09T20:39:26.847Z",
+				"userId": "9e2dfe75-4b46-4802-88fc-4133c6108e9a",
+				"anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
+			}
+		]
 }
 ]
 ```
