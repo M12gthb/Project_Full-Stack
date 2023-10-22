@@ -662,7 +662,16 @@ Content-type: application/json
     {
       "image_url": "https://olhardigital.com.br/wp-content/uploads/2022/04/tesla-roadster.webp"
     }
-  ]
+  ],
+  	"coments": [
+			{
+				"id": "4a737c04-2aa5-4774-a597-b2cf1edff5b8",
+				"comment": "Este é um comentário teste.",
+				"commentDate": "2023-10-09T20:39:26.847Z",
+				"userId": "9e2dfe75-4b46-4802-88fc-4133c6108e9a",
+				"anouncementId": "1f4c8680-56af-4272-b5c1-c571315e5c50"
+			}
+		]
 }
 ````
 
