@@ -18,9 +18,8 @@ export const Home = () => {
 
   const navigate = useNavigate()
 
-  const toProduct = (id:string) => {
+  const toProduct = (id: string) => {
     localStorage.setItem("motors:IDProduct", id)
-
     navigate("/Product")
   }
 
@@ -45,7 +44,6 @@ export const Home = () => {
     getAnouncements();
   }, []);
 
-  // Função para calcular os itens a serem exibidos na página atual
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = cards.slice(indexOfFirstItem, indexOfLastItem);
@@ -64,9 +62,8 @@ export const Home = () => {
           const spanColor = ["blue", "rose", "brown", "green"];
           const indexSpanColor = Math.floor(Math.random() * spanColor.length);
           return (
-            <StyledLi key={card.id}>
-              <div onClick={() => toProduct(card.id)}>
-              <img src={card.cover_img} />
+            <StyledLi key={card.id} onClick={() => toProduct(card.id)}>
+              <img src={card.cover_img}/>
               <h1>
                 {card.brand} - {card.model}
               </h1>
@@ -80,7 +77,7 @@ export const Home = () => {
               <div>{`${card.mileage} KM`}</div>
               <div>{`${card.year}`}</div>
               <p>{`R$ ${card.price.toFixed(3)},00`}</p>
-              </div>
+              
             </StyledLi>
           );
         })}

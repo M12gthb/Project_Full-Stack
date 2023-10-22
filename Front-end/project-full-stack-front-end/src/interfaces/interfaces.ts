@@ -41,6 +41,7 @@ export interface IAnouncementWithUser {
 }
 
 export interface IUsers {
+  data?: any;
   id: string;
   name: string;
   email: string;
@@ -64,6 +65,16 @@ export interface IAddress {
   number: number;
   complement: string;
   userId: string;
+}
+
+export interface ICommentsUsers {
+  userAbbr?: any;
+  id: string;
+  comment: string;
+  commentDate: string;
+  userId: string;
+  anouncementId: string;
+  user: IUsers;
 }
 
 export interface IComments {
