@@ -61,7 +61,7 @@ export class AnouncementsPrismaRepository implements AnouncementsRepository {
 
   async findAll(): Promise<Anouncements[]> {
     const anouncements = await this.prisma.anouncements.findMany({
-      include: { images: true },
+      include: { images: true, coments: true },
     });
     return anouncements;
   }
