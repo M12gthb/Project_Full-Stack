@@ -13,6 +13,7 @@ export const LoginForm = () => {
   } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
   });
+  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(signIn)}>
@@ -23,7 +24,7 @@ export const LoginForm = () => {
         label="Email"
         placeholder="Digite aqui seu email"
         error={errors.email?.message}
-        {...register("email")}
+        register={register}
       />
       <Input
         type="password"
@@ -31,7 +32,7 @@ export const LoginForm = () => {
         label="Senha"
         placeholder="Digite aqui seu email"
         error={errors.password?.message}
-        {...register("password")}
+        register={register}
       />
 
       <button type="submit">Entrar</button>

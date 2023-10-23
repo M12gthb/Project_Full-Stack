@@ -24,10 +24,11 @@ export const RegisterProvider = ({ children }: RegisterProviderProps) => {
 
     const addrees = { cep, state, city, street, number: convert, complement };
 
-    const newData = { rest, addrees: addrees };
+    const newData = { ...rest, address: addrees };
+
     try {
       const response = await api.post("/users", newData);
-      console.log(response);
+      console.log(response.data);
       setTimeout(() => {
         navigate("/login");
       }, 3000);
@@ -35,6 +36,7 @@ export const RegisterProvider = ({ children }: RegisterProviderProps) => {
       console.log(err);
     }
   };
+
   return (
     <RegisterContext.Provider value={{ singUp }}>
       {children}

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 import {
-  IAnouncement,
+  IAnouncementWithUser,
   IComments,
   ICommentsUsers,
   IUsers,
@@ -12,7 +11,7 @@ import { Footer } from "../../components/Footer";
 import burguerMenu from "../../assets/burger-menu-svgrepo-com.svg";
 
 export const Product = () => {
-  const [anouncement, setAnouncemt] = useState<IAnouncement>();
+  const [anouncement, setAnouncemt] = useState<IAnouncementWithUser>();
   const [user, setUser] = useState<IUsers>();
   const [comments, setComments] = useState<ICommentsUsers[]>([]);
   const [burguer, setBurguer] = useState(false);
@@ -20,20 +19,22 @@ export const Product = () => {
   const [commentText, setCommentText] = useState("");
 
   const name = user?.name.split(" ") || [];
+  const anouncemnetUser = anouncement?.user.name.split(" ") || [];
   const spanColor = ["blue", "rose", "brown", "green"];
   const indexSpanColor = Math.floor(Math.random() * spanColor.length);
-
-  const navigate = useNavigate();
 
   const getProduct = async (id: string) => {
     const response = await api.get(`/anouncements/${id}`);
     const userId = localStorage.getItem("motors:UserId");
-    const userResponse = await api.get(`/users/${userId}`);
+    const userAnouncement = await api.get(`/users/${response.data.userId}`);
+    if (userId) {
+      const userResponse = await api.get(`/users/${userId}`);
+      setUser(userResponse.data);
+    }
+    userComment(response.data.coments);
+    setAnouncemt({ ...response.data, user: userAnouncement.data });
 
-    setUser(userResponse.data);
-
-    userComment(response.data.comments);
-    setAnouncemt(response.data);
+    return response.data;
   };
 
   const calculateElapsedTime = (commentDate: Date) => {
@@ -64,20 +65,26 @@ export const Product = () => {
     }
   };
 
-  const userComment = async (data: IComments[]) => {
-    const commentPromises = data.map(async (element) => {
-      const user: IUsers = await api.get(`/users/${element.userId}`);
-      const commentDate = new Date(element.commentDate);
+  const userComment = async (data: IComments[] | []) => {
+    if (data) {
+      try {
+        const commentPromises = data.map(async (element) => {
+          const user: IUsers = await api.get(`/users/${element.userId}`);
+          const commentDate = new Date(element.commentDate);
 
-      return {
-        ...element,
-        user: user,
-        commentDate: calculateElapsedTime(commentDate),
-      };
-    });
+          return {
+            ...element,
+            user: user,
+            commentDate: calculateElapsedTime(commentDate),
+          };
+        });
 
-    const comments = await Promise.all(commentPromises);
-    setComments(comments);
+        const comments = await Promise.all(commentPromises);
+        setComments(comments);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   const newComment = async (id: string | undefined, data: string) => {
@@ -107,14 +114,12 @@ export const Product = () => {
     const id = localStorage.getItem("motors:IDProduct");
     if (id) {
       getProduct(id);
-    } else {
-      navigate("/");
     }
   }, []);
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div>
         {name.length > 2 ? (
           <span className={spanColor[indexSpanColor]}>
@@ -122,7 +127,7 @@ export const Product = () => {
           </span>
         ) : (
           <span className={spanColor[indexSpanColor]}>
-            {name[0][0].toUpperCase()}
+            {user?.name[0].toUpperCase()}
           </span>
         )}
         <p>{user?.name}</p>
@@ -149,7 +154,7 @@ export const Product = () => {
           </span>
         ) : (
           <span className={spanColor[indexSpanColor]}>
-            {name[0][0].toUpperCase()}
+            {user?.name[0].toUpperCase()}
           </span>
         )}
         <p>{user?.name}</p>
@@ -181,14 +186,15 @@ export const Product = () => {
       </ul>
 
       <div>
-        {name.length > 2 ? (
+        {anouncemnetUser.length > 2 ? (
           <span className={spanColor[indexSpanColor]}>
-            {name[0][0].toUpperCase()} {name[1][0].toUpperCase()}
+            {anouncemnetUser[0][0].toUpperCase()}{" "}
+            {anouncemnetUser[1][0].toUpperCase()}
           </span>
         ) : null}
-        <h1>{user?.name}</h1>
-        <p>{user?.description}</p>
-        <Link to={"/"}>Ver todos os anuncios</Link>
+        <h1>{anouncement?.user?.name}</h1>
+        <p>{anouncement?.user?.description}</p>
+        <button>Ver todos os anuncios</button>
       </div>
 
       <div>
@@ -205,6 +211,10 @@ export const Product = () => {
                 </span>
                 <p>{comment.user.data.name}</p>
                 <p>{comment.commentDate}</p>
+                {comment.userId == user?.id ? (
+                  <button>Editar comentário</button>
+                ) : null}
+                {anouncement?.id == user?.id ? <button>Excluir</button> : null}
                 {comment.comment}
               </li>
             ))}
@@ -212,12 +222,17 @@ export const Product = () => {
       </div>
 
       <div>
-        {name.length > 2 ? (
-          <span className={spanColor[indexSpanColor]}>
-            {name[0][0].toUpperCase()} {name[1][0].toUpperCase()}
-          </span>
+        {user ? (
+          <div>
+            {name.length > 2 ? (
+              <span className={spanColor[indexSpanColor]}>
+                {name[0][0].toUpperCase()} {name[1][0].toUpperCase()}
+              </span>
+            ) : null}
+            <h1>{user?.name}</h1>
+          </div>
         ) : null}
-        <h1>{user?.name}</h1>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -226,16 +241,28 @@ export const Product = () => {
           }}
         >
           <textarea
+            disabled={user ? false : true}
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
           ></textarea>
-          <button type="submit">Comentar</button>
+          <button disabled={user ? false : true} type="submit">
+            Comentar
+          </button>
         </form>
-        <button onClick={() => setCommentText("Gostei muito!")}>
+        <button
+          disabled={user ? false : true}
+          onClick={() => setCommentText("Gostei muito!")}
+        >
           Gostei muito!
         </button>
-        <button onClick={() => setCommentText("Incrivel!")}>Incrivel!</button>
         <button
+          disabled={user ? false : true}
+          onClick={() => setCommentText("Incrivel!")}
+        >
+          Incrivel!
+        </button>
+        <button
+          disabled={user ? false : true}
           onClick={() => setCommentText("Recomendarei para meus amigos!")}
         >
           Recomendarei para meus amigos

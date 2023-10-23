@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (type == "anunciante") {
         navigate("Advertiser");
       } else {
-        navigate("Buyer");
+        navigate("/");
       }
     } catch (err) {
       console.log(err);

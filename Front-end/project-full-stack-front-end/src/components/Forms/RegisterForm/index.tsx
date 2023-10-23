@@ -21,20 +21,20 @@ export const RegisterForm = () => {
     setSelectedType(type);
   };
 
+  const onSubmit = (data: any) => {
+    singUp({ ...data, type: selectedType });
+  };
+
   return (
     <>
-      <form
-        onSubmit={handleSubmit((data) =>
-          singUp({ ...data, type: selectedType })
-        )}
-      >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           type="text"
           id="name"
           label="Nome"
           placeholder="Ex: Samuel Leão"
           error={errors.name?.message}
-          {...register("name")}
+          register={register}
         />
         <Input
           type="email"
@@ -42,7 +42,7 @@ export const RegisterForm = () => {
           label="Email"
           placeholder="Ex: samuel@kenzie.com.br"
           error={errors.email?.message}
-          {...register("email")}
+          register={register}
         />
         <Input
           type="text"
@@ -50,7 +50,7 @@ export const RegisterForm = () => {
           label="CPF"
           placeholder="000.000.000-00"
           error={errors.cpf?.message}
-          {...register("cpf")}
+          register={register}
         />
         <Input
           type="text"
@@ -58,7 +58,7 @@ export const RegisterForm = () => {
           label="Celular"
           placeholder="(DDD) 90000-0000"
           error={errors.cell?.message}
-          {...register("cell")}
+          register={register}
         />
         <Input
           type="text"
@@ -66,7 +66,7 @@ export const RegisterForm = () => {
           label="Data de nascimento"
           placeholder="00/00/00"
           error={errors.birthdate?.message}
-          {...register("birthdate")}
+          register={register}
         />
         <div className="descriptionConteiner">
           <label id="description">Descrição</label>
@@ -84,7 +84,7 @@ export const RegisterForm = () => {
           label="CEP"
           placeholder="00000.000"
           error={errors.cep?.message}
-          {...register("cep")}
+          register={register}
         />
         <div className="addContainer">
           <label>Estado</label>
@@ -110,7 +110,7 @@ export const RegisterForm = () => {
           label="Rua"
           placeholder="Ex: Rua Kenzie"
           error={errors.street?.message}
-          {...register("street")}
+          register={register}
         />
         <div className="addContainer">
           <label id="number">Número</label>
@@ -161,7 +161,7 @@ export const RegisterForm = () => {
           label="Senha"
           placeholder="Digitar senha"
           error={errors.password?.message}
-          {...register("password")}
+          register={register}
         />
         <Input
           type="password"
@@ -169,7 +169,7 @@ export const RegisterForm = () => {
           label="Confirmar Senha"
           placeholder="Digitar senha"
           error={errors.confirm?.message}
-          {...register("confirm")}
+          register={register}
         />
         <button type="submit">Finalizar cadastro</button>
       </form>

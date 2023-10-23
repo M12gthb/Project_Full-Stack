@@ -1,3 +1,3 @@
-export const Button = () => {
+export const Button = ({ type }) => {
   return <></>;
 };

@@ -20,9 +20,8 @@ export const RegisterSchema = z
       .string()
       .min(8, "Deve ser uma data válida!")
       .max(10, "Deve ser uma data válida!")
-      .regex(/(?=.*?[\W])/, "Deve ser uma data válida!"),
+      .regex(/(?=.*?[0-9])/, "Deve ser uma data válida!"),
     description: z.string().min(1, "A descrição é obrigatória!"),
-    type: z.string().min(1, "Selecione o tipo do usuário!"),
     cep: z
       .string()
       .max(9, "O cep deve está no formato correto!")
