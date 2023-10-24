@@ -1037,7 +1037,7 @@ Content-type: application/json
 ### Corpo da Requisição:
 
 ```json
-Vazio
+vazio
 ````
 
 ### Exemplo de Response:
