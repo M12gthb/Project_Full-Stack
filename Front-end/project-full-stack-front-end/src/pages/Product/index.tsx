@@ -8,13 +8,13 @@ import {
 } from "../../interfaces/interfaces";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-import burguerMenu from "../../assets/burger-menu-svgrepo-com.svg";
+// import burguerMenu from "../../assets/burger-menu-svgrepo-com.svg";
 
 export const Product = () => {
   const [anouncement, setAnouncemt] = useState<IAnouncementWithUser>();
   const [user, setUser] = useState<IUsers>();
   const [comments, setComments] = useState<ICommentsUsers[]>([]);
-  const [burguer, setBurguer] = useState(false);
+  // const [burguer, setBurguer] = useState(false);
 
   const [commentText, setCommentText] = useState("");
 
@@ -115,47 +115,8 @@ export const Product = () => {
 
   return (
     <>
-      <Header />
-      <div>
-        {name.length > 2 ? (
-          <span className={spanColor[indexSpanColor]}>
-            {name[0][0].toUpperCase()} {name[1][0].toUpperCase()}
-          </span>
-        ) : (
-          <span className={spanColor[indexSpanColor]}>
-            {user?.name[0].toUpperCase()}
-          </span>
-        )}
-        <p>{user?.name}</p>
-      </div>
-      <img src={burguerMenu} alt="" onClick={() => setBurguer(!burguer)} />
-      {burguer ? (
-        <div>
-          {name.length > 2 ? (
-            <span className={spanColor[indexSpanColor]}>
-              {name[0][0].toUpperCase()} {name[1][0].toUpperCase()}
-            </span>
-          ) : (
-            <span className={spanColor[indexSpanColor]}>
-              {name[0][0].toUpperCase()}
-            </span>
-          )}
-          <p>{user?.name}</p>
-        </div>
-      ) : null}
-      <div>
-        {name.length > 2 ? (
-          <span className={spanColor[indexSpanColor]}>
-            {name[0][0].toUpperCase()} {name[1][0].toUpperCase()}
-          </span>
-        ) : (
-          <span className={spanColor[indexSpanColor]}>
-            {user?.name[0].toUpperCase()}
-          </span>
-        )}
-        <p>{user?.name}</p>
-      </div>
-
+      <Header user={user} />
+      
       <img src={anouncement?.cover_img} alt="" />
 
       <div>

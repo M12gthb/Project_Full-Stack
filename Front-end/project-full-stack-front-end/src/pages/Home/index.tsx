@@ -1,5 +1,5 @@
 import { Header } from "../../components/Header";
-import { StyledLi, StyledSection } from "./styles";
+import { StyledSection } from "./styles";
 import background from "../../assets/backgroundHomepage.png";
 import { Footer } from "../../components/Footer";
 import { useEffect, useState } from "react";
@@ -9,19 +9,10 @@ import {
   IAnouncementWithUser,
   IUsers,
 } from "../../interfaces/interfaces";
-import { useNavigate } from "react-router-dom";
+import { AnouncementCard } from "../../components/Cards/AnouncementCard";
 
 export const Home = () => {
   const [cards, setCards] = useState<IAnouncementWithUser[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
-
-  const navigate = useNavigate()
-
-  const toProduct = (id: string) => {
-    localStorage.setItem("motors:IDProduct", id)
-    navigate("/Product")
-  }
 
   useEffect(() => {
     async function getAnouncements() {
@@ -44,58 +35,15 @@ export const Home = () => {
     getAnouncements();
   }, []);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = cards.slice(indexOfFirstItem, indexOfLastItem);
-
   return (
     <>
-      <Header></Header>
+      <Header type={"anouncements"}></Header>
       <StyledSection>
         <img src={background} alt="background" />
         <h1>Motors Shop</h1>
         <h2>A melhor plataforma de anúncios de carros no país</h2>
       </StyledSection>
-      <ul>
-        {currentItems.map((card) => {
-          const name = card.user.name.split(" ");
-          const spanColor = ["blue", "rose", "brown", "green"];
-          const indexSpanColor = Math.floor(Math.random() * spanColor.length);
-          return (
-            <StyledLi key={card.id} onClick={() => toProduct(card.id)}>
-              <img src={card.cover_img}/>
-              <h1>
-                {card.brand} - {card.model}
-              </h1>
-              <p>{card.description}</p>
-              <span className={spanColor[indexSpanColor]}>
-                {name.length > 2
-                  ? `${name[0][0].toUpperCase()} ${name[1][0].toUpperCase()}`
-                  : `${name[0][0].toUpperCase()}`}
-              </span>
-              <p>{card.user.name}</p>
-              <div>{`${card.mileage} KM`}</div>
-              <div>{`${card.year}`}</div>
-              <p>{`R$ ${card.price.toFixed(3)},00`}</p>
-              
-            </StyledLi>
-          );
-        })}
-      </ul>
-
-      <div>
-        {currentPage > 1 ? (
-          <button onClick={() => setCurrentPage(currentPage - 1)}>
-            Anterior 
-          </button>
-        ) : null}
-
-        <p>{currentPage} de {Math.ceil(cards.length / 12)}</p>
-
-        {indexOfLastItem >= cards.length ? null : 
-        <button onClick={() => setCurrentPage(currentPage + 1)}> Seguinte > </button>}
-        
-      </div>
+      <AnouncementCard cards={cards} />
 
       <Footer />
     </>
