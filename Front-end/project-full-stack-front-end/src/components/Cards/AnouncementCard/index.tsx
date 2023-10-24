@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const AnouncementCard = ({ cards }) => {
+export const AnouncementCard = ({ cards }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
@@ -15,11 +16,11 @@ export const AnouncementCard = ({ cards }) => {
     localStorage.setItem("motors:IDProduct", id);
     navigate("/Product");
   };
-   
+
   return (
     <>
-    <ul>
-        {currentItems.map((card) => {
+      <ul>
+        {currentItems.map((card: any) => {
           const name = card.user.name.split(" ");
           const spanColor = ["blue", "rose", "brown", "green"];
           const indexSpanColor = Math.floor(Math.random() * spanColor.length);
@@ -44,19 +45,25 @@ export const AnouncementCard = ({ cards }) => {
         })}
       </ul>
 
-        {cards?.length > 12 ? <div>
-        {currentPage > 1 ? (
-          <button onClick={() => setCurrentPage(currentPage - 1)}>
-            Anterior
-          </button>
-        ) : null}
-        <p>{currentPage} de {Math.ceil(cards.length / 12)}</p>
+      {cards?.length > 12 ? (
+        <div>
+          {currentPage > 1 ? (
+            <button onClick={() => setCurrentPage(currentPage - 1)}>
+              Anterior
+            </button>
+          ) : null}
+          <p>
+            {currentPage} de {Math.ceil(cards.length / 12)}
+          </p>
 
-        {indexOfLastItem >= cards.length ? null : (
-          <button onClick={() => setCurrentPage(currentPage + 1)}> Seguinte > </button>
-        )}
-      </div>: null }
-      
+          {indexOfLastItem >= cards.length ? null : (
+            <button onClick={() => setCurrentPage(currentPage + 1)}>
+              {" "}
+              {"Seguinte >"}{" "}
+            </button>
+          )}
+        </div>
+      ) : null}
     </>
   );
 };

@@ -15,7 +15,7 @@ export const Login = () => {
 
   return (
     <>
-      {/* <Header user={undefined} /> */}
+      <Header user={undefined} />
       <main>
         <LoginForm />
         <p>Ainda não possui conta?</p>
