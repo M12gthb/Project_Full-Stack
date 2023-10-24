@@ -1,5 +1,9 @@
 import { ReactNode, createContext, useState } from "react";
-import { IAnouncement, IUsers } from "../interfaces/interfaces";
+import {
+  IAnouncement,
+  IAnouncementWithUser,
+  IUsers,
+} from "../interfaces/interfaces";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
@@ -9,8 +13,8 @@ interface RegisterProviderProps {
 
 interface BuyerContextValues {
   user: IUsers | undefined;
-  anouncement: IAnouncement[] | undefined;
   getUserInfo: (id: string | null) => Promise<void>;
+  cards: IAnouncementWithUser[];
 }
 
 export const BuyerContext = createContext<BuyerContextValues>(
@@ -19,18 +23,26 @@ export const BuyerContext = createContext<BuyerContextValues>(
 
 export const BuyerProvider = ({ children }: RegisterProviderProps) => {
   const [user, setUser] = useState<IUsers | undefined>();
-  const [anouncement, setanouncement] = useState<IAnouncement[] | undefined>(
-    []
-  );
+  const [cards, setCards] = useState<IAnouncementWithUser[]>([]);
   const navigate = useNavigate();
 
   const getUserInfo = async (id: string | null): Promise<void> => {
     try {
       if (id) {
         const response = await api.get(`/users/${id}`);
-        const anouncementData = await api.get(`/anouncements`);
+        const anouncementData = await api.get(`anouncements/user/${id}`);
         setUser(response.data);
-        setanouncement(anouncementData.data);
+        const promises = anouncementData.data.map(
+          async (element: IAnouncement) => {
+            const userResponse = await api.get(`/users/${element.userId}`);
+            const user: IUsers = userResponse.data;
+            return { ...element, user };
+          }
+        );
+
+        const anouncementsWithUsers = await Promise.all(promises);
+
+        setCards(anouncementsWithUsers);
       } else {
         navigate("/");
       }
@@ -40,7 +52,7 @@ export const BuyerProvider = ({ children }: RegisterProviderProps) => {
   };
 
   return (
-    <BuyerContext.Provider value={{ getUserInfo, user, anouncement }}>
+    <BuyerContext.Provider value={{ getUserInfo, user, cards }}>
       {children}
     </BuyerContext.Provider>
   );
