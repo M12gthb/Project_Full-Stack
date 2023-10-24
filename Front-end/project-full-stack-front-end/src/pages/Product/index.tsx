@@ -31,9 +31,8 @@ export const Product = () => {
       const userResponse = await api.get(`/users/${userId}`);
       setUser(userResponse.data);
     }
-    userComment(response.data.coments);
+    userComment(id);
     setAnouncemt({ ...response.data, user: userAnouncement.data });
-
     return response.data;
   };
 
@@ -65,10 +64,12 @@ export const Product = () => {
     }
   };
 
-  const userComment = async (data: IComments[] | []) => {
+  const userComment = async (id: string | null) => {
+    const data = await api.get(`/comments/${id}`);
+
     if (data) {
       try {
-        const commentPromises = data.map(async (element) => {
+        const commentPromises = data.data.map(async (element: IComments) => {
           const user: IUsers = await api.get(`/users/${element.userId}`);
           const commentDate = new Date(element.commentDate);
 
@@ -87,26 +88,21 @@ export const Product = () => {
     }
   };
 
-  const newComment = async (id: string | undefined, data: string) => {
+  const newComment = async (data: string) => {
     const token = localStorage.getItem("motors:token");
+    const anouncementId = localStorage.getItem("motors:IDProduct");
 
     const commentData = {
       comment: data,
     };
 
-    await api.post(`/comments/${id}`, commentData, {
+    await api.post(`/comments/${anouncementId}`, commentData, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
-
-    const response = await api.get(`/comments/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    userComment(response.data);
+    userComment(anouncementId);
     setCommentText("");
   };
 
@@ -236,7 +232,7 @@ export const Product = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            newComment(anouncement?.id, commentText);
+            newComment(commentText);
             setCommentText("");
           }}
         >
