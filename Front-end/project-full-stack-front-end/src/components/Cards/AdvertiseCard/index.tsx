@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AdvertiseCard = ({ cards }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -7,6 +8,13 @@ export const AdvertiseCard = ({ cards }) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = cards?.slice(indexOfFirstItem, indexOfLastItem) || [];
+
+  const navigate = useNavigate()
+
+  const toProduct = (id: string) => {
+    localStorage.setItem("motors:IDProduct", id);
+    navigate("/Product");
+  };
 
 
   return (
@@ -34,7 +42,7 @@ export const AdvertiseCard = ({ cards }) => {
           <div>{`${card.year}`}</div>
           <p>{`R$ ${card.price.toFixed(3)},00`}</p>
           <button>Editar</button>
-          <button>Ver detalhes</button>
+          <button onClick={() => toProduct(card.id)}>Ver detalhes</button>
         </li>
       );
     })}
