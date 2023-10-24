@@ -13,8 +13,20 @@ import { AnouncementCard } from "../../components/Cards/AnouncementCard";
 
 export const Home = () => {
   const [cards, setCards] = useState<IAnouncementWithUser[]>([]);
+  const [user, setUser] = useState<IUsers | undefined>(undefined);
 
   useEffect(() => {
+    const userId = localStorage.getItem("motors:UserId");
+
+    if (userId) {
+      getUser();
+    }
+
+    async function getUser() {
+      const response = await api.get(`/users/${userId}`);
+
+      setUser(response.data);
+    }
     async function getAnouncements() {
       try {
         const response = await api.get("/anouncements");
@@ -37,7 +49,7 @@ export const Home = () => {
 
   return (
     <>
-      <Header type={"anouncements"}></Header>
+      <Header user={user}></Header>
       <StyledSection>
         <img src={background} alt="background" />
         <h1>Motors Shop</h1>

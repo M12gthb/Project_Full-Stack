@@ -8,13 +8,13 @@ import {
 } from "../../interfaces/interfaces";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
-// import burguerMenu from "../../assets/burger-menu-svgrepo-com.svg";
 
 export const Product = () => {
   const [anouncement, setAnouncemt] = useState<IAnouncementWithUser>();
   const [user, setUser] = useState<IUsers>();
+  const [Loggeduser, setLoggedUser] = useState<IUsers | undefined>(undefined);
+
   const [comments, setComments] = useState<ICommentsUsers[]>([]);
-  // const [burguer, setBurguer] = useState(false);
 
   const [commentText, setCommentText] = useState("");
 
@@ -107,6 +107,16 @@ export const Product = () => {
   };
 
   useEffect(() => {
+    const userId = localStorage.getItem("motors:UserId");
+    const getUser = async () => {
+      const response = await api.get(`/users/${userId}`);
+      setLoggedUser(response.data);
+    };
+
+    if (userId) {
+      getUser();
+    }
+
     const id = localStorage.getItem("motors:IDProduct");
     if (id) {
       getProduct(id);
@@ -115,8 +125,8 @@ export const Product = () => {
 
   return (
     <>
-      <Header user={user} />
-      
+      <Header user={Loggeduser} />
+
       <img src={anouncement?.cover_img} alt="" />
 
       <div>
