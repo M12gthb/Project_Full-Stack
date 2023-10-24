@@ -61,7 +61,7 @@ export class AnouncementsPrismaRepository implements AnouncementsRepository {
 
   async findAll(): Promise<Anouncements[]> {
     const anouncements = await this.prisma.anouncements.findMany({
-      include: { images: true, coments: true },
+      include: { images: true },
     });
     return anouncements;
   }
@@ -69,7 +69,7 @@ export class AnouncementsPrismaRepository implements AnouncementsRepository {
   async findOne(id: string): Promise<Anouncements> {
     const anouncement = await this.prisma.anouncements.findFirst({
       where: { id },
-      include: { images: true, coments: true },
+      include: { images: true },
     });
 
     return anouncement;
@@ -78,7 +78,7 @@ export class AnouncementsPrismaRepository implements AnouncementsRepository {
   async findByUser(id: string) {
     const anouncements = await this.prisma.anouncements.findMany({
       where: { id },
-      include: { images: true, coments: true },
+      include: { images: true },
     });
     return anouncements;
   }

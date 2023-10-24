@@ -58,10 +58,8 @@ export class CommentsController {
     return this.commentServices.remove(id, req.user.id, anouncementId);
   }
 
-  @Get(':comentId')
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
-  findByAnouncement(@Param('comentId') id: string) {
+  @Get(':anouncementId')
+  findByAnouncement(@Param('anouncementId') id: string) {
     return this.commentServices.findAllbyAnouncement(id);
   }
 }
