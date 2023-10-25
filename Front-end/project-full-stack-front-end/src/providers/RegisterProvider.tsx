@@ -1,7 +1,12 @@
-import { ReactNode, createContext } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useState,
+} from "react";
 import { RegisterData } from "../components/Forms/RegisterForm/validator";
 import { api } from "../services/api";
-import { useNavigate } from "react-router-dom";
 
 interface RegisterProviderProps {
   children: ReactNode;
@@ -9,6 +14,8 @@ interface RegisterProviderProps {
 
 interface RegisterContextValues {
   singUp: (data: RegisterData) => void;
+  isOpenModal: boolean;
+  setIsOpenModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export const RegisterContext = createContext<RegisterContextValues>(
@@ -16,7 +23,8 @@ export const RegisterContext = createContext<RegisterContextValues>(
 );
 
 export const RegisterProvider = ({ children }: RegisterProviderProps) => {
-  const navigate = useNavigate();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const singUp = async (data: RegisterData) => {
     const { cep, state, city, street, number, complement, ...rest } = data;
 
@@ -28,17 +36,14 @@ export const RegisterProvider = ({ children }: RegisterProviderProps) => {
 
     try {
       const response = await api.post("/users", newData);
-      console.log(response.data);
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
+      setIsOpenModal(true);
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <RegisterContext.Provider value={{ singUp }}>
+    <RegisterContext.Provider value={{ singUp, isOpenModal, setIsOpenModal }}>
       {children}
     </RegisterContext.Provider>
   );
