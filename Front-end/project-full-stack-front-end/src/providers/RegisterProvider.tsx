@@ -35,7 +35,7 @@ export const RegisterProvider = ({ children }: RegisterProviderProps) => {
     const newData = { ...rest, address: addrees };
 
     try {
-      const response = await api.post("/users", newData);
+      await api.post("/users", newData);
       setIsOpenModal(true);
     } catch (err) {
       console.log(err);

@@ -4,7 +4,7 @@ export const Container = styled.div`
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   position: fixed;
 
   display: flex;
@@ -12,7 +12,6 @@ export const Container = styled.div`
   align-items: center;
 
   > div {
-    height: 354px;
     position: relative;
     background-color: var(--color-colors-fixed-white-fixed);
     padding: 20px;
