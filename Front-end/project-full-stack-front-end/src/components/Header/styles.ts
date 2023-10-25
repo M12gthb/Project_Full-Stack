@@ -11,7 +11,6 @@ export const StyledHeader = styled.header`
   border-bottom: 2px solid;
   border-color: var(--color-grey-scale-grey-5);
   padding-left: 5%;
-
   .menu {
     height: 50px;
     width: 50px;

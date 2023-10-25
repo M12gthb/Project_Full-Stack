@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const AdvertiseCard = ({ cards }: any) => {
+export const AdvertiseCard = ({ cards, user }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
@@ -21,7 +21,7 @@ export const AdvertiseCard = ({ cards }: any) => {
     <>
       <ul>
         {currentItems.map((card: any) => {
-          const name = card.user.name.split(" ");
+          const name = user.name.split(" ");
           const spanColor = ["blue", "rose", "brown", "green"];
           const indexSpanColor = Math.floor(Math.random() * spanColor.length);
           return (
@@ -39,7 +39,7 @@ export const AdvertiseCard = ({ cards }: any) => {
                   ? `${name[0][0].toUpperCase()} ${name[1][0].toUpperCase()}`
                   : `${name[0][0].toUpperCase()}`}
               </span>
-              <p>{card.user.name}</p>
+              <p>{user.name}</p>
               <div>{`${card.mileage} KM`}</div>
               <div>{`${card.year}`}</div>
               <p>{`R$ ${card.price.toFixed(3)},00`}</p>

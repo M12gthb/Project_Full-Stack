@@ -1,3 +1,4 @@
+import { AdvertiserProvider } from "./providers/AdvertiserProvider";
 import { AuthProvider } from "./providers/AuthProvider";
 import { BuyerProvider } from "./providers/BuyerProvider";
 import { RegisterProvider } from "./providers/RegisterProvider";
@@ -10,9 +11,11 @@ function App() {
       <GlobalStyles />
       <AuthProvider>
         <RegisterProvider>
-          <BuyerProvider>
-            <RoutesMain />
-          </BuyerProvider>
+          <AdvertiserProvider>
+            <BuyerProvider>
+              <RoutesMain />
+            </BuyerProvider>
+          </AdvertiserProvider>
         </RegisterProvider>
       </AuthProvider>
     </>
