@@ -12,10 +12,14 @@ export const Container = styled.div`
   align-items: center;
 
   > div {
-    background-color: var(--color-gray-900);
+    height: 354px;
+    position: relative;
+    background-color: var(--color-colors-fixed-white-fixed);
     padding: 20px;
     box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.25);
     width: 100%;
-    max-width: 250px;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
   }
 `;

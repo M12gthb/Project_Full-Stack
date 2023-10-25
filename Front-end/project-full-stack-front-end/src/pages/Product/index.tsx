@@ -8,15 +8,23 @@ import {
 } from "../../interfaces/interfaces";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
+import { ModalImage } from "../../components/Modal/ModalImage";
 
 export const Product = () => {
   const [anouncement, setAnouncemt] = useState<IAnouncementWithUser>();
   const [user, setUser] = useState<IUsers>();
   const [Loggeduser, setLoggedUser] = useState<IUsers | undefined>(undefined);
-
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const [comments, setComments] = useState<ICommentsUsers[]>([]);
-
   const [commentText, setCommentText] = useState("");
+  const [source, setSource] = useState<string | undefined>();
+
+  const toggleModal = () => setIsOpenModal(!isOpenModal);
+
+  const handleModal = (src: string | undefined) => {
+    setSource(src);
+    toggleModal();
+  };
 
   const name = user?.name.split(" ") || [];
   const anouncemnetUser = anouncement?.user.name.split(" ") || [];
@@ -125,9 +133,15 @@ export const Product = () => {
 
   return (
     <>
+      {isOpenModal && <ModalImage toggleModal={toggleModal} src={source} />}
+
       <Header user={Loggeduser} />
 
-      <img src={anouncement?.cover_img} alt="" />
+      <img
+        src={anouncement?.cover_img}
+        alt=""
+        onClick={() => handleModal(anouncement?.cover_img)}
+      />
 
       <div>
         <h1>{anouncement?.model}</h1>
@@ -148,7 +162,12 @@ export const Product = () => {
       <ul>
         <h1>Fotos</h1>
         {anouncement?.images.map((element) => (
-          <img key={element.id} src={element.image_url} alt="" />
+          <img
+            key={element.id}
+            src={element.image_url}
+            alt=""
+            onClick={() => handleModal(element.image_url)}
+          />
         ))}
       </ul>
 
