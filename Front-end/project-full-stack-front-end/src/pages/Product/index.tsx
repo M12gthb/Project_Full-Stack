@@ -181,7 +181,9 @@ export const Product = () => {
                 {comment.userId == user?.id ? (
                   <button>Editar comentário</button>
                 ) : null}
-                {anouncement?.id == user?.id ? <button>Excluir</button> : null}
+                {anouncement?.userId == user?.id ? (
+                  <button>Excluir</button>
+                ) : null}
                 {comment.comment}
               </li>
             ))}
