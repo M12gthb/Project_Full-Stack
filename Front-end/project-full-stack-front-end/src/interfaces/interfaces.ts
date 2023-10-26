@@ -22,6 +22,25 @@ export interface IAnouncement {
   coments: Array<IComments>;
 }
 
+export interface IAnouncementUpdate {
+  brand?: string;
+  model?: string;
+  year?: number;
+  fuel?: string;
+  mileage?: number;
+  color?: string;
+  priceTabel?: number;
+  price?: number;
+  description?: string;
+  publish?: boolean;
+  cover_img?: string;
+  images: Array<IImagesUpdate>;
+}
+
+interface IImagesUpdate {
+  image_url: string;
+}
+
 export interface IAnouncementWithUser {
   id: string;
   brand: string;

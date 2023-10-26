@@ -10,6 +10,7 @@ interface AdvertiserContextValues {
   getUser: () => void;
   user: IUsers | undefined;
   anouncements: IAnouncement[] | [];
+  setAnouncements: React.Dispatch<React.SetStateAction<IAnouncement[]>>;
 }
 
 export const AdvertiserContext = createContext<AdvertiserContextValues>(
@@ -18,7 +19,7 @@ export const AdvertiserContext = createContext<AdvertiserContextValues>(
 
 export const AdvertiserProvider = ({ children }: AdvertiserProviderProps) => {
   const [user, setUser] = useState<IUsers>();
-  const [anouncements, setAnouncements] = useState<IAnouncement[]>([]);
+  const [anouncements, setAnouncements] = useState<IAnouncement[] | []>([]);
   const getUser = async () => {
     const userId = localStorage.getItem("motors:UserId");
     const response = await api.get(`/users/${userId}`);
@@ -28,7 +29,9 @@ export const AdvertiserProvider = ({ children }: AdvertiserProviderProps) => {
   };
 
   return (
-    <AdvertiserContext.Provider value={{ user, getUser, anouncements }}>
+    <AdvertiserContext.Provider
+      value={{ user, getUser, anouncements, setAnouncements }}
+    >
       {children}
     </AdvertiserContext.Provider>
   );

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const AdvertiseCard = ({ cards, user }: any) => {
+export const AdvertiseCard = ({ cards, user, openModal }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
@@ -43,7 +43,7 @@ export const AdvertiseCard = ({ cards, user }: any) => {
               <div>{`${card.mileage} KM`}</div>
               <div>{`${card.year}`}</div>
               <p>{`R$ ${card.price.toFixed(3)},00`}</p>
-              <button>Editar</button>
+              <button onClick={() => openModal(card.id)}>Editar</button>
               <button onClick={() => toProduct(card.id)}>Ver detalhes</button>
             </li>
           );
