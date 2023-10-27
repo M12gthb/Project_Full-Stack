@@ -2,7 +2,7 @@ import { StyledHeader, StyledMenu } from "./styles";
 import logo from "../../assets/Motors shop.svg";
 import burguerMenu from "../../assets/burger-menu-svgrepo-com.svg";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header = ({ user }: any) => {
   const [burguer, setBurguer] = useState(false);
@@ -10,6 +10,16 @@ export const Header = ({ user }: any) => {
   const name = user?.name.split(" ") || [];
   const spanColor = ["blue", "rose", "brown", "green"];
   const indexSpanColor = Math.floor(Math.random() * spanColor.length);
+
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    localStorage.removeItem("motors:token");
+    localStorage.removeItem("motors:UserId");
+    localStorage.removeItem("motors:IDProduct");
+    localStorage.removeItem("motors:Type");
+    navigate("/");
+  };
   if (user) {
     return (
       <>
@@ -18,6 +28,7 @@ export const Header = ({ user }: any) => {
             <div>
               <div>Editar perfil</div>
               <div>Editar endereço</div>
+              <button onClick={() => logOut()}>logout</button>
             </div>
           ) : null}
           <img src={logo} alt="Logo" />

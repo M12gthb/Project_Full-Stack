@@ -40,7 +40,7 @@ export const Advertiser = () => {
 
   return (
     <>
-      {/* <Header user={user} /> */}
+      <Header user={user} />
       {modalSucessOpen ? (
         <ModalAnouncementSucess toggleModal={toggleSucessModal} />
       ) : null}

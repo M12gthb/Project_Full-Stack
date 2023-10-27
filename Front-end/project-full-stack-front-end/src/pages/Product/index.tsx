@@ -63,7 +63,7 @@ export const Product = () => {
     }
     userComment(id);
     setAnouncemt({ ...response.data, user: userAnouncement.data });
-    console.log(response.data);
+
     return response.data;
   };
 
