@@ -5,11 +5,16 @@ import { Footer } from "../../components/Footer";
 import { IUsers } from "../../interfaces/interfaces";
 import { api } from "../../services/api";
 import { AnouncementCard } from "../../components/Cards/AnouncementCard";
+import { ModalEditUser } from "../../components/Modal/ModalEditUser";
+import { Header } from "../../components/Header";
 
 export const Buyer = () => {
   const [burguer, setBurguer] = useState(false);
   const [loggedUser, setLoggedUser] = useState<IUsers>();
   const { getUserInfo, user, cards } = useContext(BuyerContext);
+  const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
+
+  const toggleModalEditUser = () => setmodalEditUserOpen(!modalEditUserOpen);
 
   const getLoggedUser = async (id: string) => {
     const response = await api.get(`/users/${id}`);
@@ -61,6 +66,10 @@ export const Buyer = () => {
 
   return (
     <>
+      <Header user={user} toggleModalEditUser={toggleModalEditUser} />
+      {modalEditUserOpen ? (
+        <ModalEditUser toggleModal={toggleModalEditUser} />
+      ) : null}
       <div>
         {renderLoggedName()}
         <p>{loggedUser?.name}</p>

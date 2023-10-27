@@ -10,6 +10,7 @@ import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { ModalImage } from "../../components/Modal/ModalImage";
 import { ModalEditComment } from "../../components/Modal/ModalEditComment";
+import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 
 export const Product = () => {
   const [anouncement, setAnouncemt] = useState<IAnouncementWithUser>();
@@ -21,6 +22,9 @@ export const Product = () => {
   const [commentText, setCommentText] = useState("");
   const [source, setSource] = useState<string | undefined>();
   const [commentId, setCommentId] = useState<string>("");
+  const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
+
+  const toggleModalEditUser = () => setmodalEditUserOpen(!modalEditUserOpen);
 
   const toggleModal = () => setIsOpenModal(!isOpenModal);
   const toggleEditModal = () => setIsOpenEditModal(!isOpenEditModal);
@@ -161,7 +165,11 @@ export const Product = () => {
         />
       )}
 
-      <Header user={Loggeduser} />
+      <Header user={Loggeduser} toggleModalEditUser={toggleModalEditUser} />
+
+      {modalEditUserOpen ? (
+        <ModalEditUser toggleModal={toggleModalEditUser} />
+      ) : null}
 
       <img
         src={anouncement?.cover_img}

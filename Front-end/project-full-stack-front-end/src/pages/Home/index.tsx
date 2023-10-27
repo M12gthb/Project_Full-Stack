@@ -10,11 +10,14 @@ import {
   IUsers,
 } from "../../interfaces/interfaces";
 import { AnouncementCard } from "../../components/Cards/AnouncementCard";
+import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 
 export const Home = () => {
   const [cards, setCards] = useState<IAnouncementWithUser[]>([]);
   const [user, setUser] = useState<IUsers | undefined>(undefined);
+  const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
 
+  const toggleModalEditUser = () => setmodalEditUserOpen(!modalEditUserOpen);
   useEffect(() => {
     const userId = localStorage.getItem("motors:UserId");
 
@@ -49,7 +52,11 @@ export const Home = () => {
 
   return (
     <>
-      <Header user={user}></Header>
+      <Header user={user} toggleModalEditUser={toggleModalEditUser} />
+
+      {modalEditUserOpen ? (
+        <ModalEditUser toggleModal={toggleModalEditUser} />
+      ) : null}
       <StyledSection>
         <img src={background} alt="background" />
         <h1>Motors Shop</h1>

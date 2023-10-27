@@ -7,6 +7,7 @@ import { ModalEditAnouncement } from "../../components/Modal/ModalEditAnouncemen
 import { ModalDeleteAnouncement } from "../../components/Modal/ModalDeleteAnouncement";
 import { ModalCreateAnouncement } from "../../components/Modal/ModalCreateAnouncement";
 import { ModalAnouncementSucess } from "../../components/Modal/ModalAnouncementSucess";
+import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 
 export const Advertiser = () => {
   const { anouncements, getUser, user, setAnouncements } =
@@ -20,7 +21,9 @@ export const Advertiser = () => {
   const [modalDeleteOpen, setModaDeletelOpen] = useState(false);
   const [modalCreateOpen, setModalCreateOpen] = useState(false);
   const [modalSucessOpen, setModalSucessOpen] = useState(false);
+  const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
 
+  const toggleModalEditUser = () => setmodalEditUserOpen(!modalEditUserOpen);
   const toggleModal = () => setModalOpen(!modalOpen);
   const toggleCreateModal = () => setModalCreateOpen(!modalCreateOpen);
   const toggleSucessModal = () => setModalSucessOpen(!modalSucessOpen);
@@ -40,7 +43,10 @@ export const Advertiser = () => {
 
   return (
     <>
-      <Header user={user} />
+      <Header user={user} toggleModalEditUser={toggleModalEditUser} />
+      {modalEditUserOpen ? (
+        <ModalEditUser toggleModal={toggleModalEditUser} />
+      ) : null}
       {modalSucessOpen ? (
         <ModalAnouncementSucess toggleModal={toggleSucessModal} />
       ) : null}

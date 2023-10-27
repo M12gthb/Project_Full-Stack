@@ -4,7 +4,7 @@ import burguerMenu from "../../assets/burger-menu-svgrepo-com.svg";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export const Header = ({ user }: any) => {
+export const Header = ({ user, toggleModalEditUser }: any) => {
   const [burguer, setBurguer] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   const name = user?.name.split(" ") || [];
@@ -26,7 +26,9 @@ export const Header = ({ user }: any) => {
         <StyledHeader>
           {menuModal ? (
             <div>
-              <div>Editar perfil</div>
+              <button onClick={() => toggleModalEditUser()}>
+                Editar perfil
+              </button>
               <div>Editar endereço</div>
               <button onClick={() => logOut()}>logout</button>
             </div>
