@@ -33,7 +33,7 @@ export class AnouncementsController {
   }
 
   @Get(':anouncementId')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('anouncementId') id: string) {
     return this.anouncementServices.findOne(id);
   }
 

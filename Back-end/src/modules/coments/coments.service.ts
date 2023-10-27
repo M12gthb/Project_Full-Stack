@@ -67,6 +67,7 @@ export class CommentsService {
   }
 
   async remove(id: string, userId: string, anouncementId: string) {
+    console.log(userId);
     const find = await this.commentsRepositoy.findOne(id);
 
     if (!find) {
