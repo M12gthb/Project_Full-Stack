@@ -9,6 +9,7 @@ export const AdvertiseCard = ({ cards, user, openModal }: any) => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = cards?.slice(indexOfFirstItem, indexOfLastItem) || [];
+  console.log(currentItems);
 
   const navigate = useNavigate();
 

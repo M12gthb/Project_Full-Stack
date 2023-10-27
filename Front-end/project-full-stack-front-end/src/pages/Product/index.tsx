@@ -9,7 +9,7 @@ import {
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { ModalImage } from "../../components/Modal/ModalImage";
-import { ModalEditComment } from "../../components/Modal/modalEditComment";
+import { ModalEditComment } from "../../components/Modal/ModalEditComment";
 
 export const Product = () => {
   const [anouncement, setAnouncemt] = useState<IAnouncementWithUser>();
@@ -52,7 +52,8 @@ export const Product = () => {
   const spanColor = ["blue", "rose", "brown", "green"];
   const indexSpanColor = Math.floor(Math.random() * spanColor.length);
 
-  const getProduct = async (id: string) => {
+  const getProduct = async () => {
+    const id = localStorage.getItem("motors:IDProduct");
     const response = await api.get(`/anouncements/${id}`);
     const userId = localStorage.getItem("motors:UserId");
     const userAnouncement = await api.get(`/users/${response.data.userId}`);
@@ -62,6 +63,7 @@ export const Product = () => {
     }
     userComment(id);
     setAnouncemt({ ...response.data, user: userAnouncement.data });
+    console.log(response.data);
     return response.data;
   };
 
@@ -144,11 +146,7 @@ export const Product = () => {
 
     if (userId) {
       getUser();
-    }
-
-    const id = localStorage.getItem("motors:IDProduct");
-    if (id) {
-      getProduct(id);
+      getProduct();
     }
   }, []);
 
