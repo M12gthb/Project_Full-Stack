@@ -7,11 +7,16 @@ import { ModalRegisterSucess } from "../../components/Modal/ModalRegisterSucess"
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { IUsers } from "../../interfaces/interfaces";
 import { api } from "../../services/api";
+import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
 
 export const Register = () => {
   const { isOpenModal, setIsOpenModal } = useContext(RegisterContext);
   const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
   const [user, setUSer] = useState<IUsers | undefined>(undefined);
+  const [modalEditAddressOpen, setmodalEditAddressOpen] = useState(false);
+
+  const toggleModalEditAddress = () =>
+    setmodalEditAddressOpen(!modalEditAddressOpen);
 
   const toggleModalEditUser = () => setmodalEditUserOpen(!modalEditUserOpen);
 
@@ -32,7 +37,14 @@ export const Register = () => {
   }, []);
   return (
     <>
-      <Header user={user} toggleModalEditUser={toggleModalEditUser} />
+      <Header
+        user={user}
+        toggleModalEditUser={toggleModalEditUser}
+        toggleModalEditAddress={toggleModalEditAddress}
+      />
+      {modalEditAddressOpen ? (
+        <ModalEditAddress toggleModal={toggleModalEditAddress} />
+      ) : null}
       {modalEditUserOpen ? (
         <ModalEditUser toggleModal={toggleModalEditUser} />
       ) : null}

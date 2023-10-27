@@ -11,6 +11,7 @@ import { Footer } from "../../components/Footer";
 import { ModalImage } from "../../components/Modal/ModalImage";
 import { ModalEditComment } from "../../components/Modal/ModalEditComment";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
+import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
 
 export const Product = () => {
   const [anouncement, setAnouncemt] = useState<IAnouncementWithUser>();
@@ -23,6 +24,10 @@ export const Product = () => {
   const [source, setSource] = useState<string | undefined>();
   const [commentId, setCommentId] = useState<string>("");
   const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
+  const [modalEditAddressOpen, setmodalEditAddressOpen] = useState(false);
+
+  const toggleModalEditAddress = () =>
+    setmodalEditAddressOpen(!modalEditAddressOpen);
 
   const toggleModalEditUser = () => setmodalEditUserOpen(!modalEditUserOpen);
 
@@ -165,7 +170,15 @@ export const Product = () => {
         />
       )}
 
-      <Header user={Loggeduser} toggleModalEditUser={toggleModalEditUser} />
+      <Header
+        user={user}
+        toggleModalEditUser={toggleModalEditUser}
+        toggleModalEditAddress={toggleModalEditAddress}
+      />
+
+      {modalEditAddressOpen ? (
+        <ModalEditAddress toggleModal={toggleModalEditAddress} />
+      ) : null}
 
       {modalEditUserOpen ? (
         <ModalEditUser toggleModal={toggleModalEditUser} />

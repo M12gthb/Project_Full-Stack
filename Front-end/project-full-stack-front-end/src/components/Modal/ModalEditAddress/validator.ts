@@ -13,11 +13,7 @@ export const EditAddressSchema = z.object({
     .optional(),
   city: z.string().min(2, "A cidade é obrigatória!").optional(),
   street: z.string().min(2, "A rua é obrigatório!").optional(),
-  number: z
-    .string()
-    .min(1, "O número é obrigatório!")
-    .regex(/(?=.*?[0-9])/, "Deve ser um número válido!")
-    .optional(),
+  number: z.number().min(1, "O número é obrigatório!").optional(),
   complement: z.string().optional(),
 });
 

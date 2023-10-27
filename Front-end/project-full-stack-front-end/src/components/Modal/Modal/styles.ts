@@ -6,7 +6,7 @@ export const Container = styled.div`
   width: 100vw;
   height: 100%;
   position: fixed;
-
+  overflow-y: scroll;
   display: flex;
   justify-content: center;
   align-items: center;

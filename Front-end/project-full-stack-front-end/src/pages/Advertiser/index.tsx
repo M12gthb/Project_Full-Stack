@@ -8,6 +8,7 @@ import { ModalDeleteAnouncement } from "../../components/Modal/ModalDeleteAnounc
 import { ModalCreateAnouncement } from "../../components/Modal/ModalCreateAnouncement";
 import { ModalAnouncementSucess } from "../../components/Modal/ModalAnouncementSucess";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
+import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
 
 export const Advertiser = () => {
   const { anouncements, getUser, user, setAnouncements } =
@@ -22,7 +23,10 @@ export const Advertiser = () => {
   const [modalCreateOpen, setModalCreateOpen] = useState(false);
   const [modalSucessOpen, setModalSucessOpen] = useState(false);
   const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
+  const [modalEditAddressOpen, setmodalEditAddressOpen] = useState(false);
 
+  const toggleModalEditAddress = () =>
+    setmodalEditAddressOpen(!modalEditAddressOpen);
   const toggleModalEditUser = () => setmodalEditUserOpen(!modalEditUserOpen);
   const toggleModal = () => setModalOpen(!modalOpen);
   const toggleCreateModal = () => setModalCreateOpen(!modalCreateOpen);
@@ -43,7 +47,14 @@ export const Advertiser = () => {
 
   return (
     <>
-      <Header user={user} toggleModalEditUser={toggleModalEditUser} />
+      <Header
+        user={user}
+        toggleModalEditUser={toggleModalEditUser}
+        toggleModalEditAddress={toggleModalEditAddress}
+      />
+      {modalEditAddressOpen ? (
+        <ModalEditAddress toggleModal={toggleModalEditAddress} />
+      ) : null}
       {modalEditUserOpen ? (
         <ModalEditUser toggleModal={toggleModalEditUser} />
       ) : null}

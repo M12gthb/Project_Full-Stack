@@ -11,11 +11,16 @@ import {
 } from "../../interfaces/interfaces";
 import { AnouncementCard } from "../../components/Cards/AnouncementCard";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
+import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
 
 export const Home = () => {
   const [cards, setCards] = useState<IAnouncementWithUser[]>([]);
   const [user, setUser] = useState<IUsers | undefined>(undefined);
   const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
+  const [modalEditAddressOpen, setmodalEditAddressOpen] = useState(false);
+
+  const toggleModalEditAddress = () =>
+    setmodalEditAddressOpen(!modalEditAddressOpen);
 
   const toggleModalEditUser = () => setmodalEditUserOpen(!modalEditUserOpen);
   useEffect(() => {
@@ -52,7 +57,14 @@ export const Home = () => {
 
   return (
     <>
-      <Header user={user} toggleModalEditUser={toggleModalEditUser} />
+      <Header
+        user={user}
+        toggleModalEditUser={toggleModalEditUser}
+        toggleModalEditAddress={toggleModalEditAddress}
+      />
+      {modalEditAddressOpen ? (
+        <ModalEditAddress toggleModal={toggleModalEditAddress} />
+      ) : null}
 
       {modalEditUserOpen ? (
         <ModalEditUser toggleModal={toggleModalEditUser} />

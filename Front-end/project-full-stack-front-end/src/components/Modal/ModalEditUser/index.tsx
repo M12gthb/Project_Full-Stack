@@ -5,12 +5,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { EditUserData, EditUserSchema } from "./validator";
 import Input from "../../Inputs";
 import { api } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 
-interface ModalErrorProps {
+interface ModalEditUserProps {
   toggleModal: () => void;
 }
 
-export const ModalEditUser = ({ toggleModal }: ModalErrorProps) => {
+export const ModalEditUser = ({ toggleModal }: ModalEditUserProps) => {
   const {
     register,
     handleSubmit,
@@ -33,6 +34,24 @@ export const ModalEditUser = ({ toggleModal }: ModalErrorProps) => {
     });
     toggleModal();
     refreshPage();
+  };
+
+  const navigate = useNavigate();
+
+  const deleteUser = async () => {
+    const userId = localStorage.getItem("motors:UserId");
+    const token = localStorage.getItem("motors:token");
+    await api.delete(`/users/${userId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    localStorage.removeItem("motors:token");
+    localStorage.removeItem("motors:UserId");
+    localStorage.removeItem("motors:IDProduct");
+    localStorage.removeItem("motors:Type");
+    toggleModal();
+    navigate("/");
   };
 
   const [selectedType, setSelectedType] = useState("comprador");
@@ -139,7 +158,7 @@ export const ModalEditUser = ({ toggleModal }: ModalErrorProps) => {
         <button type="submit">Salvar aterações</button>
       </form>
       <button onClick={() => toggleModal}>cancelar</button>
-      <button>Excluir Perfil</button>
+      <button onClick={() => deleteUser()}>Excluir Perfil</button>
     </Modal>
   );
 };

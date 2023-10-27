@@ -7,12 +7,17 @@ import { api } from "../../services/api";
 import { AnouncementCard } from "../../components/Cards/AnouncementCard";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { Header } from "../../components/Header";
+import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
 
 export const Buyer = () => {
   const [burguer, setBurguer] = useState(false);
   const [loggedUser, setLoggedUser] = useState<IUsers>();
   const { getUserInfo, user, cards } = useContext(BuyerContext);
   const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
+  const [modalEditAddressOpen, setmodalEditAddressOpen] = useState(false);
+
+  const toggleModalEditAddress = () =>
+    setmodalEditAddressOpen(!modalEditAddressOpen);
 
   const toggleModalEditUser = () => setmodalEditUserOpen(!modalEditUserOpen);
 
@@ -66,7 +71,14 @@ export const Buyer = () => {
 
   return (
     <>
-      <Header user={user} toggleModalEditUser={toggleModalEditUser} />
+      <Header
+        user={user}
+        toggleModalEditUser={toggleModalEditUser}
+        toggleModalEditAddress={toggleModalEditAddress}
+      />
+      {modalEditAddressOpen ? (
+        <ModalEditAddress toggleModal={toggleModalEditAddress} />
+      ) : null}
       {modalEditUserOpen ? (
         <ModalEditUser toggleModal={toggleModalEditUser} />
       ) : null}
