@@ -24,11 +24,11 @@ export const Login = () => {
 
   return (
     <>
-      <Header
+      {/* <Header
         user={undefined}
         toggleModalEditUser={toggleModalEditUser}
         toggleModalEditAddress={toggleModalEditAddress}
-      />
+      /> */}
       {modalEditAddressOpen ? (
         <ModalEditAddress toggleModal={toggleModalEditAddress} />
       ) : null}

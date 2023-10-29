@@ -5,9 +5,11 @@ export const StyledSection = styled.section`
   height: 544px;
   position: relative;
   top: 83px;
+  z-index: 1;
   img {
     height: 100px;
     height: 100px;
+    z-index: 1;
   }
 `;
 

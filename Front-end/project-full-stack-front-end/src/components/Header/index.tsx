@@ -1,4 +1,4 @@
-import { StyledHeader, StyledMenu } from "./styles";
+import { StyledDiv, StyledDivMenu, StyledHeader, StyledMenu } from "./styles";
 import logo from "../../assets/Motors shop.svg";
 import burguerMenu from "../../assets/burger-menu-svgrepo-com.svg";
 import { useState } from "react";
@@ -29,7 +29,7 @@ export const Header = ({
       <>
         <StyledHeader>
           {menuModal ? (
-            <div>
+            <StyledDiv>
               <button onClick={() => toggleModalEditUser()}>
                 Editar perfil
               </button>
@@ -37,10 +37,10 @@ export const Header = ({
                 Editar endereço
               </button>
               <button onClick={() => logOut()}>logout</button>
-            </div>
+            </StyledDiv>
           ) : null}
-          <img src={logo} alt="Logo" />
-          <StyledMenu onClick={() => setMenuModal(!menuModal)}>
+          <img className="logo" src={logo} alt="Logo" />
+          <StyledDivMenu onClick={() => setMenuModal(!menuModal)}>
             {name.length > 2 ? (
               <span className={spanColor[indexSpanColor]}>
                 {name[0][0].toUpperCase()} {name[1][0].toUpperCase()}
@@ -51,27 +51,15 @@ export const Header = ({
               </span>
             )}
             <p>{user?.name}</p>
-          </StyledMenu>
+          </StyledDivMenu>
           <img
             className="menu"
             src={burguerMenu}
             alt=""
-            onClick={() => setBurguer(!burguer)}
+            onClick={() => {
+              setMenuModal(!menuModal);
+            }}
           />
-          {burguer ? (
-            <div onClick={() => setMenuModal(!menuModal)}>
-              {name.length > 2 ? (
-                <span className={spanColor[indexSpanColor]}>
-                  {name[0][0].toUpperCase()} {name[1][0].toUpperCase()}
-                </span>
-              ) : (
-                <span className={spanColor[indexSpanColor]}>
-                  {name[0][0].toUpperCase()}
-                </span>
-              )}
-              <p>{user?.name}</p>
-            </div>
-          ) : null}
         </StyledHeader>
       </>
     );
@@ -79,10 +67,20 @@ export const Header = ({
     return (
       <>
         <StyledHeader>
-          <img src={logo} alt="Logo" />
+          <img className="logo" src={logo} alt="Logo" />
           <StyledMenu>
-            <Link to={"/login"}>Fazer login</Link>
-            <Link to={"/register"}>Cadastro</Link>
+            <Link
+              className="text-style-text-body-1-600 menulink1"
+              to={"/login"}
+            >
+              Fazer login
+            </Link>
+            <Link
+              className="text-style-text-body-1-600 menulink2"
+              to={"/register"}
+            >
+              Cadastro
+            </Link>
           </StyledMenu>
           <img
             className="menu"
@@ -91,9 +89,19 @@ export const Header = ({
             onClick={() => setBurguer(!burguer)}
           />
           {burguer ? (
-            <div>
-              <Link to={"/login"}>Fazer login</Link>
-              <Link to={"/register"}>Cadastro</Link>
+            <div className="burguerSelected">
+              <Link
+                className="text-style-text-body-1-600 menulink1"
+                to={"/login"}
+              >
+                Fazer login
+              </Link>
+              <Link
+                className="text-style-text-body-1-600 menulink2"
+                to={"/register"}
+              >
+                Cadastro
+              </Link>
             </div>
           ) : null}
         </StyledHeader>
