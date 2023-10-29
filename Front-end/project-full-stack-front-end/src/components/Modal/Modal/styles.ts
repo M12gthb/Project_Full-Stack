@@ -31,6 +31,7 @@ export const Container = styled.div`
     position: absolute;
     right: 15px;
     top: 15px;
+    cursor: pointer;
   }
   .title {
     width: 50%;

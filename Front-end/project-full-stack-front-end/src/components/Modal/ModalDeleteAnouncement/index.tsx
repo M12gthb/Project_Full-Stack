@@ -1,6 +1,12 @@
 import { IAnouncement } from "../../../interfaces/interfaces";
 import { api } from "../../../services/api";
 import { Modal } from "../Modal";
+import {
+  StyledCancelButton,
+  StyledDeleteButton,
+  Styledh1,
+  Styledh2,
+} from "./styles";
 
 interface ModalDeleteAnouncementProps {
   toggleModal: () => void;
@@ -31,15 +37,19 @@ export const ModalDeleteAnouncement = ({
   };
   return (
     <Modal toggleModal={toggleModal}>
-      <h1>Excluir anuncio</h1>
-      <button onClick={() => toggleModal()}>X</button>
-      <h1>Tem certeza que deseja remover este anúncio?</h1>
+      <Styledh1>Excluir anuncio</Styledh1>
+      <span onClick={() => toggleModal()}>X</span>
+      <Styledh2>Tem certeza que deseja remover este anúncio?</Styledh2>
       <p>
         Essa ação não pode ser desfeita. Isso excluirá permanentemente seu
         anuncio e removerá seus dados de nossos servidores.
       </p>
-      <button onClick={() => toggleModal()}>Cancelar</button>
-      <button onClick={() => deleteAnouncement()}>Sim, excluir anúncio</button>
+      <StyledCancelButton onClick={() => toggleModal()}>
+        Cancelar
+      </StyledCancelButton>
+      <StyledDeleteButton onClick={() => deleteAnouncement()}>
+        Sim, excluir anúncio
+      </StyledDeleteButton>
     </Modal>
   );
 };
