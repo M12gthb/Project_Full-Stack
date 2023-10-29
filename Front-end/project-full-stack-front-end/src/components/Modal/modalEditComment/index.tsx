@@ -6,6 +6,7 @@ import {
   ICommentsUsers,
   IUsers,
 } from "../../../interfaces/interfaces";
+import { StyledForm, Styledh1 } from "./styles";
 
 interface ModalEditCommentProps {
   toogleModal: () => void;
@@ -83,9 +84,9 @@ export const ModalEditComment = ({
   };
   return (
     <Modal toggleModal={toogleModal}>
-      <h1>Edite seu comentário</h1>
-      <button onClick={() => toogleModal()}>X</button>
-      <form
+      <Styledh1>Edite seu comentário</Styledh1>
+      <span onClick={() => toogleModal()}>X</span>
+      <StyledForm
         onSubmit={(e) => {
           e.preventDefault();
           editComment(id, { comment: commentText });
@@ -96,7 +97,7 @@ export const ModalEditComment = ({
           onChange={(e) => setCommentText(e.target.value)}
         ></textarea>
         <button type="submit">Edite seu Comentário</button>
-      </form>
+      </StyledForm>
     </Modal>
   );
 };
