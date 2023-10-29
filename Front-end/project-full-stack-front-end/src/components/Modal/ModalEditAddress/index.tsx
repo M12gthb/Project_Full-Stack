@@ -32,7 +32,7 @@ export const ModalEditAddress = ({ toggleModal }: ModalEditAddressProps) => {
   return (
     <Modal toggleModal={toggleModal}>
       <h1>Editar endereço</h1>
-      <button onClick={() => toggleModal()}>X</button>
+      <span onClick={() => toggleModal()}>X</span>
       <p>informações de endereço</p>
 
       <form onSubmit={handleSubmit(handleEdit)}>

@@ -4,24 +4,27 @@ export const Container = styled.div`
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   position: fixed;
-  overflow-y: scroll;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 7;
 
   > div {
     position: relative;
     background-color: var(--color-colors-fixed-white-fixed);
-    padding: 15px;
+    padding: 1.2%;
     box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.25);
-    width: 100%;
+    width: 90%;
     max-width: 520px;
     display: flex;
     flex-direction: column;
     border-radius: 8px;
+    max-height: 90vh;
   }
+
   span {
     background-color: transparent;
     border: transparent;
@@ -29,10 +32,11 @@ export const Container = styled.div`
     height: 24px;
     width: 24px;
     position: absolute;
-    right: 15px;
+    right: 5px;
     top: 15px;
     cursor: pointer;
   }
+
   .title {
     width: 50%;
     margin-bottom: 50px;
@@ -43,6 +47,7 @@ export const Container = styled.div`
     text-decoration: none;
     text-transform: none;
   }
+
   .toLogin {
     width: 132px;
     height: 38px;

@@ -62,7 +62,7 @@ export const ModalEditUser = ({ toggleModal }: ModalEditUserProps) => {
   return (
     <Modal toggleModal={toggleModal}>
       <h1>Editar perfil</h1>
-      <button onClick={() => toggleModal()}>X</button>
+      <span onClick={() => toggleModal()}>X</span>
       <p>informações pesoais</p>
       <form onSubmit={handleSubmit(handleEdit)}>
         <Input
