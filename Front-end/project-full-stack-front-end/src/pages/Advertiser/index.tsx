@@ -47,11 +47,11 @@ export const Advertiser = () => {
 
   return (
     <>
-      <Header
+      {/* <Header
         user={user}
         toggleModalEditUser={toggleModalEditUser}
         toggleModalEditAddress={toggleModalEditAddress}
-      />
+      /> */}
       {modalEditAddressOpen ? (
         <ModalEditAddress toggleModal={toggleModalEditAddress} />
       ) : null}

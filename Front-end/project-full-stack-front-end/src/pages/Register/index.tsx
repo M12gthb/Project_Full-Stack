@@ -37,7 +37,7 @@ export const Register = () => {
   }, []);
   return (
     <>
-      <Header
+      {/* <Header
         user={user}
         toggleModalEditUser={toggleModalEditUser}
         toggleModalEditAddress={toggleModalEditAddress}
@@ -47,7 +47,7 @@ export const Register = () => {
       ) : null}
       {modalEditUserOpen ? (
         <ModalEditUser toggleModal={toggleModalEditUser} />
-      ) : null}
+      ) : null} */}
       {isOpenModal ? <ModalRegisterSucess toggleModal={toggleModal} /> : null}
       <main>
         <h1>Cadastro</h1>
