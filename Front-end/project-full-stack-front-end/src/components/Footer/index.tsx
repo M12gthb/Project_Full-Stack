@@ -13,8 +13,10 @@ export const Footer = () => {
     <>
       <StyledFooter>
         <img src={logoFooter} />
-        <h1>© 2022 - Todos os direitos reservados.</h1>
-        <img src={index} onClick={() => scrollToHeader()} />
+        <h1 className="text-style-text-body-1-400">
+          © 2022 - Todos os direitos reservados.
+        </h1>
+        <img className="button" src={index} onClick={() => scrollToHeader()} />
       </StyledFooter>
     </>
   );
