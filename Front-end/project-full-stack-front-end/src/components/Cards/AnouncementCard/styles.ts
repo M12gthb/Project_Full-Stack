@@ -6,7 +6,7 @@ export const StyledCradsAnouncementContainer = styled.ul`
   overflow-x: auto;
   padding-left: 12px;
   gap: 12px;
-  padding-bottom: 12px;
+
   li {
     position: relative;
     min-height: 300px;

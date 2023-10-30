@@ -1,6 +1,6 @@
 import { Header } from "../../components/Header";
 import { StyledSection } from "./styles";
-import background from "../../assets/backgroundHomepage.png";
+import background from "../../assets/carHome.svg";
 import { Footer } from "../../components/Footer";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
