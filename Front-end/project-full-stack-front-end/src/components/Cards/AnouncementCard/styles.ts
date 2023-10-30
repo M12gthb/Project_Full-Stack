@@ -9,7 +9,7 @@ export const StyledCradsAnouncementContainer = styled.ul`
 
   li {
     position: relative;
-    min-height: 300px;
+    min-height: 280px;
     h1 {
       font-size: 16px;
       font-family: "Inter";
@@ -27,7 +27,7 @@ export const StyledCradsAnouncementContainer = styled.ul`
       line-height: 28px;
       max-width: 100%;
       color: var(--color-grey-scale-grey-2);
-      min-height: 52px;
+      max-height: 25px;
     }
 
     .nameUser {
@@ -82,11 +82,11 @@ export const StyledCradsAnouncementContainer = styled.ul`
       height: 152px;
     }
     .infos {
+      position: absolute;
+      bottom: 0;
       display: flex;
       flex-direction: row;
       gap: 5px;
-      margin-top: 6px;
-      bottom: 0;
       left: 0;
       span {
         padding: 4px;
