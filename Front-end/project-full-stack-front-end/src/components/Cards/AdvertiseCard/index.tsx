@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { StyledCradsAnouncementContainer } from "./styles";
+import {
+  StyledCradsAnouncementContainer,
+  StyledCradsAnouncementDiv,
+} from "./styles";
 import { StyledNextOrReturn } from "../AnouncementCard/styles";
 
 export const AdvertiseCard = ({ cards, user, openModal }: any) => {
@@ -20,7 +23,7 @@ export const AdvertiseCard = ({ cards, user, openModal }: any) => {
   };
 
   return (
-    <>
+    <StyledCradsAnouncementDiv>
       <StyledCradsAnouncementContainer>
         {currentItems.map((card: any) => {
           const name = user.name.split(" ");
@@ -76,6 +79,6 @@ export const AdvertiseCard = ({ cards, user, openModal }: any) => {
           )}
         </StyledNextOrReturn>
       ) : null}
-    </>
+    </StyledCradsAnouncementDiv>
   );
 };

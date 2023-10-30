@@ -9,6 +9,7 @@ import { ModalCreateAnouncement } from "../../components/Modal/ModalCreateAnounc
 import { ModalAnouncementSucess } from "../../components/Modal/ModalAnouncementSucess";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
+import { StyledBaseDiv, StyledSection } from "./styles";
 
 export const Advertiser = () => {
   const { anouncements, getUser, user, setAnouncements } =
@@ -47,11 +48,12 @@ export const Advertiser = () => {
 
   return (
     <>
-      {/* <Header
+      <StyledBaseDiv></StyledBaseDiv>
+      <Header
         user={user}
         toggleModalEditUser={toggleModalEditUser}
         toggleModalEditAddress={toggleModalEditAddress}
-      /> */}
+      />
       {modalEditAddressOpen ? (
         <ModalEditAddress toggleModal={toggleModalEditAddress} />
       ) : null}
@@ -84,17 +86,19 @@ export const Advertiser = () => {
           toggleDeleteModal={toggleDeleteModal}
         />
       ) : null}
-      <div>
+      <StyledSection>
         {user && (
           <span className={spanColor[indexSpanColor]}>
             {name[0][0].toUpperCase()} {name[1] ? name[1][0].toUpperCase() : ""}
           </span>
         )}
-        <h1>{name.join(" ")}</h1>
-        <span>{user?.type}</span>
+        <div className="infos">
+          <h1>{name.join(" ")}</h1>
+          <span>{user?.type}</span>
+        </div>
         <p>{user?.description}</p>
         <button onClick={() => toggleCreateModal()}>Criar anuncio</button>
-      </div>
+      </StyledSection>
       <AdvertiseCard cards={anouncements} user={user} openModal={openModal} />
       <Footer />
     </>

@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const StyledCradsAnouncementDiv = styled.div`
+  margin-top: 180px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 export const StyledCradsAnouncementContainer = styled.ul`
   width: 95vw;
   display: flex;
