@@ -15,7 +15,7 @@ export const Container = styled.div`
   > div {
     position: relative;
     background-color: var(--color-colors-fixed-white-fixed);
-    padding: 1.2%;
+    padding: 1.5%;
     box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.25);
     width: 90%;
     max-width: 520px;

@@ -65,6 +65,7 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledMenu = styled.div`
+  cursor: pointer;
   background-color: var(--color-colors-fixed-white-fixed);
   border-left: 2px solid var(--color-grey-scale-grey-5);
   height: 100%;
@@ -134,6 +135,7 @@ export const StyledDiv = styled.div`
 `;
 
 export const StyledDivMenu = styled.div`
+  cursor: pointer;
   background-color: var(--color-colors-fixed-white-fixed);
   border-left: 2px solid var(--color-grey-scale-grey-5);
   height: 100%;

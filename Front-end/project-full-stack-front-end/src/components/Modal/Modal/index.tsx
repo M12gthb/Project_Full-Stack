@@ -26,7 +26,7 @@ export const Modal = ({ children, toggleModal, blockClosing }: ModalProps) => {
       }
     };
 
-    // window.addEventListener("mousedown", handleclick);
+    window.addEventListener("mousedown", handleclick);
 
     return () => {
       window.removeEventListener("mousedown", handleclick);

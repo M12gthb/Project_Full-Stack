@@ -4,6 +4,7 @@ import { EditAddressData, EditAddressSchema } from "./validator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../../Inputs";
 import { api } from "../../../services/api";
+import { StyledForm, Styledh1, Styledh2 } from "./styles";
 
 interface ModalEditAddressProps {
   toggleModal: () => void;
@@ -31,11 +32,11 @@ export const ModalEditAddress = ({ toggleModal }: ModalEditAddressProps) => {
   });
   return (
     <Modal toggleModal={toggleModal}>
-      <h1>Editar endereço</h1>
+      <Styledh1>Editar endereço</Styledh1>
       <span onClick={() => toggleModal()}>X</span>
-      <p>informações de endereço</p>
+      <Styledh2>informações de endereço</Styledh2>
 
-      <form onSubmit={handleSubmit(handleEdit)}>
+      <StyledForm onSubmit={handleSubmit(handleEdit)}>
         <Input
           type="text"
           id="cep"
@@ -45,22 +46,26 @@ export const ModalEditAddress = ({ toggleModal }: ModalEditAddressProps) => {
           register={register}
         />
         <div className="addContainer">
-          <label>Estado</label>
-          <input
-            type="text"
-            id="state"
-            placeholder="Digitar Estado"
-            {...register("state")}
-          />
-          {errors.state ? <p>{errors.state.message}</p> : null}
-          <label>Cidade</label>
-          <input
-            type="text"
-            id="city"
-            placeholder="Digitar Cidade"
-            {...register("city")}
-          />
-          {errors.city ? <p>{errors.city.message}</p> : null}
+          <div>
+            <label>Estado</label>
+            <input
+              type="text"
+              id="state"
+              placeholder="Digitar Estado"
+              {...register("state")}
+            />
+            {errors.state ? <p>{errors.state.message}</p> : null}
+          </div>
+          <div>
+            <label>Cidade</label>
+            <input
+              type="text"
+              id="city"
+              placeholder="Digitar Cidade"
+              {...register("city")}
+            />
+            {errors.city ? <p>{errors.city.message}</p> : null}
+          </div>
         </div>
 
         <Input
@@ -73,27 +78,38 @@ export const ModalEditAddress = ({ toggleModal }: ModalEditAddressProps) => {
         />
 
         <div className="addContainer">
-          <label id="number">Número</label>
-          <input
-            type="number"
-            id="number"
-            placeholder="Digitar Número"
-            {...register("number", { valueAsNumber: true })}
-          />
-          {errors.number ? <p>{errors.number.message}</p> : null}
-          <label id="complement">Complemento</label>
-          <input
-            type="text"
-            id="complement"
-            placeholder="Ex: apart 307"
-            {...register("complement")}
-          />
-          {errors.complement ? <p>{errors.complement.message}</p> : null}
+          <div>
+            <label id="number">Número</label>
+            <input
+              type="number"
+              id="number"
+              placeholder="Digitar Número"
+              {...register("number", { valueAsNumber: true })}
+            />
+            {errors.number ? <p>{errors.number.message}</p> : null}
+          </div>
+
+          <div>
+            <label id="complement">Complemento</label>
+            <input
+              type="text"
+              id="complement"
+              placeholder="Ex: apart 307"
+              {...register("complement")}
+            />
+            {errors.complement ? <p>{errors.complement.message}</p> : null}
+          </div>
         </div>
 
-        <button type="submit">Salvar alterações</button>
-        <button onClick={() => toggleModal}>Cancelar</button>
-      </form>
+        <div className="buttonsContainer">
+          <button className="cancelButton" onClick={() => toggleModal()}>
+            Cancelar
+          </button>
+          <button className="submitButton" type="submit">
+            Salvar alterações
+          </button>
+        </div>
+      </StyledForm>
     </Modal>
   );
 };
