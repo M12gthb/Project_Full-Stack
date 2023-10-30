@@ -26,6 +26,7 @@ export const StyledFooter = styled.footer`
     height: 50px;
     margin-top: 0;
     margin-bottom: 30px;
+    cursor: pointer;
     @media (min-width: 790px) {
       margin-right: 59px;
       position: relative;
