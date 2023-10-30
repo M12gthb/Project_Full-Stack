@@ -11,7 +11,6 @@ export const InputContainer = styled.div`
     line-height: 16.94px;
     font-size: 14px;
     font-weight: 700;
-    font-family: "Inter";
     margin-bottom: 5px;
     margin-top: 5px;
   }

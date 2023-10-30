@@ -184,6 +184,7 @@ export const ModalCreateAnouncement = ({
                   selectedType === false
                     ? "2px solid rgba(173, 181, 189, 1)"
                     : "none",
+                color: selectedType === true ? "white" : "black",
               }}
             >
               Sim
@@ -199,6 +200,7 @@ export const ModalCreateAnouncement = ({
                   selectedType === false
                     ? "none"
                     : "2px solid rgba(173, 181, 189, 1)",
+                color: selectedType === false ? "white" : "black",
               }}
             >
               Não
@@ -240,7 +242,7 @@ export const ModalCreateAnouncement = ({
         </button>
 
         <div className="buttonsContainer">
-          <button className="deletedButton" onClick={() => toggleModal}>
+          <button className="deletedButton" onClick={() => toggleModal()}>
             Cancelar
           </button>
           <button className="submitButton" type="submit">

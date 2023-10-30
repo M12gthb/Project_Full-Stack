@@ -184,6 +184,7 @@ export const ModalEditAnouncement = ({
                   selectedType === false
                     ? "2px solid rgba(173, 181, 189, 1)"
                     : "none",
+                color: selectedType === true ? "white" : "black",
               }}
             >
               Sim
@@ -199,6 +200,7 @@ export const ModalEditAnouncement = ({
                   selectedType === false
                     ? "none"
                     : "2px solid rgba(173, 181, 189, 1)",
+                color: selectedType === false ? "white" : "black",
               }}
             >
               Não

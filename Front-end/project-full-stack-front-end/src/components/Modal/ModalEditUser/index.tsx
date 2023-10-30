@@ -6,6 +6,7 @@ import { EditUserData, EditUserSchema } from "./validator";
 import Input from "../../Inputs";
 import { api } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
+import { StyledForm, Styledh1, Styledh2 } from "./styles";
 
 interface ModalEditUserProps {
   toggleModal: () => void;
@@ -61,10 +62,10 @@ export const ModalEditUser = ({ toggleModal }: ModalEditUserProps) => {
   };
   return (
     <Modal toggleModal={toggleModal}>
-      <h1>Editar perfil</h1>
+      <Styledh1>Editar perfil</Styledh1>
       <span onClick={() => toggleModal()}>X</span>
-      <p>informações pesoais</p>
-      <form onSubmit={handleSubmit(handleEdit)}>
+      <Styledh2>informações pesoais</Styledh2>
+      <StyledForm onSubmit={handleSubmit(handleEdit)}>
         <Input
           type="text"
           id="name"
@@ -115,29 +116,41 @@ export const ModalEditUser = ({ toggleModal }: ModalEditUserProps) => {
           {errors.description ? <p>{errors.description.message}</p> : null}
         </div>
 
-        <div>
-          <button
-            type="button"
-            onClick={() => handleTypeSelection("comprador")}
-            value="comprador"
-            style={{
-              backgroundColor:
-                selectedType === "comprador" ? "lightblue" : "white",
-            }}
-          >
-            Comprador
-          </button>
-          <button
-            type="button"
-            onClick={() => handleTypeSelection("anunciante")}
-            value="anunciante"
-            style={{
-              backgroundColor:
-                selectedType === "anunciante" ? "lightblue" : "white",
-            }}
-          >
-            Anunciante
-          </button>
+        <div className="buttonsContainer">
+          <div>
+            <button
+              type="button"
+              onClick={() => handleTypeSelection("comprador")}
+              value="comprador"
+              style={{
+                backgroundColor:
+                  selectedType === "comprador" ? "rgba(69,41,230,1)" : "white",
+                border:
+                  selectedType === "anunciante"
+                    ? "2px solid rgba(173, 181, 189, 1)"
+                    : "none",
+                color: selectedType === "comprador" ? "white" : "black",
+              }}
+            >
+              Comprador
+            </button>
+            <button
+              type="button"
+              onClick={() => handleTypeSelection("anunciante")}
+              value="anunciante"
+              style={{
+                backgroundColor:
+                  selectedType === "anunciante" ? "rgba(69,41,230,1)" : "white",
+                border:
+                  selectedType === "comprador"
+                    ? "2px solid rgba(173, 181, 189, 1)"
+                    : "none",
+                color: selectedType === "anunciante" ? "white" : "black",
+              }}
+            >
+              Anunciante
+            </button>
+          </div>
         </div>
         <Input
           type="password"
@@ -155,10 +168,18 @@ export const ModalEditUser = ({ toggleModal }: ModalEditUserProps) => {
           error={errors.confirm?.message}
           register={register}
         />
-        <button type="submit">Salvar aterações</button>
-      </form>
-      <button onClick={() => toggleModal}>cancelar</button>
-      <button onClick={() => deleteUser()}>Excluir Perfil</button>
+        <div className="buttonsContainer">
+          <button className="cancelButton" onClick={() => toggleModal()}>
+            Cancelar
+          </button>
+          <button className="deleteButton" onClick={() => deleteUser()}>
+            Excluir Perfil
+          </button>
+          <button className="submitButton" type="submit">
+            Salvar aterações
+          </button>
+        </div>
+      </StyledForm>
     </Modal>
   );
 };
