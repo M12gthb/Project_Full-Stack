@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  width: 95vw;
+  width: 93.99vw;
   height: 80px;
-  position: fixed;
+  position: relative;
   background-color: var(--color-colors-fixed-white-fixed);
   display: flex;
   align-items: center;

@@ -8,6 +8,7 @@ import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { IUsers } from "../../interfaces/interfaces";
 import { api } from "../../services/api";
 import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
+import { StyledSection, Styledh1, Styledh2 } from "./styles";
 
 export const Register = () => {
   const { isOpenModal, setIsOpenModal } = useContext(RegisterContext);
@@ -37,7 +38,7 @@ export const Register = () => {
   }, []);
   return (
     <>
-      {/* <Header
+      <Header
         user={user}
         toggleModalEditUser={toggleModalEditUser}
         toggleModalEditAddress={toggleModalEditAddress}
@@ -47,13 +48,13 @@ export const Register = () => {
       ) : null}
       {modalEditUserOpen ? (
         <ModalEditUser toggleModal={toggleModalEditUser} />
-      ) : null} */}
+      ) : null}
       {isOpenModal ? <ModalRegisterSucess toggleModal={toggleModal} /> : null}
-      <main>
-        <h1>Cadastro</h1>
-        <p>informações pessoais</p>
+      <StyledSection>
+        <Styledh1>Cadastro</Styledh1>
+        <Styledh2>informações pessoais</Styledh2>
         <RegisterForm />
-      </main>
+      </StyledSection>
       <Footer />
     </>
   );
