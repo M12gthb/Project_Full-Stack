@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { StyledCradsAnouncementContainer, StyledNextOrReturn } from "./styles";
 
 export const AnouncementCard = ({ cards }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,7 +20,7 @@ export const AnouncementCard = ({ cards }: any) => {
 
   return (
     <>
-      <ul>
+      <StyledCradsAnouncementContainer>
         {currentItems.map((card: any) => {
           const name = card.user.name.split(" ");
           const spanColor = ["blue", "rose", "brown", "green"];
@@ -30,39 +31,51 @@ export const AnouncementCard = ({ cards }: any) => {
               <h1>
                 {card.brand} - {card.model}
               </h1>
-              <p>{card.description}</p>
-              <span className={spanColor[indexSpanColor]}>
-                {name.length > 2
-                  ? `${name[0][0].toUpperCase()} ${name[1][0].toUpperCase()}`
-                  : `${name[0][0].toUpperCase()}`}
-              </span>
-              <p>{card.user.name}</p>
-              <div>{`${card.mileage} KM`}</div>
-              <div>{`${card.year}`}</div>
-              <p>{`R$ ${card.price.toFixed(3)},00`}</p>
+              <h2>{card.description}</h2>
+              <div className="nameUser">
+                <span className={spanColor[indexSpanColor]}>
+                  {name.length > 2
+                    ? `${name[0][0].toUpperCase()} ${name[1][0].toUpperCase()}`
+                    : `${name[0][0].toUpperCase()}`}
+                </span>
+                <p>{card.user.name}</p>
+              </div>
+              <div className="infos">
+                <span>{`${card.mileage} KM`}</span>
+                <span>{`${card.year}`}</span>
+              </div>
+              <h1 className="price">{`R$ ${card.price.toFixed(2)}`}</h1>
             </li>
           );
         })}
-      </ul>
+      </StyledCradsAnouncementContainer>
 
       {cards?.length > 12 ? (
-        <div>
+        <StyledNextOrReturn>
           {currentPage > 1 ? (
             <button onClick={() => setCurrentPage(currentPage - 1)}>
-              Anterior
+              {" "}
+              {"< Anterior"}{" "}
             </button>
           ) : null}
-          <p>
-            {currentPage} de {Math.ceil(cards.length / 12)}
-          </p>
+          <div className="textPage">
+            <p className="current">{currentPage}</p>
+            <p className="next">
+              {" "}
+              {" de"} {` ${Math.ceil(cards.length / 12)}`}
+            </p>
+          </div>
 
           {indexOfLastItem >= cards.length ? null : (
-            <button onClick={() => setCurrentPage(currentPage + 1)}>
+            <button
+              className="nextPage"
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
               {" "}
               {"Seguinte >"}{" "}
             </button>
           )}
-        </div>
+        </StyledNextOrReturn>
       ) : null}
     </>
   );

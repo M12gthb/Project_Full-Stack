@@ -1,15 +1,17 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  width: 100%;
+  width: 95vw;
   height: 80px;
   position: fixed;
   background-color: var(--color-colors-fixed-white-fixed);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 2px solid;
   border-color: var(--color-grey-scale-grey-5);
   z-index: 3;
+  padding-left: 5%;
 
   .logo {
     position: absolute;
@@ -19,7 +21,7 @@ export const StyledHeader = styled.header`
     height: 50px;
     width: 50px;
     position: absolute;
-    right: 10px;
+    right: 5%;
     @media (min-width: 790px) {
       display: none;
     }

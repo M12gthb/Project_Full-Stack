@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledSection = styled.section`
   width: 100%;
-  height: 544px;
+  height: 350px;
   position: relative;
   top: 83px;
   z-index: 1;
