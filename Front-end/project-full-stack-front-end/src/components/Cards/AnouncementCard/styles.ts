@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
+export const BaseCards = styled.div`
+  position: relative;
+  top: 50px;
+  margin-bottom: 150px;
+`;
+
 export const StyledCradsAnouncementContainer = styled.ul`
-  width: 95vw;
+  max-width: 85%;
   display: flex;
   overflow-x: auto;
   padding-left: 12px;
   gap: 12px;
-
   li {
     position: relative;
     min-height: 280px;
@@ -162,3 +167,4 @@ export const StyledNextOrReturn = styled.div`
     justify-content: center;
   }
 `;
+export const BaseH1 = styled.h1``;

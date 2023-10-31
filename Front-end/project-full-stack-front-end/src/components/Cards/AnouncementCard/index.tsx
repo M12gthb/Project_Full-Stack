@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { StyledCradsAnouncementContainer, StyledNextOrReturn } from "./styles";
+import {
+  BaseCards,
+  StyledCradsAnouncementContainer,
+  StyledNextOrReturn,
+} from "./styles";
 
 export const AnouncementCard = ({ cards }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,7 +23,7 @@ export const AnouncementCard = ({ cards }: any) => {
   };
 
   return (
-    <>
+    <BaseCards>
       <StyledCradsAnouncementContainer>
         {currentItems.map((card: any) => {
           const name = card.user.name.split(" ");
@@ -77,6 +81,6 @@ export const AnouncementCard = ({ cards }: any) => {
           )}
         </StyledNextOrReturn>
       ) : null}
-    </>
+    </BaseCards>
   );
 };

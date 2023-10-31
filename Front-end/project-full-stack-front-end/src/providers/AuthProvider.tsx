@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         navigate("/");
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

@@ -76,7 +76,7 @@ export const ModalEditComment = ({
         const comments = await Promise.all(commentPromises);
         setComments(comments);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
 

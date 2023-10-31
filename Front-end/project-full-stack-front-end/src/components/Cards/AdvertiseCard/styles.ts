@@ -11,7 +11,6 @@ export const StyledCradsAnouncementContainer = styled.ul`
   width: 95vw;
   display: flex;
   overflow-x: auto;
-  padding-left: 12px;
   gap: 12px;
 
   li {
@@ -103,7 +102,7 @@ export const StyledCradsAnouncementContainer = styled.ul`
     overflow-x: hidden;
     position: relative;
     left: 10%;
-    transform: translateX(-5%);
+    transform: translateX(-10%);
     margin: 0 auto;
     width: 90%;
     flex-wrap: wrap;

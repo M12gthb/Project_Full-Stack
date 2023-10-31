@@ -8,6 +8,11 @@ import { AnouncementCard } from "../../components/Cards/AnouncementCard";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { Header } from "../../components/Header";
 import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
+import {
+  StyledBaseDiv,
+  StyledCradsAnouncementh1,
+  StyledSection,
+} from "./styles";
 
 export const Buyer = () => {
   const [burguer, setBurguer] = useState(false);
@@ -21,53 +26,21 @@ export const Buyer = () => {
 
   const toggleModalEditUser = () => setmodalEditUserOpen(!modalEditUserOpen);
 
-  const getLoggedUser = async (id: string) => {
-    const response = await api.get(`/users/${id}`);
-    setLoggedUser(response.data);
-  };
-
   useEffect(() => {
     const id = localStorage.getItem("motors:anouncementUserId");
     const userId = localStorage.getItem("motors:UserId");
 
     if (userId) {
-      getLoggedUser(userId);
+      getUserInfo(userId);
     }
 
     if (id) {
-      getUserInfo(id);
     }
   }, []);
 
   const name = user?.name.split(" ") || [];
-  const loggedName = loggedUser?.name.split(" ") || [];
   const spanColor = ["blue", "rose", "brown", "green"];
   const indexSpanColor = Math.floor(Math.random() * spanColor.length);
-
-  const renderName = () => {
-    if (name.length > 0) {
-      return (
-        <span className={spanColor[indexSpanColor]}>
-          {name[0][0].toUpperCase()} {name[1] ? name[1][0].toUpperCase() : ""}
-        </span>
-      );
-    } else {
-      return null;
-    }
-  };
-
-  const renderLoggedName = () => {
-    if (loggedName.length > 0) {
-      return (
-        <span className={spanColor[indexSpanColor]}>
-          {loggedName[0][0].toUpperCase()}{" "}
-          {loggedName[1] ? loggedName[1][0].toUpperCase() : ""}
-        </span>
-      );
-    } else {
-      return null;
-    }
-  };
 
   return (
     <>
@@ -76,40 +49,30 @@ export const Buyer = () => {
         toggleModalEditUser={toggleModalEditUser}
         toggleModalEditAddress={toggleModalEditAddress}
       />
+      <StyledBaseDiv></StyledBaseDiv>
       {modalEditAddressOpen ? (
         <ModalEditAddress toggleModal={toggleModalEditAddress} />
       ) : null}
       {modalEditUserOpen ? (
         <ModalEditUser toggleModal={toggleModalEditUser} />
       ) : null}
-      <div>
-        {renderLoggedName()}
-        <p>{loggedUser?.name}</p>
-      </div>
-      <img src={burguerMenu} alt="" onClick={() => setBurguer(!burguer)} />
-      {burguer && user && (
-        <div>
-          {renderLoggedName()}
-          <p>{loggedUser?.name}</p>
-        </div>
-      )}
-      <div>
-        {renderName()}
-        <p>{user?.name}</p>
-      </div>
 
-      <div>
+      <StyledSection>
         {user && (
           <span className={spanColor[indexSpanColor]}>
             {name[0][0].toUpperCase()} {name[1] ? name[1][0].toUpperCase() : ""}
           </span>
         )}
-        <h1>{name.join(" ")}</h1>
-        <span>{user?.type}</span>
-        <p>{user?.description}</p>
-      </div>
+        <div className="infos">
+          <h1>{name.join(" ")}</h1>
+          <span>{user?.type}</span>
+        </div>
+        <p>{user?.description.slice(0, 127)}</p>
+      </StyledSection>
 
-      <h1>Anúncios</h1>
+      <StyledCradsAnouncementh1 className="text-style-heading-heading-5-600">
+        Anúncios
+      </StyledCradsAnouncementh1>
 
       <AnouncementCard cards={cards} />
 

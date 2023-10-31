@@ -38,7 +38,7 @@ export const RegisterProvider = ({ children }: RegisterProviderProps) => {
       await api.post("/users", newData);
       setIsOpenModal(true);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

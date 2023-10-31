@@ -31,6 +31,7 @@ export const BuyerProvider = ({ children }: RegisterProviderProps) => {
       if (id) {
         const response = await api.get(`/users/${id}`);
         const anouncementData = await api.get(`/anouncements`);
+
         setUser(response.data);
         const promises = anouncementData.data.map(
           async (element: IAnouncement) => {
