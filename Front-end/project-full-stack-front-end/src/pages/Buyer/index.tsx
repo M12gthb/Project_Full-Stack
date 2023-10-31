@@ -1,9 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { BuyerContext } from "../../providers/BuyerProvider";
-import burguerMenu from "../../assets/burger-menu-svgrepo-com.svg";
 import { Footer } from "../../components/Footer";
-import { IUsers } from "../../interfaces/interfaces";
-import { api } from "../../services/api";
 import { AnouncementCard } from "../../components/Cards/AnouncementCard";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { Header } from "../../components/Header";
@@ -15,8 +12,6 @@ import {
 } from "./styles";
 
 export const Buyer = () => {
-  const [burguer, setBurguer] = useState(false);
-  const [loggedUser, setLoggedUser] = useState<IUsers>();
   const { getUserInfo, user, cards } = useContext(BuyerContext);
   const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
   const [modalEditAddressOpen, setmodalEditAddressOpen] = useState(false);
@@ -28,7 +23,7 @@ export const Buyer = () => {
 
   useEffect(() => {
     const id = localStorage.getItem("motors:anouncementUserId");
-    const userId = localStorage.getItem("motors:UserId");
+    const userId = localStorage.getItem("motors:AnouncementUserId");
 
     if (userId) {
       getUserInfo(userId);

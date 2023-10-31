@@ -10,6 +10,7 @@ import { ModalAnouncementSucess } from "../../components/Modal/ModalAnouncementS
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
 import { StyledBaseDiv, StyledSection } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export const Advertiser = () => {
   const { anouncements, getUser, user, setAnouncements } =
@@ -42,7 +43,14 @@ export const Advertiser = () => {
     toggleModal();
   };
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    const type = localStorage.getItem("motors:Type");
+
+    if (type == "comprador" || !type) {
+      navigate("/");
+    }
     getUser();
   }, []);
 

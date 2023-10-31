@@ -10,7 +10,7 @@ export const StyledFooter = styled.footer`
   align-items: center;
   flex-direction: column;
   gap: 45px;
-
+  bottom: 0;
   img {
     width: 153.02px;
     height: 26.34px;

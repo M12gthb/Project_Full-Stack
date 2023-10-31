@@ -12,6 +12,18 @@ import { ModalImage } from "../../components/Modal/ModalImage";
 import { ModalEditComment } from "../../components/Modal/ModalEditComment";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
+import {
+  Comments,
+  Descripition,
+  ImagesUl,
+  ImgCover,
+  Infos,
+  NewComment,
+  Recomend,
+  StyledBaseDiv,
+  UserInfos,
+} from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export const Product = () => {
   const [anouncement, setAnouncemt] = useState<IAnouncementWithUser>();
@@ -25,6 +37,15 @@ export const Product = () => {
   const [commentId, setCommentId] = useState<string>("");
   const [modalEditUserOpen, setmodalEditUserOpen] = useState(false);
   const [modalEditAddressOpen, setmodalEditAddressOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const getAllAnouncement = (id: string | undefined) => {
+    if (id) {
+      localStorage.setItem("motors:AnouncementUserId", id);
+      navigate("/Buyer");
+    }
+  };
 
   const toggleModalEditAddress = () =>
     setmodalEditAddressOpen(!modalEditAddressOpen);
@@ -152,8 +173,10 @@ export const Product = () => {
       const response = await api.get(`/users/${userId}`);
       setLoggedUser(response.data);
     };
-
     if (userId) {
+      getUser();
+      getProduct();
+    } else {
       getUser();
       getProduct();
     }
@@ -175,7 +198,7 @@ export const Product = () => {
         toggleModalEditUser={toggleModalEditUser}
         toggleModalEditAddress={toggleModalEditAddress}
       />
-
+      <StyledBaseDiv></StyledBaseDiv>
       {modalEditAddressOpen ? (
         <ModalEditAddress toggleModal={toggleModalEditAddress} />
       ) : null}
@@ -184,93 +207,120 @@ export const Product = () => {
         <ModalEditUser toggleModal={toggleModalEditUser} />
       ) : null}
 
-      <img
+      <ImgCover
         src={anouncement?.cover_img}
-        alt=""
         onClick={() => handleModal(anouncement?.cover_img)}
       />
 
-      <div>
-        <h1>{anouncement?.model}</h1>
+      <Infos>
+        <h1 className="text-style-heading-heading-6-600">
+          {anouncement?.model}
+        </h1>
 
-        <span>{anouncement?.year}</span>
-        <span>{anouncement?.mileage} KM</span>
+        <div>
+          <span>{anouncement?.year}</span>
+          <span>{anouncement?.mileage} KM</span>
+        </div>
 
-        <p>{`R$ ${anouncement?.price.toFixed(2)}`}</p>
+        <p className="text-style-heading-heading-7-600">{`R$ ${anouncement?.price.toFixed(
+          2
+        )}`}</p>
 
         <button>Comprar</button>
-      </div>
+      </Infos>
 
-      <div>
-        <h1>Descrição</h1>
-        {anouncement?.description}
-      </div>
+      <Descripition>
+        <h1 className="text-style-heading-heading-6-600">Descrição</h1>
+        <p className="text-style-text-body-1-400">{anouncement?.description}</p>
+      </Descripition>
 
-      <ul>
-        <h1>Fotos</h1>
-        {anouncement?.images.map((element) => (
-          <img
-            key={element.id}
-            src={element.image_url}
-            alt=""
-            onClick={() => handleModal(element.image_url)}
-          />
-        ))}
-      </ul>
+      <ImagesUl>
+        <h1 className="text-style-heading-heading-6-600">Fotos</h1>
+        <div>
+          {anouncement?.images.map((element) => (
+            <img
+              key={element.id}
+              src={element.image_url}
+              alt=""
+              onClick={() => handleModal(element.image_url)}
+            />
+          ))}
+        </div>
+      </ImagesUl>
 
-      <div>
+      <UserInfos>
         {anouncemnetUser.length > 2 ? (
           <span className={spanColor[indexSpanColor]}>
             {anouncemnetUser[0][0].toUpperCase()}{" "}
             {anouncemnetUser[1][0].toUpperCase()}
           </span>
-        ) : null}
-        <h1>{anouncement?.user?.name}</h1>
-        <p>{anouncement?.user?.description}</p>
-        <button>Ver todos os anuncios</button>
-      </div>
+        ) : (
+          <span className={spanColor[indexSpanColor]}>
+            {anouncement?.user?.name[0]}
+          </span>
+        )}
+        <h1 className="text-style-heading-heading-6-600">
+          {anouncement?.user?.name}
+        </h1>
+        <p className="text-style-text-body-1-400">
+          {anouncement?.user?.description}
+        </p>
+        <button onClick={() => getAllAnouncement(anouncement?.userId)}>
+          Ver todos os anuncios
+        </button>
+      </UserInfos>
 
-      <div>
-        <h1>Comentários</h1>
+      <Comments>
+        <h1 className="text-style-heading-heading-6-600">Comentários</h1>
         <ul>
           {comments &&
             comments.map((comment, index) => (
               <li key={index}>
-                <span>
-                  {comment.user.data.name
-                    .split(" ")
-                    .map((n: string) => n[0].toUpperCase())
-                    .join(" ")}
-                </span>
-                <p>{comment.user.data.name}</p>
-                <p>{comment.commentDate}</p>
+                <div className="header">
+                  <span className={spanColor[indexSpanColor]}>
+                    {comment.user.data.name[0]}
+                  </span>
+                  <p className="text-style-heading-heading-7-600 ">
+                    {comment.user.data.name}
+                  </p>
+                  <p className="text-style-heading-heading-7-600 date">
+                    {comment.commentDate}
+                  </p>
+                </div>
                 {comment.userId == user?.id ? (
-                  <button onClick={() => editComment(comment.id)}>
+                  <button
+                    className="edit"
+                    onClick={() => editComment(comment.id)}
+                  >
                     Editar comentário
                   </button>
                 ) : null}
-                {anouncement?.userId == user?.id ? (
+                {anouncement?.userId == user?.id ||
+                comment.userId == user?.id ? (
                   <button
+                    className="delete"
                     onClick={() => deleteComent(comment.id, anouncement?.id)}
                   >
                     Excluir
                   </button>
                 ) : null}
-                {comment.comment}
+                <p>{comment.comment}</p>
               </li>
             ))}
         </ul>
-      </div>
+      </Comments>
 
-      <div>
+      <NewComment>
         {user ? (
-          <div>
+          <div className="formName">
             {name.length > 2 ? (
               <span className={spanColor[indexSpanColor]}>
                 {name[0][0].toUpperCase()} {name[1][0].toUpperCase()}
               </span>
-            ) : null}
-            <h1>{user?.name}</h1>
+            ) : (
+              <span className={spanColor[indexSpanColor]}>{user?.name[0]}</span>
+            )}
+            <h1 className="text-style-heading-heading-7-600">{user?.name}</h1>
           </div>
         ) : null}
 
@@ -286,29 +336,43 @@ export const Product = () => {
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
           ></textarea>
-          <button disabled={user ? false : true} type="submit">
+          <button
+            disabled={user ? false : true}
+            style={
+              !user
+                ? {
+                    backgroundColor: "rgba(206, 212, 218, 1)",
+                  }
+                : {
+                    backgroundColor: "rgba(69,41,230,1)",
+                  }
+            }
+            type="submit"
+          >
             Comentar
           </button>
         </form>
-        <button
-          disabled={user ? false : true}
-          onClick={() => setCommentText("Gostei muito!")}
-        >
-          Gostei muito!
-        </button>
-        <button
-          disabled={user ? false : true}
-          onClick={() => setCommentText("Incrivel!")}
-        >
-          Incrivel!
-        </button>
-        <button
-          disabled={user ? false : true}
-          onClick={() => setCommentText("Recomendarei para meus amigos!")}
-        >
-          Recomendarei para meus amigos
-        </button>
-      </div>
+        <Recomend>
+          <button
+            disabled={user ? false : true}
+            onClick={() => setCommentText("Gostei muito!")}
+          >
+            Gostei muito!
+          </button>
+          <button
+            disabled={user ? false : true}
+            onClick={() => setCommentText("Incrivel!")}
+          >
+            Incrivel!
+          </button>
+          <button
+            disabled={user ? false : true}
+            onClick={() => setCommentText("Recomendarei para meus amigos!")}
+          >
+            Recomendarei para meus amigos
+          </button>
+        </Recomend>
+      </NewComment>
       <Footer />
     </>
   );
