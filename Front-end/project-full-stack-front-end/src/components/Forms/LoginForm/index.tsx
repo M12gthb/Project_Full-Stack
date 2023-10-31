@@ -3,6 +3,7 @@ import { useAuth } from "../../../hooks/useAuth";
 import { LoginData, loginSchema } from "./validator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../../Inputs";
+import { Styledh1 } from "../../../pages/Register/styles";
 
 export const LoginForm = () => {
   const { signIn } = useAuth();
@@ -17,7 +18,7 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(signIn)}>
-      <h1>Login</h1>
+      <Styledh1>Login</Styledh1>
       <Input
         type="email"
         id="email"

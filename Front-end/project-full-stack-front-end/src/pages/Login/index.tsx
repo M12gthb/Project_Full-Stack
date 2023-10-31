@@ -5,6 +5,7 @@ import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
+import { StyleLogin } from "./styles";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -24,22 +25,22 @@ export const Login = () => {
 
   return (
     <>
-      {/* <Header
+      <Header
         user={undefined}
         toggleModalEditUser={toggleModalEditUser}
         toggleModalEditAddress={toggleModalEditAddress}
-      /> */}
+      />
       {modalEditAddressOpen ? (
         <ModalEditAddress toggleModal={toggleModalEditAddress} />
       ) : null}
       {modalEditUserOpen ? (
         <ModalEditUser toggleModal={toggleModalEditUser} />
       ) : null}
-      <main>
+      <StyleLogin>
         <LoginForm />
-        <p>Ainda não possui conta?</p>
+        <p className="text-style-text-body-2-400">Ainda não possui conta?</p>
         <Link to={"/Register"}>Cadastrar</Link>
-      </main>
+      </StyleLogin>
       <Footer />
     </>
   );
