@@ -53,7 +53,7 @@ export const Advertiser = () => {
     }
     getUser();
   }, []);
-  console.log(anouncements);
+
   if (anouncements.length > 0) {
     return (
       <>
