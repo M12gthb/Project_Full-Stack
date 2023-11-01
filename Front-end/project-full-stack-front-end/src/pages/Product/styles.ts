@@ -44,7 +44,7 @@ export const ImagesUl = styled.div`
     top: 75px;
     right: 2%;
     width: 440px;
-    max-height: 160px;
+    max-height: 180px;
     overflow-y: auto;
   }
   img {
@@ -59,7 +59,6 @@ export const ImagesUl = styled.div`
     gap: 12px;
   }
   h1 {
-    margin-top: 12px;
     margin-bottom: 12px;
   }
 `;
@@ -99,6 +98,7 @@ export const Infos = styled.div`
     background-color: var(--color-brand-brand-1);
     color: var(--color-colors-fixed-white-fixed);
     font-weight: 600;
+    cursor: pointer;
   }
 `;
 
@@ -139,56 +139,56 @@ export const UserInfos = styled.div`
   }
   .blue {
     background-color: var(--color-brand-brand-1);
-    height: 24px;
-    width: 24px;
+    height: 68px;
+    width: 68px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-colors-fixed-white-fixed);
-    font-size: 18px;
+    font-size: 32px;
     font-family: "Lexend";
     font-weight: 600;
     font-style: normal;
   }
   .rose {
     background-color: var(--color-random-random-1);
-    height: 24px;
-    width: 24px;
+    height: 68px;
+    width: 68px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-colors-fixed-white-fixed);
-    font-size: 18px;
+    font-size: 32px;
     font-family: "Lexend";
     font-weight: 600;
     font-style: normal;
   }
   .brown {
     background-color: var(--color-random-random-3);
-    height: 24px;
-    width: 24px;
+    height: 68px;
+    width: 68px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-colors-fixed-white-fixed);
-    font-size: 18px;
+    font-size: 32px;
     font-family: "Lexend";
     font-weight: 600;
     font-style: normal;
   }
   .green {
     background-color: var(--color-feedback-sucess-1);
-    height: 24px;
-    width: 24px;
+    height: 68px;
+    width: 68px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-colors-fixed-white-fixed);
-    font-size: 18px;
+    font-size: 32px;
     font-family: "Lexend";
     font-weight: 600;
     font-style: normal;
@@ -198,6 +198,8 @@ export const UserInfos = styled.div`
   }
   p {
     color: var(--color-grey-scale-grey-2);
+    width: 100%;
+    word-wrap: break-word;
   }
   button {
     width: 206px;
@@ -207,6 +209,7 @@ export const UserInfos = styled.div`
     color: var(--color-colors-fixed-white-fixed);
     font-weight: 600;
     background-color: var(--color-grey-scale-grey-0);
+    cursor: pointer;
   }
 `;
 
@@ -296,8 +299,8 @@ export const Comments = styled.div`
     height: 24px;
     margin-bottom: 8px;
     font-weight: 500;
-    color: var(--color-grey-scale-grey-1);
-    border: 1.5px solid var(--color-grey-scale-grey-1);
+    color: var(--color-grey-scale-grey-2);
+    border: 1.5px solid var(--color-grey-scale-grey-2);
     background-color: transparent;
     border-radius: 4px;
     cursor: pointer;
@@ -338,8 +341,8 @@ export const NewComment = styled.div`
     margin-bottom: 12px;
     .blue {
       background-color: var(--color-brand-brand-1);
-      height: 24px;
-      width: 24px;
+      height: 32px;
+      width: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -352,8 +355,8 @@ export const NewComment = styled.div`
     }
     .rose {
       background-color: var(--color-random-random-1);
-      height: 24px;
-      width: 24px;
+      height: 32px;
+      width: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -366,8 +369,8 @@ export const NewComment = styled.div`
     }
     .brown {
       background-color: var(--color-random-random-3);
-      height: 24px;
-      width: 24px;
+      height: 32px;
+      width: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -380,8 +383,8 @@ export const NewComment = styled.div`
     }
     .green {
       background-color: var(--color-feedback-sucess-1);
-      height: 24px;
-      width: 24px;
+      height: 32px;
+      width: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -405,6 +408,8 @@ export const NewComment = styled.div`
       border: 1.5px solid var(--color-grey-scale-grey-4);
       border-radius: 4px;
       height: 120px;
+      padding-top: 16px;
+      padding-left: 16px;
     }
     button {
       background-color: var(--color-brand-brand-1);
@@ -438,13 +443,13 @@ export const NewComment = styled.div`
 
 export const Recomend = styled.div`
   button {
-    margin-top: 6px;
+    margin-top: 12px;
     margin-right: 6px;
     border: none;
     border-radius: 13px;
     height: 24px;
-    color: var();
-    background-color: var(--color-grey-scale-grey-7);
+    cursor: pointer;
+    background-color: var(--color-grey-scale-grey-6);
     color: var(--color-grey-scale-grey-3);
   }
 `;

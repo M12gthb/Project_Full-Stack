@@ -22,11 +22,15 @@ export const StyledForm = styled.form`
         font-family: "Inter";
       }
       input {
-        height: 25px;
+        height: 48px;
+        outline: none;
+        border: 1.5px solid var(--color-grey-scale-grey-1);
+        border-radius: 4px;
+        padding-left: 16px;
       }
       input::placeholder {
-        font-weight: 500;
-        padding-left: 5px;
+        font-weight: 400;
+        color: var(--color-grey-scale-grey-3);
       }
     }
   }
@@ -43,11 +47,15 @@ export const StyledForm = styled.form`
       font-family: "Inter";
     }
     input {
-      height: 25px;
+      height: 48px;
+      outline: none;
+      border: 1.5px solid var(--color-grey-scale-grey-1);
+      border-radius: 4px;
+      padding-left: 16px;
     }
     input::placeholder {
-      font-weight: 500;
-      padding-left: 5px;
+      font-weight: 400;
+      color: var(--color-grey-scale-grey-3);
     }
   }
 
@@ -65,7 +73,7 @@ export const StyledForm = styled.form`
       button {
         width: 49%;
         height: 48px;
-
+        cursor: pointer;
         border-radius: 4px;
       }
     }
@@ -86,7 +94,7 @@ export const StyledForm = styled.form`
     border-radius: 4px;
     cursor: pointer;
   }
-  .buttonsContainer {
+  .buttonsContainer2 {
     width: 100%;
     display: flex;
     gap: 10px;
@@ -104,6 +112,7 @@ export const StyledForm = styled.form`
     background-color: var(--color-brand-brand-3);
     color: rgba(237, 234, 253, 1);
     font-weight: 600;
+    cursor: pointer;
   }
   .deletedButton {
     position: relative;
@@ -115,7 +124,7 @@ export const StyledForm = styled.form`
     border-radius: 4px;
     background-color: var(--color-grey-scale-grey-6);
     color: var(--color-grey-scale-grey-2);
-
+    cursor: pointer;
     @media (max-width: 790px) {
       width: 60%;
     }

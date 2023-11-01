@@ -31,7 +31,7 @@ export const LoginForm = () => {
         type="password"
         id="password"
         label="Senha"
-        placeholder="Digite aqui seu email"
+        placeholder="Digite aqui sua senha"
         error={errors.password?.message}
         register={register}
       />

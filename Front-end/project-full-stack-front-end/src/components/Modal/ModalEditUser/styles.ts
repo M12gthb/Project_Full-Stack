@@ -22,11 +22,15 @@ export const StyledForm = styled.form`
         font-family: "Inter";
       }
       input {
-        height: 25px;
+        height: 48px;
+        outline: none;
+        border: 1.5px solid var(--color-grey-scale-grey-1);
+        border-radius: 4px;
+        padding-left: 16px;
       }
       input::placeholder {
-        font-weight: 500;
-        padding-left: 5px;
+        font-weight: 400;
+        color: var(--color-grey-scale-grey-3);
       }
     }
   }
@@ -90,6 +94,15 @@ export const StyledForm = styled.form`
     }
     textarea {
       height: 100px;
+      outline: none;
+      border: 1.5px solid var(--color-grey-scale-grey-1);
+      border-radius: 4px;
+      padding-left: 16px;
+      padding-top: 16px;
+    }
+    textarea::placeholder {
+      font-weight: 400;
+      color: var(--color-grey-scale-grey-3);
     }
   }
   .addButton {
@@ -120,8 +133,10 @@ export const StyledForm = styled.form`
     font-weight: 600;
     color: var(--color-grey-scale-grey-2);
     background-color: var(--color-grey-scale-grey-6);
+    cursor: pointer;
   }
   .deleteButton {
+    cursor: pointer;
     width: 32%;
     height: 48px;
     border: none;
@@ -138,6 +153,7 @@ export const StyledForm = styled.form`
     font-weight: 600;
     color: var(--color-colors-fixed-white-fixed);
     background-color: var(--color-brand-brand-1);
+    cursor: pointer;
   }
   @media (max-width: 790px) {
     .buttonsContainer {

@@ -263,7 +263,7 @@ export const Product = () => {
           {anouncement?.user?.name}
         </h1>
         <p className="text-style-text-body-1-400">
-          {anouncement?.user?.description}
+          {anouncement?.user?.description.slice(0, 127) + "..."}
         </p>
         <button onClick={() => getAllAnouncement(anouncement?.userId)}>
           Ver todos os anuncios

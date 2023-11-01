@@ -21,11 +21,15 @@ export const StyledForm = styled.form`
         font-family: "Inter";
       }
       input {
-        height: 25px;
+        height: 48px;
+        outline: none;
+        border: 1.5px solid var(--color-grey-scale-grey-1);
+        border-radius: 4px;
+        padding-left: 16px;
       }
       input::placeholder {
-        font-weight: 500;
-        padding-left: 5px;
+        font-weight: 400;
+        color: var(--color-grey-scale-grey-3);
       }
     }
   }
@@ -42,6 +46,15 @@ export const StyledForm = styled.form`
     }
     textarea {
       height: 100px;
+      outline: none;
+      border: 1.5px solid var(--color-grey-scale-grey-1);
+      border-radius: 4px;
+      padding-left: 16px;
+      padding-top: 16px;
+    }
+    textarea::placeholder {
+      font-weight: 400;
+      color: var(--color-grey-scale-grey-3);
     }
   }
   .buttonsContainer {
@@ -58,7 +71,7 @@ export const StyledForm = styled.form`
       button {
         width: 49%;
         height: 48px;
-
+        cursor: pointer;
         border-radius: 4px;
       }
     }
@@ -81,6 +94,7 @@ export const StyledForm = styled.form`
     font-weight: 600;
     font-style: normal;
     border-radius: 4px;
+    cursor: pointer;
   }
 `;
 

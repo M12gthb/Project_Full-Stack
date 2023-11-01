@@ -67,7 +67,7 @@ export const ModalCreateAnouncement = ({
 
   return (
     <Modal toggleModal={toggleModal}>
-      <Styledh1>Editar anuncio</Styledh1>
+      <Styledh1>Crie seu anuncio</Styledh1>
       <span onClick={() => toggleModal()}>X</span>
       <Styledh2>informações do veículo</Styledh2>
 
@@ -241,7 +241,7 @@ export const ModalCreateAnouncement = ({
           Adicionar campo para imagem da galeria
         </button>
 
-        <div className="buttonsContainer">
+        <div className="buttonsContainer2">
           <button className="deletedButton" onClick={() => toggleModal()}>
             Cancelar
           </button>

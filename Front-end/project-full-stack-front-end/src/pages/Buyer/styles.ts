@@ -9,9 +9,20 @@ export const StyledBaseDiv = styled.div`
   background-color: var(--color-brand-brand-1);
 `;
 
+export const NoCards = styled.div`
+  width: 90%;
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+
+  z-index: 2;
+  height: 231.99px;
+`;
+
 export const StyledSection = styled.div`
   width: 90%;
   max-width: 70%;
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -23,17 +34,19 @@ export const StyledSection = styled.div`
   gap: 15px;
   padding: 20px;
   border-radius: 4px;
+
   .infos {
     display: flex;
-    align-items: center;
     gap: 12px;
+
     h1 {
       font-size: 24px;
       font-family: "Lexend";
       font-weight: 600;
       font-style: normal;
-      color: var(--color-grey-scale-grey-1);
+      color: var(--color-grey-scale-grey-0);
     }
+
     span {
       padding: 4px;
       border: none;
@@ -46,8 +59,8 @@ export const StyledSection = styled.div`
       border-radius: 4px;
     }
   }
+
   p {
-    max-height: 20px;
     font-size: 16px;
     font-family: "Inter";
     font-weight: 400;
@@ -55,6 +68,7 @@ export const StyledSection = styled.div`
     line-height: 28px;
     color: var(--color-grey-scale-grey-2);
   }
+
   button {
     width: 160px;
     height: 48px;
@@ -67,6 +81,7 @@ export const StyledSection = styled.div`
     font-weight: 600;
     font-style: normal;
   }
+
   .blue {
     background-color: var(--color-brand-brand-1);
     height: 86px;
@@ -81,6 +96,7 @@ export const StyledSection = styled.div`
     font-weight: 600;
     font-style: normal;
   }
+
   .rose {
     background-color: var(--color-random-random-1);
     height: 86px;
@@ -95,6 +111,7 @@ export const StyledSection = styled.div`
     font-weight: 600;
     font-style: normal;
   }
+
   .brown {
     background-color: var(--color-random-random-3);
     height: 86px;
@@ -109,6 +126,7 @@ export const StyledSection = styled.div`
     font-weight: 600;
     font-style: normal;
   }
+
   .green {
     background-color: var(--color-feedback-sucess-1);
     height: 86px;
@@ -124,6 +142,7 @@ export const StyledSection = styled.div`
     font-style: normal;
   }
 `;
+
 export const StyledCradsAnouncementh1 = styled.h1`
   position: relative;
   width: 20%;

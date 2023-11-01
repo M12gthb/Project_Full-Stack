@@ -22,11 +22,15 @@ export const StyledForm = styled.form`
         font-family: "Inter";
       }
       input {
-        height: 25px;
+        height: 48px;
+        outline: none;
+        border: 1.5px solid var(--color-grey-scale-grey-1);
+        border-radius: 4px;
+        padding-left: 16px;
       }
       input::placeholder {
-        font-weight: 500;
-        padding-left: 5px;
+        font-weight: 400;
+        color: var(--color-grey-scale-grey-3);
       }
     }
   }

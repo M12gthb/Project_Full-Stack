@@ -27,6 +27,7 @@ export const StyleLogin = styled.div`
     font-weight: 600;
     font-style: normal;
     border-radius: 4px;
+    cursor: pointer;
   }
   p {
     width: 100%;

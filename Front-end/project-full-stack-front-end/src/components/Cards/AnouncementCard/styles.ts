@@ -13,6 +13,7 @@ export const StyledCradsAnouncementContainer = styled.ul`
   padding-left: 12px;
   gap: 12px;
   li {
+    cursor: pointer;
     position: relative;
     min-height: 280px;
     h1 {

@@ -6,6 +6,7 @@ import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { Header } from "../../components/Header";
 import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
 import {
+  NoCards,
   StyledBaseDiv,
   StyledCradsAnouncementh1,
   StyledSection,
@@ -37,41 +38,83 @@ export const Buyer = () => {
   const spanColor = ["blue", "rose", "brown", "green"];
   const indexSpanColor = Math.floor(Math.random() * spanColor.length);
 
-  return (
-    <>
-      <Header
-        user={user}
-        toggleModalEditUser={toggleModalEditUser}
-        toggleModalEditAddress={toggleModalEditAddress}
-      />
-      <StyledBaseDiv></StyledBaseDiv>
-      {modalEditAddressOpen ? (
-        <ModalEditAddress toggleModal={toggleModalEditAddress} />
-      ) : null}
-      {modalEditUserOpen ? (
-        <ModalEditUser toggleModal={toggleModalEditUser} />
-      ) : null}
+  if (cards.length > 0) {
+    return (
+      <>
+        <Header
+          user={user}
+          toggleModalEditUser={toggleModalEditUser}
+          toggleModalEditAddress={toggleModalEditAddress}
+        />
+        <StyledBaseDiv></StyledBaseDiv>
+        {modalEditAddressOpen ? (
+          <ModalEditAddress toggleModal={toggleModalEditAddress} />
+        ) : null}
+        {modalEditUserOpen ? (
+          <ModalEditUser toggleModal={toggleModalEditUser} />
+        ) : null}
 
-      <StyledSection>
-        {user && (
-          <span className={spanColor[indexSpanColor]}>
-            {name[0][0].toUpperCase()} {name[1] ? name[1][0].toUpperCase() : ""}
-          </span>
-        )}
-        <div className="infos">
-          <h1>{name.join(" ")}</h1>
-          <span>{user?.type}</span>
-        </div>
-        <p>{user?.description.slice(0, 127)}</p>
-      </StyledSection>
+        <StyledSection>
+          {user && (
+            <span className={spanColor[indexSpanColor]}>
+              {name[0][0].toUpperCase()}{" "}
+              {name[1] ? name[1][0].toUpperCase() : ""}
+            </span>
+          )}
+          <div className="infos">
+            <h1>{name.join(" ")}</h1>
+            <span>{user?.type}</span>
+          </div>
+          <p>{user?.description.slice(0, 127)}</p>
+        </StyledSection>
 
-      <StyledCradsAnouncementh1 className="text-style-heading-heading-5-600">
-        Anúncios
-      </StyledCradsAnouncementh1>
+        <StyledCradsAnouncementh1 className="text-style-heading-heading-5-600">
+          Anúncios
+        </StyledCradsAnouncementh1>
 
-      <AnouncementCard cards={cards} />
+        <AnouncementCard cards={cards} />
 
-      <Footer />
-    </>
-  );
+        <Footer />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Header
+          user={user}
+          toggleModalEditUser={toggleModalEditUser}
+          toggleModalEditAddress={toggleModalEditAddress}
+        />
+        <StyledBaseDiv></StyledBaseDiv>
+        {modalEditAddressOpen ? (
+          <ModalEditAddress toggleModal={toggleModalEditAddress} />
+        ) : null}
+        {modalEditUserOpen ? (
+          <ModalEditUser toggleModal={toggleModalEditUser} />
+        ) : null}
+
+        <StyledSection>
+          {user && (
+            <span className={spanColor[indexSpanColor]}>
+              {name[0][0].toUpperCase()}{" "}
+              {name[1] ? name[1][0].toUpperCase() : ""}
+            </span>
+          )}
+          <div className="infos">
+            <h1>{name.join(" ")}</h1>
+            <span>{user?.type}</span>
+          </div>
+          <p>{user?.description.slice(0, 127)}</p>
+        </StyledSection>
+
+        <StyledCradsAnouncementh1 className="text-style-heading-heading-5-600">
+          Anúncios
+        </StyledCradsAnouncementh1>
+
+        <NoCards />
+
+        <Footer />
+      </>
+    );
+  }
 };

@@ -78,7 +78,7 @@ table {
 	--color-grey-scale-grey-4: rgba(173,181,189,1);
 	--color-grey-scale-grey-5: rgba(206,212,218,1);
 	--color-grey-scale-grey-6: rgba(222,226,230,1);
-	--color-grey-scale-grey-7: rgba(233,236,239,1);
+	--color-grey-scale-grey-1: rgba(233,236,239,1);
 	--color-grey-scale-grey-8: rgba(241,243,245,1);
 	--color-grey-scale-grey-9: rgba(248,249,250,1);
 	--color-grey-scale-grey-10: rgba(253,253,253,1);

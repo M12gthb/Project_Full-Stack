@@ -9,7 +9,7 @@ import { ModalCreateAnouncement } from "../../components/Modal/ModalCreateAnounc
 import { ModalAnouncementSucess } from "../../components/Modal/ModalAnouncementSucess";
 import { ModalEditUser } from "../../components/Modal/ModalEditUser";
 import { ModalEditAddress } from "../../components/Modal/ModalEditAddress";
-import { StyledBaseDiv, StyledSection } from "./styles";
+import { NoCards, StyledBaseDiv, StyledH1, StyledSection } from "./styles";
 import { useNavigate } from "react-router-dom";
 
 export const Advertiser = () => {
@@ -53,62 +53,127 @@ export const Advertiser = () => {
     }
     getUser();
   }, []);
+  console.log(anouncements);
+  if (anouncements.length > 0) {
+    return (
+      <>
+        <StyledBaseDiv></StyledBaseDiv>
+        <Header
+          user={user}
+          toggleModalEditUser={toggleModalEditUser}
+          toggleModalEditAddress={toggleModalEditAddress}
+        />
+        {modalEditAddressOpen ? (
+          <ModalEditAddress toggleModal={toggleModalEditAddress} />
+        ) : null}
+        {modalEditUserOpen ? (
+          <ModalEditUser toggleModal={toggleModalEditUser} />
+        ) : null}
+        {modalSucessOpen ? (
+          <ModalAnouncementSucess toggleModal={toggleSucessModal} />
+        ) : null}
+        {modalCreateOpen ? (
+          <ModalCreateAnouncement
+            toggleModal={toggleCreateModal}
+            setAnouncements={setAnouncements}
+            toggleSucessModal={toggleSucessModal}
+          />
+        ) : null}
+        {modalDeleteOpen ? (
+          <ModalDeleteAnouncement
+            toggleModal={toggleDeleteModal}
+            id={idProduct}
+            setAnouncements={setAnouncements}
+          />
+        ) : null}
 
-  return (
-    <>
-      <StyledBaseDiv></StyledBaseDiv>
-      <Header
-        user={user}
-        toggleModalEditUser={toggleModalEditUser}
-        toggleModalEditAddress={toggleModalEditAddress}
-      />
-      {modalEditAddressOpen ? (
-        <ModalEditAddress toggleModal={toggleModalEditAddress} />
-      ) : null}
-      {modalEditUserOpen ? (
-        <ModalEditUser toggleModal={toggleModalEditUser} />
-      ) : null}
-      {modalSucessOpen ? (
-        <ModalAnouncementSucess toggleModal={toggleSucessModal} />
-      ) : null}
-      {modalCreateOpen ? (
-        <ModalCreateAnouncement
-          toggleModal={toggleCreateModal}
-          setAnouncements={setAnouncements}
-          toggleSucessModal={toggleSucessModal}
+        {modalOpen ? (
+          <ModalEditAnouncement
+            toggleModal={toggleModal}
+            id={idProduct}
+            setAnouncements={setAnouncements}
+            toggleDeleteModal={toggleDeleteModal}
+          />
+        ) : null}
+        <StyledSection>
+          {user && (
+            <span className={spanColor[indexSpanColor]}>
+              {name[0][0].toUpperCase()}{" "}
+              {name[1] ? name[1][0].toUpperCase() : ""}
+            </span>
+          )}
+          <div className="infos">
+            <h1>{name.join(" ")}</h1>
+            <span>{user?.type}</span>
+          </div>
+          <p>{user?.description.slice(0, 125) + "..."}</p>
+          <button onClick={() => toggleCreateModal()}>Criar anuncio</button>
+        </StyledSection>
+        <StyledH1 className="text-style-heading-heading-5-600">
+          Anúncios
+        </StyledH1>
+        <AdvertiseCard cards={anouncements} user={user} openModal={openModal} />
+        <Footer />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <StyledBaseDiv></StyledBaseDiv>
+        <Header
+          user={user}
+          toggleModalEditUser={toggleModalEditUser}
+          toggleModalEditAddress={toggleModalEditAddress}
         />
-      ) : null}
-      {modalDeleteOpen ? (
-        <ModalDeleteAnouncement
-          toggleModal={toggleDeleteModal}
-          id={idProduct}
-          setAnouncements={setAnouncements}
-        />
-      ) : null}
+        {modalEditAddressOpen ? (
+          <ModalEditAddress toggleModal={toggleModalEditAddress} />
+        ) : null}
+        {modalEditUserOpen ? (
+          <ModalEditUser toggleModal={toggleModalEditUser} />
+        ) : null}
+        {modalSucessOpen ? (
+          <ModalAnouncementSucess toggleModal={toggleSucessModal} />
+        ) : null}
+        {modalCreateOpen ? (
+          <ModalCreateAnouncement
+            toggleModal={toggleCreateModal}
+            setAnouncements={setAnouncements}
+            toggleSucessModal={toggleSucessModal}
+          />
+        ) : null}
+        {modalDeleteOpen ? (
+          <ModalDeleteAnouncement
+            toggleModal={toggleDeleteModal}
+            id={idProduct}
+            setAnouncements={setAnouncements}
+          />
+        ) : null}
 
-      {modalOpen ? (
-        <ModalEditAnouncement
-          toggleModal={toggleModal}
-          id={idProduct}
-          setAnouncements={setAnouncements}
-          toggleDeleteModal={toggleDeleteModal}
-        />
-      ) : null}
-      <StyledSection>
-        {user && (
-          <span className={spanColor[indexSpanColor]}>
-            {name[0][0].toUpperCase()} {name[1] ? name[1][0].toUpperCase() : ""}
-          </span>
-        )}
-        <div className="infos">
-          <h1>{name.join(" ")}</h1>
-          <span>{user?.type}</span>
-        </div>
-        <p>{user?.description}</p>
-        <button onClick={() => toggleCreateModal()}>Criar anuncio</button>
-      </StyledSection>
-      <AdvertiseCard cards={anouncements} user={user} openModal={openModal} />
-      <Footer />
-    </>
-  );
+        {modalOpen ? (
+          <ModalEditAnouncement
+            toggleModal={toggleModal}
+            id={idProduct}
+            setAnouncements={setAnouncements}
+            toggleDeleteModal={toggleDeleteModal}
+          />
+        ) : null}
+        <StyledSection>
+          {user && (
+            <span className={spanColor[indexSpanColor]}>
+              {name[0][0].toUpperCase()}{" "}
+              {name[1] ? name[1][0].toUpperCase() : ""}
+            </span>
+          )}
+          <div className="infos">
+            <h1>{name.join(" ")}</h1>
+            <span>{user?.type}</span>
+          </div>
+          <p>{user?.description}</p>
+          <button onClick={() => toggleCreateModal()}>Criar anuncio</button>
+        </StyledSection>
+        <NoCards />
+        <Footer />
+      </>
+    );
+  }
 };

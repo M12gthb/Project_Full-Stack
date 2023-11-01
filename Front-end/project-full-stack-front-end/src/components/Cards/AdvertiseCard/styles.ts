@@ -5,6 +5,11 @@ export const StyledCradsAnouncementDiv = styled.div`
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  @media (min-width: 1225px) {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `;
 
 export const StyledCradsAnouncementContainer = styled.ul`
@@ -12,8 +17,10 @@ export const StyledCradsAnouncementContainer = styled.ul`
   display: flex;
   overflow-x: auto;
   gap: 12px;
+  padding: 2%;
 
   li {
+    cursor: pointer;
     position: relative;
     min-height: 250px;
     padding-bottom: 12px;
@@ -86,7 +93,7 @@ export const StyledCradsAnouncementContainer = styled.ul`
       font-weight: 500;
     }
     button {
-      border: 2px solid var(--color-grey-scale-grey-1);
+      border: 2px solid var(--color-grey-scale-grey-0);
       border-radius: 4px;
       background-color: transparent;
       height: 38px;
@@ -104,7 +111,9 @@ export const StyledCradsAnouncementContainer = styled.ul`
     left: 10%;
     transform: translateX(-10%);
     margin: 0 auto;
-    width: 90%;
+    width: 80%;
     flex-wrap: wrap;
+    left: 10%;
+    transform: translateX(-10%);
   }
 `;

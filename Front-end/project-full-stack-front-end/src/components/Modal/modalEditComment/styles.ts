@@ -19,6 +19,11 @@ export const StyledForm = styled.form`
   textarea {
     width: 100%;
     height: 100px;
+    outline: none;
+    border: 1.5px solid var(--color-grey-scale-grey-1);
+    border-radius: 4px;
+    padding-left: 16px;
+    padding-top: 16px;
   }
   button {
     position: relative;
@@ -32,5 +37,6 @@ export const StyledForm = styled.form`
     background-color: var(--color-brand-brand-1);
     color: var(--color-colors-fixed-white-fixed);
     font-weight: 600;
+    cursor: pointer;
   }
 `;

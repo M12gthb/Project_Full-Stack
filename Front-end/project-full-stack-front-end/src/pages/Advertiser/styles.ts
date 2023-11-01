@@ -9,6 +9,22 @@ export const StyledBaseDiv = styled.div`
   background-color: var(--color-brand-brand-1);
 `;
 
+export const StyledH1 = styled.h1`
+  position: relative;
+  top: 150px;
+  left: 8%;
+  width: 30%;
+`;
+
+export const NoCards = styled.div`
+  width: 90%;
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  height: 282.99px;
+`;
+
 export const StyledSection = styled.div`
   width: 90%;
   max-width: 70%;
@@ -20,20 +36,16 @@ export const StyledSection = styled.div`
   z-index: 2;
   transform: translateX(-50%);
   background-color: var(--color-colors-fixed-white-fixed);
-  gap: 15px;
   padding: 20px;
   border-radius: 4px;
+
   .infos {
+    margin-top: 12px;
+    margin-bottom: 12px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
-    h1 {
-      font-size: 24px;
-      font-family: "Lexend";
-      font-weight: 600;
-      font-style: normal;
-      color: var(--color-grey-scale-grey-1);
-    }
+
     span {
       padding: 4px;
       border: none;
@@ -44,17 +56,32 @@ export const StyledSection = styled.div`
       font-weight: 400;
       font-style: normal;
       border-radius: 4px;
+      height: 10px;
+      display: flex;
+      align-items: center;
     }
   }
+
+  h1 {
+    font-size: 24px;
+    font-family: "Lexend";
+    font-weight: 600;
+    font-style: normal;
+    color: var(--color-grey-scale-grey-0);
+  }
+
   p {
-    max-height: 20px;
-    font-size: 16px;
+    font-size: 12px;
     font-family: "Inter";
     font-weight: 400;
     font-style: normal;
     line-height: 28px;
     color: var(--color-grey-scale-grey-2);
+    margin-top: 15px;
+    width: 100%;
+    word-wrap: break-word;
   }
+
   button {
     width: 160px;
     height: 48px;
@@ -66,7 +93,10 @@ export const StyledSection = styled.div`
     font-family: "Inter";
     font-weight: 600;
     font-style: normal;
+    cursor: pointer;
+    margin-top: 15px;
   }
+
   .blue {
     background-color: var(--color-brand-brand-1);
     height: 86px;
@@ -81,6 +111,7 @@ export const StyledSection = styled.div`
     font-weight: 600;
     font-style: normal;
   }
+
   .rose {
     background-color: var(--color-random-random-1);
     height: 86px;
@@ -95,6 +126,7 @@ export const StyledSection = styled.div`
     font-weight: 600;
     font-style: normal;
   }
+
   .brown {
     background-color: var(--color-random-random-3);
     height: 86px;
@@ -109,6 +141,7 @@ export const StyledSection = styled.div`
     font-weight: 600;
     font-style: normal;
   }
+
   .green {
     background-color: var(--color-feedback-sucess-1);
     height: 86px;
