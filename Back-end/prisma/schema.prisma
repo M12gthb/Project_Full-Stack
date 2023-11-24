@@ -12,6 +12,7 @@ model User {
   name         String
   email        String         @unique
   password     String
+  reset_token  String?
   cpf          String         @unique
   cell         String
   birthdate    String

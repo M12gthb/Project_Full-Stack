@@ -59,4 +59,11 @@ export class UsersController {
   remove(@Param('userId') id: string, @Request() req) {
     return this.userService.remove(id, req.user.id);
   }
+
+  @HttpCode(200)
+  @Post('resetPassword')
+  async sendEmailResetPassword(@Body('email') email: string) {
+    await this.userService.sendEmailResetPassword(email);
+    return { message: 'token send' };
+  }
 }
