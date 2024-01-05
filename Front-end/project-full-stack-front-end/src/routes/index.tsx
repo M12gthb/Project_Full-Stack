@@ -7,6 +7,7 @@ import { Product } from "../pages/Product";
 import { Buyer } from "../pages/Buyer";
 import { Advertiser } from "../pages/Advertiser";
 import { NotFound } from "../pages/NotFound";
+import { ResetPassword } from "../pages/ResetPage";
 
 export const RoutesMain = () => {
   return (
@@ -17,6 +18,7 @@ export const RoutesMain = () => {
       <Route path="/Register" element={<Register />} />
       <Route path="/Product" element={<Product />} />
       <Route path="/Buyer" element={<Buyer />} />
+      <Route path="/ResetPassword" element={<ResetPassword />} />
       <Route element={<ProtectedRoutes />}>
         <Route path="/Advertiser" element={<Advertiser />} />
       </Route>
