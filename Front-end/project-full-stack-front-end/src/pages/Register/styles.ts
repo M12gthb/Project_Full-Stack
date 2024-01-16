@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledSection = styled.div`
-  width: 90%;
   max-width: 411px;
   padding-left: 44px;
   padding-right: 44px;

@@ -102,14 +102,14 @@ export const StyledDiv = styled.div`
   border-bottom: 2px solid var(--color-grey-scale-grey-5);
   height: 100%;
   position: absolute;
-  padding: 0 44px;
+  padding: 12px 44px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   gap: 44px;
   right: 0;
   z-index: 4;
   top: 81px;
-
   button {
     font-size: 16px;
     font-family: "Inter";

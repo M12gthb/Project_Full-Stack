@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { StyledDiv, StyledDivMenu, StyledHeader, StyledMenu } from "./styles";
 import logo from "../../assets/Motors shop.svg";
 import burguerMenu from "../../assets/burger-menu-svgrepo-com.svg";
@@ -24,12 +25,28 @@ export const Header = ({
     localStorage.removeItem("motors:Type");
     navigate("/");
   };
+
+  const modalRef = useRef(null);
+
+  const handleClickOutsideModal = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setMenuModal(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideModal);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideModal);
+    };
+  }, []);
+
   if (user) {
     return (
       <>
         <StyledHeader>
           {menuModal ? (
-            <StyledDiv>
+            <StyledDiv ref={modalRef}>
               <button onClick={() => toggleModalEditUser()}>
                 Editar perfil
               </button>
