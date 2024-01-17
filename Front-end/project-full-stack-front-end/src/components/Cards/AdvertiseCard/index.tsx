@@ -26,9 +26,6 @@ export const AdvertiseCard = ({ cards, openModal }: any) => {
     <StyledCradsAnouncementDiv>
       <StyledCradsAnouncementContainer>
         {currentItems.map((card: any) => {
-          // const name = user.name.split(" ");
-          // const spanColor = ["blue", "rose", "brown", "green"];
-          // const indexSpanColor = Math.floor(Math.random() * spanColor.length);
           return (
             <li key={card.id}>
               <span className={card.publish == true ? "active" : "unactive"}>
