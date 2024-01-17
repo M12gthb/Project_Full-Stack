@@ -44,6 +44,7 @@ export const Product = () => {
     if (id) {
       localStorage.setItem("motors:AnouncementUserId", id);
       navigate("/Buyer");
+      console.log(Loggeduser);
     }
   };
 

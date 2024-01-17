@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { StyledDiv, StyledDivMenu, StyledHeader, StyledMenu } from "./styles";
 import logo from "../../assets/Motors shop.svg";
 import burguerMenu from "../../assets/burger-menu-svgrepo-com.svg";
@@ -27,19 +27,6 @@ export const Header = ({
   };
 
   const modalRef = useRef(null);
-
-  const handleClickOutsideModal = (event: { target: any }) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      setMenuModal(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutsideModal);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutsideModal);
-    };
-  }, []);
 
   if (user) {
     return (
