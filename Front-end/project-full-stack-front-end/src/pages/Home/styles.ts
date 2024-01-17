@@ -12,6 +12,9 @@ export const StyledSection = styled.section`
     height: 100%;
     position: absolute;
     width: 100%;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   h1 {
@@ -28,6 +31,9 @@ export const StyledSection = styled.section`
     top: 80px;
     left: 50%;
     transform: translateX(-50%);
+    @media (max-width: 768px) {
+      font-size: 48px;
+    }
   }
 
   h2 {
@@ -44,6 +50,13 @@ export const StyledSection = styled.section`
     left: 50%;
     transform: translateX(-50%);
     top: 140px;
+    @media (max-width: 768px) {
+      font-size: 18px;
+      width: 70%;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   @media (max-width: 1225px) {

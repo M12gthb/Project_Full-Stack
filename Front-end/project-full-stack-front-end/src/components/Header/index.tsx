@@ -28,7 +28,7 @@ export const Header = ({
 
   const modalRef = useRef(null);
 
-  const handleClickOutsideModal = (event) => {
+  const handleClickOutsideModal = (event: { target: any }) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       setMenuModal(false);
     }
@@ -46,15 +46,17 @@ export const Header = ({
       <>
         <StyledHeader>
           {menuModal ? (
-            <StyledDiv ref={modalRef}>
-              <button onClick={() => toggleModalEditUser()}>
-                Editar perfil
-              </button>
-              <button onClick={() => toggleModalEditAddress()}>
-                Editar endereço
-              </button>
-              <button onClick={() => logOut()}>logout</button>
-            </StyledDiv>
+            <div ref={modalRef}>
+              <StyledDiv>
+                <button onClick={() => toggleModalEditUser()}>
+                  Editar perfil
+                </button>
+                <button onClick={() => toggleModalEditAddress()}>
+                  Editar endereço
+                </button>
+                <button onClick={() => logOut()}>logout</button>
+              </StyledDiv>
+            </div>
           ) : null}
           <img className="logo" src={logo} alt="Logo" />
           <StyledDivMenu onClick={() => setMenuModal(!menuModal)}>
