@@ -7,7 +7,7 @@ import {
 } from "./styles";
 import { StyledNextOrReturn } from "../AnouncementCard/styles";
 
-export const AdvertiseCard = ({ cards, user, openModal }: any) => {
+export const AdvertiseCard = ({ cards, openModal }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
@@ -26,9 +26,9 @@ export const AdvertiseCard = ({ cards, user, openModal }: any) => {
     <StyledCradsAnouncementDiv>
       <StyledCradsAnouncementContainer>
         {currentItems.map((card: any) => {
-          const name = user.name.split(" ");
-          const spanColor = ["blue", "rose", "brown", "green"];
-          const indexSpanColor = Math.floor(Math.random() * spanColor.length);
+          // const name = user.name.split(" ");
+          // const spanColor = ["blue", "rose", "brown", "green"];
+          // const indexSpanColor = Math.floor(Math.random() * spanColor.length);
           return (
             <li key={card.id}>
               <span className={card.publish == true ? "active" : "unactive"}>
