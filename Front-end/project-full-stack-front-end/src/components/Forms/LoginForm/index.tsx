@@ -47,9 +47,9 @@ export const LoginForm = () => {
         error={errors.password?.message}
         register={register}
       />
-      <Link style={linkStyle} to={"/ResetPassword"}>
+      {/* <Link style={linkStyle} to={"/ResetPassword"}>
         Esqueceu a senha?
-      </Link>
+      </Link> */}
       <button type="submit">Entrar</button>
     </form>
   );
